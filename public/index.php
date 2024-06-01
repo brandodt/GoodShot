@@ -58,13 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-4">
-
-                    <?php if (isset($error)): ?>
-                        <div class="notification is-danger is-light">
-                            <?= htmlspecialchars($error) ?>
-                        </div>
-                    <?php endif; ?>
-
                     <form class="box" method="POST" action="">
                         <div class="field">
                             <label class="label">Login</label>
@@ -78,6 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input class="input" type="password" placeholder="Password" name="password" required />
                             </div>
                         </div>
+
+                        <?php if (isset($error)): ?>
+                            <div class="notification is-danger is-light">
+                                <?= htmlspecialchars($error) ?>
+                            </div>
+                        <?php endif; ?>
 
                         <div class="field">
                             <div class="control has-text-centered">
