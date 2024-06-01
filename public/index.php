@@ -22,7 +22,7 @@
 <body>
     <section class="section">
         <div class="container">
-            <div class="columns is-centered is-vcentered is-flex">
+            <div class="columns is-centered">
                 <div class="column is-4">
                     <form class="box">
                         <div class="field">
