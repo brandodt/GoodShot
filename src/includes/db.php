@@ -1,9 +1,9 @@
 <?php
 
-$host = 'localhost';
+$host = '127.0.0.1';
 $db = 'goodshot';
-$user = 'root';
-$pass = '';
+$user = 'dwayne';
+$pass = 'dw4yn3@g00dSh0t';
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
