@@ -7027,12 +7027,12 @@ button.dropdown-item.is-selected {
   --bulma-modal-close-right: 1.25rem;
   --bulma-modal-close-top: 1.25rem;
   --bulma-modal-card-spacing: 2.5rem;
-  --bulma-modal-card-head-background-color: var(--bulma-scheme-main);
-  --bulma-modal-card-head-padding: 2rem;
+  --bulma-modal-card-head-background-color: #262322;
+  --bulma-modal-card-head-padding: 1rem;
   --bulma-modal-card-head-radius: var(--bulma-radius-large);
-  --bulma-modal-card-title-color: var(--bulma-text-strong);
+  --bulma-modal-card-title-color: #eff0eb;
   --bulma-modal-card-title-line-height: 1;
-  --bulma-modal-card-title-size: var(--bulma-size-4);
+  --bulma-modal-card-title-size: var(--bulma-size-5);
   --bulma-modal-card-foot-background-color: var(--bulma-scheme-main-bis);
   --bulma-modal-card-foot-radius: var(--bulma-radius-large);
   --bulma-modal-card-body-background-color: var(--bulma-scheme-main);

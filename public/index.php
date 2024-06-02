@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <div class="columns is-centered centerall">
-            <div class="column is-4">
+            <div class="column is-4 mx-6">
                 <form class="box" method="POST" action="">
                     <div class="field">
                         <label class="label">Login</label>
@@ -71,12 +71,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="control has-text-centered">
                             <button class="button is-primary is-rounded">Login</button>
                         </div>
-                        <p class="help has-text-centered"><u>Forget Password?</u></p>
+                        <p id="forgetPassword" class="help has-text-centered"><u>Forgot Password?</u></p>
+                        <div id="passwordModal" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                                <header class="modal-card-head  mx-6">
+                                    <p class="modal-card-title">Forgot Password</p>
+                                </header>
+                                <section class="modal-card-body  mx-6">
+                                    <p class="has-text-centered">Contact your system administrator.</p>
+                                </section>
+                                <footer class="modal-card-foot has-text-centered  mx-6">
+                                    <button class="button is-primary is-centered">Cancel</button>
+                                </footer>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const forgetPasswordLink = document.querySelector('#forgetPassword');
+            const cancelButton = document.querySelector('.modal-card-foot .button');
+            const closeButton = document.querySelector('.modal-card-head .delete');
+            const modal = document.querySelector('#passwordModal');
+
+            const closeModal = () => {
+                modal.classList.remove('is-active');
+            };
+
+            const openModal = () => {
+                modal.classList.add('is-active');
+            };
+
+            forgetPasswordLink.addEventListener('click', openModal);
+            cancelButton.addEventListener('click', closeModal);
+            closeButton.addEventListener('click', closeModal);
+        });
+    </script>
 </body>
 
 </html>
