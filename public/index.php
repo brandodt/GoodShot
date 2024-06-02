@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($username) && !empty($password)) {
 
-        $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
@@ -40,17 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GoodShot - POS</title>
     <link rel="stylesheet" href="assets/css/bulma.css">
-    <style>
-        html,
-        body,
-        .full-height {
-            height: 100%;
-        }
-
-        body {
-            background-color: #383736;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
