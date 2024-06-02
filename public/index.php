@@ -44,41 +44,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <section class="section">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-4">
-                    <form class="box" method="POST" action="">
-                        <div class="field">
-                            <label class="label">Login</label>
-                            <div class="control">
-                                <input class="input" placeholder="Username" name="username" required />
-                            </div>
+    <div class="container">
+        <div class="columns is-centered centerall">
+            <div class="column is-4">
+                <form class="box" method="POST" action="">
+                    <div class="field">
+                        <label class="label">Login</label>
+                        <div class="control">
+                            <input class="input" placeholder="Username" name="username" required />
                         </div>
+                    </div>
 
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" type="password" placeholder="Password" name="password" required />
-                            </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="password" placeholder="Password" name="password" required />
                         </div>
+                    </div>
 
-                        <?php if (isset($error)): ?>
-                            <div class="notification is-danger is-light">
-                                <?= htmlspecialchars($error) ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <div class="field">
-                            <div class="control has-text-centered">
-                                <button class="button is-primary is-rounded">Login</button>
-                            </div>
-                            <p class="help has-text-centered"><u>Forget Password?</u></p>
+                    <?php if (isset($error)): ?>
+                        <div class="notification is-danger is-light">
+                            <?= htmlspecialchars($error) ?>
                         </div>
-                    </form>
-                </div>
+                    <?php endif; ?>
+
+                    <div class="field">
+                        <div class="control has-text-centered">
+                            <button class="button is-primary is-rounded">Login</button>
+                        </div>
+                        <p class="help has-text-centered"><u>Forget Password?</u></p>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
 </body>
 
 </html>
