@@ -41,6 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>GoodShot - POS</title>
     <link rel="stylesheet" href="assets/css/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        html {
+            background-color: #383736;
+        }
+    </style>
 </head>
 
 <body>
