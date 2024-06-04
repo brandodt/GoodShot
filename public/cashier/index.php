@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
-    $_SESSION["error"] = "Unauthorized access. Please log-in first.";
+    $_SESSION["error"] = "Unauthorized access. Please login first.";
     header("location: /");
     exit;
 }
@@ -68,8 +68,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     <div class="column is-4">
                         <aside class="menu has-text-centered">
                             <ul class="menu-list">
-                                <li><a id="account">Account</a></li>
                                 <li><a id="notifications">Notifications</a></li>
+                                <li><a id="account">Account</a></li>
                             </ul>
                         </aside>
                     </div>
@@ -104,9 +104,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     notificationsLink.classList.remove('is-active', 'py-4');
                     event.preventDefault();
                     column.innerHTML = `
-                    <h2>Account</h2>
-                    <p>Here you can change your password.</p>
-                    <!-- Add more HTML for the account page here -->
+                    <h5 class="title is-5">Account</h5>
+                    <form method="POST">
+                        <div class="field">
+                            <label class="label">Change Password</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Old Password" name="oldpass" required>
+                                <input class="input mt-1" type="text" placeholder="New Password" name="newpass" required>
+                            </div>
+                        </div>
+                        <div class="field is-grouped is-grouped-right">
+                            <p class="control">
+                                <button class="button is-primary">
+                                    Submit
+                                </button>
+                            </p>
+                        </div>
+                    </form>
                 `;
                 });
 
@@ -117,7 +131,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     column.innerHTML = `
                     <h2>Notifications</h2>
                     <p>Here are your notifications.</p>
-                    <!-- Add more HTML for the notifications page here -->
                 `;
                 });
             };
