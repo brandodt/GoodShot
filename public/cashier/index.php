@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
+    $_SESSION["error"] = "Unauthorized access. Please log-in first.";
+    header("location: /");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top">
 
