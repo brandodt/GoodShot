@@ -76,8 +76,20 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     <div class="column is-8">Welcome</div>
                 </div>
             </section>
-            <footer class="modal-card-foot has-text-centered">
-                <button class="button is-primary is-centered">Cancel</button>
+            <footer class="modal-card-foot">
+                <div class="field is-grouped">
+                    <p class="control">
+                        <button class="button is-primary">
+                            Cancel
+                        </button>
+                    </p>
+                    <p class="control">
+                        <button class="button is-danger is-light">
+                            Logout
+                        </button>
+                    </p>
+                </div>
+                <!-- <button class="button is-primary is-centered">Log out</button> -->
             </footer>
         </div>
     </div>
@@ -104,13 +116,30 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     notificationsLink.classList.remove('is-active', 'py-4');
                     event.preventDefault();
                     column.innerHTML = `
-                    <h5 class="title is-5">Account</h5>
+                    <h5 class="title is-5">Account Information</h5>
+                    <form method="POST">
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="First Name" name="fname" value="Juan" required>
+                                <input class="input mt-1" type="text" placeholder="Last Name" name="lname" value="Dela Cruz" required>
+                            </div>
+                        </div>
+                        <div class="field is-grouped is-grouped-right">
+                            <p class="control">
+                                <button class="button is-primary">
+                                    Save
+                                </button>
+                            </p>
+                        </div>
+                    </form>
+
                     <form method="POST">
                         <div class="field">
                             <label class="label">Change Password</label>
                             <div class="control">
-                                <input class="input" type="text" placeholder="Old Password" name="oldpass" required>
-                                <input class="input mt-1" type="text" placeholder="New Password" name="newpass" required>
+                                <input class="input" type="password" placeholder="Old Password" name="oldpass" required>
+                                <input class="input mt-1" type="password" placeholder="New Password" name="newpass" required>
                             </div>
                         </div>
                         <div class="field is-grouped is-grouped-right">
