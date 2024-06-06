@@ -7,6 +7,10 @@ if (isset($_SESSION["error"])) {
     unset($_SESSION["error"]);
 }
 
+if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
+    $error = "You have been logged out.";
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -79,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="control has-text-centered">
                             <button class="button is-primary is-rounded">Login</button>
                         </div>
-                        <p id="forgetPassword" class="help has-text-centered"><u>Forgot Password?</u></p>
+                        <p id="forgetPassword" class="help has-text-centered is-clickable"><u>Forgot Password?</u></p>
                         <div id="passwordModal" class="modal">
                             <div class="modal-background"></div>
                             <div class="modal-card">
