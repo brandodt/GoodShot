@@ -6,3 +6,12 @@
   justify-content: center;
   align-items: center;
 }
+
+/* .colored-box {
+  background-color: #262322 !important;
+} */
+
+.scrollable-table {
+  max-height: 60vh;
+  overflow-y: auto;
+}
