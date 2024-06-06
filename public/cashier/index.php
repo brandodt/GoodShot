@@ -54,6 +54,197 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </div>
         </div>
     </nav>
+    <section class="section">
+        <div class="columns">
+            <div class="column is-3">
+                <h1 class="title is-1">Cashier</h1>
+                <h4 class="subtitle is-4">Juan Dela Cruz</h4>
+                <p>
+                    <strong>Transaction #: </strong>0606241117
+                </p>
+                <p>
+                    <strong>Transaction Date: </strong>06/06/24
+                </p>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-small" type="text" placeholder="Search ... Product ID / Name">
+                    </div>
+                </div>
+                <div class="box" style="height: 63vh;">
+                    <aside class="menu has-text-centered">
+                        <ul class="menu-list">
+                            <li>
+                                <a class="is-active title is-4">
+                                    New Transaction
+                                </a>
+                            </li>
+                            <li>
+                                <a class="title is-4">
+                                    Add Discount
+                                </a>
+                            </li>
+                            <li>
+                                <a class="title is-4">
+                                    Settle Payment
+                                </a>
+                            </li>
+                            <li>
+                                <a class="title is-4">
+                                    Clear Cart
+                                </a>
+                            </li>
+                            <li>
+                                <a class="title is-4">
+                                    Daily Sales
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box" style="height: 65vh;">
+                    <div class="scrollable-table">
+                        <table class="table is-striped is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Product 1</td>
+                                    <td>100.00</td>
+                                    <td>1</td>
+                                    <td>100.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box has-text-right" style="height: 16vh;">
+                    <h3 class="title is-3">Total Amount: P43,500.00</h3>
+                </div>
+            </div>
+        </div>
+    </section>
     <div id="accModal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -86,7 +277,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         </button>
                     </p>
                 </div>
-                <!-- <button class="button is-primary is-centered">Log out</button> -->
             </footer>
         </div>
     </div>
