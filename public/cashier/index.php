@@ -113,6 +113,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
+                                    <th>Action(s)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,6 +123,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -129,6 +147,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -136,6 +171,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -143,6 +195,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -150,6 +219,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -157,6 +243,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -164,6 +267,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -171,6 +291,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -178,6 +315,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -185,6 +339,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -192,6 +363,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -199,6 +387,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -206,6 +411,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -213,6 +435,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -220,6 +459,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -227,6 +483,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -234,6 +507,23 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     <td>100.00</td>
                                     <td>1</td>
                                     <td>100.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
