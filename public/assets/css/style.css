@@ -15,3 +15,7 @@
   max-height: 60vh;
   overflow-y: auto;
 }
+
+.aside-link:hover {
+  color: #bdb17b !important;
+}

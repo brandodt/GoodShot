@@ -72,32 +72,57 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         </div>
                     </div>
                 </div>
-                <div class="box" style="height: 57vh;">
+                <div class="box" style="height: 57vh; background: #262322;">
                     <aside class="menu has-text-centered">
                         <ul class="menu-list">
-                            <li>
-                                <a class="is-active title is-4">
-                                    New Transaction
+                            <li class="subtitle is-5">
+                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-money-check-alt"></i>
+                                        </span>
+                                        <span>New Transaction</span>
+                                    </span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="title is-4">
-                                    Add Discount
+                            <li class="subtitle is-5">
+                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-tags"></i>
+                                        </span>
+                                        <span>Add Discount</span>
+                                    </span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="title is-4">
-                                    Settle Payment
+                            <li class="subtitle is-5">
+                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-cash-register"></i>
+                                        </span>
+                                        <span>Settle Payment</span>
+                                    </span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="title is-4">
-                                    Clear Cart
+                            <li class="mt-2 subtitle is-5">
+                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </span>
+                                        <span>Clear Cart</span>
+                                    </span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="title is-4">
-                                    Daily Sales
+                            <li class="mt-2 subtitle is-5">
+                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-scroll"></i>
+                                        </span>
+                                        <span>Daily Sales</span>
+                                    </span>
                                 </a>
                             </li>
                         </ul>
