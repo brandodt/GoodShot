@@ -57,20 +57,22 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <section class="section">
         <div class="columns">
             <div class="column is-3">
-                <h1 class="title is-1">Cashier</h1>
-                <h4 class="subtitle is-4">Juan Dela Cruz</h4>
-                <p>
-                    <strong>Transaction #: </strong>0606241117
-                </p>
-                <p>
-                    <strong>Transaction Date: </strong>06/06/24
-                </p>
-                <div class="field">
-                    <div class="control">
-                        <input class="input is-small" type="text" placeholder="Search ... Product ID / Name">
+                <div class="box">
+                    <h1 class="title is-1">Cashier</h1>
+                    <h4 class="subtitle is-4">Juan Dela Cruz</h4>
+                    <p>
+                        <strong>Transaction #: </strong>0606241117
+                    </p>
+                    <p>
+                        <strong>Transaction Date: </strong>06/06/24
+                    </p>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-small" type="text" placeholder="Search ... Product ID / Name">
+                        </div>
                     </div>
                 </div>
-                <div class="box" style="height: 63vh;">
+                <div class="box" style="height: 57vh;">
                     <aside class="menu has-text-centered">
                         <ul class="menu-list">
                             <li>
