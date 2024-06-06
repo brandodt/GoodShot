@@ -89,6 +89,16 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                 <a class="aside-link has-text-centered" style="background: #262322; color:white;">
                                     <span class="icon-text">
                                         <span class="icon">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                        <span>Search Product</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="subtitle is-5">
+                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                    <span class="icon-text">
+                                        <span class="icon">
                                             <i class="fas fa-tags"></i>
                                         </span>
                                         <span>Add Discount</span>
@@ -597,7 +607,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </footer>
         </div>
     </div>
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/account.modal.js"></script>
 </body>
 
 </html>
