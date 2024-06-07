@@ -1,20 +1,15 @@
-// Path: public_html/public/index.php
-document.addEventListener('DOMContentLoaded', (event) => {
-    const forgetPasswordLink = document.querySelector('#forgetPassword');
-    const cancelButton = document.querySelector('.modal-card-foot .button');
-    const closeButton = document.querySelector('.modal-card-head .delete');
-    const modal = document.querySelector('#passwordModal');
+function updateTransactionDate() {
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    var month = monthNames[now.getMonth()];
+    var year = now.getFullYear();
+    var hours = ("0" + now.getHours()).slice(-2);
+    var minutes = ("0" + now.getMinutes()).slice(-2);
+    var seconds = ("0" + now.getSeconds()).slice(-2);
+    document.getElementById('transaction-date').textContent = month + " " + day + ", " + year + " " + hours + ":" + minutes + ":" + seconds;
+}
 
-    const closeModal = () => {
-        modal.classList.remove('is-active');
-    };
-
-    const openModal = () => {
-        modal.classList.add('is-active');
-    };
-
-    forgetPasswordLink.addEventListener('click', openModal);
-    cancelButton.addEventListener('click', closeModal);
-    closeButton.addEventListener('click', closeModal);
-});
-
+updateTransactionDate();
+setInterval(updateTransactionDate, 1000); // update every second
