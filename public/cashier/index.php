@@ -17,6 +17,10 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/bulma.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- Scripts -->
+    <script src="../assets/js/account.modal.js"></script>
+    <script src="../assets/js/search.modal.js"></script>
+    <script src="../assets/js/payment.modal.js"></script>
 </head>
 
 <body>
@@ -91,16 +95,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                 </a>
                             </li>
                             <li class="subtitle is-5">
-                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
-                                    <span class="icon-text">
-                                        <span class="icon">
-                                            <i class="fas fa-tags"></i>
-                                        </span>
-                                        <span>Add Discount</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="subtitle is-5">
                                 <a id="payment-modal-button" class="aside-link has-text-centered" style="background: #262322; color:white;">
                                     <span class="icon-text">
                                         <span class="icon">
@@ -112,7 +106,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                             </li>
                             <li class="mt-2 subtitle is-5">
                                 <a class="aside-link has-text-centered" style="background: #262322; color:white;">
-                                    <span class="icon-text">
+                                    <span class="icon-text has-text-danger">
                                         <span class="icon">
                                             <i class="fas fa-trash-alt"></i>
                                         </span>
@@ -633,8 +627,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
         </div>
     </div>
 
-    <script src="../assets/js/payment.modal.js"></script>
-
     <!-- Payment Modal -->
     <div id="payment-modal-content" class="modal">
         <div class="modal-background"></div>
@@ -672,10 +664,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </footer>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="../assets/js/account.modal.js"></script>
-    <script src="../assets/js/search.modal.js"></script>
 </body>
 
 </html>
