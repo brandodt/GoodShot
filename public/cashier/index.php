@@ -42,7 +42,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                 <div class="navbar-item">
                     <div class="field">
                         <p class="control">
-                            <a class="button is-link" id="modal">
+                            <a class="button is-link" id="account-modal-button">
                                 <span class="icon">
                                     <i class="fas fa-user"></i>
                                 </span>
@@ -81,7 +81,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                 </a>
                             </li>
                             <li class="subtitle is-5">
-                                <a class="aside-link has-text-centered" style="background: #262322; color:white;">
+                                <a id="search-modal-button" class="aside-link has-text-centered" style="background: #262322; color:white;">
                                     <span class="icon-text">
                                         <span class="icon">
                                             <i class="fas fa-search"></i>
@@ -567,7 +567,10 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </div>
         </div>
     </section>
-    <div id="accModal" class="modal">
+    <!-- Modals -->
+
+    <!-- Account Modal -->
+    <div id="account-modal-content" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -602,7 +605,54 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </footer>
         </div>
     </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal-content" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Search</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input" type="text" placeholder="Product ID / Product Name">
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary">
+                            <span class="icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <footer class=" modal-card-foot">
+            </footer>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal-content" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Search</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <input type="number" class="input">
+            </section>
+            <footer class=" modal-card-foot">
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="../assets/js/account.modal.js"></script>
+    <script src="../assets/js/search.modal.js"></script>
+    <script src="../assets/js/payment.modal.js"></script>
 </body>
 
 </html>

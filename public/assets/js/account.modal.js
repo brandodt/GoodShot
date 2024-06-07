@@ -1,9 +1,9 @@
 // Path: public_html/public/cashier/index.php
 document.addEventListener('DOMContentLoaded', (event) => {
-    const modalLink = document.querySelector('#modal');
+    const modalLink = document.querySelector('#account-modal-button');
     const cancelButton = document.querySelector('.modal-card-foot .button');
-    const closeButton = document.querySelector('.modal-card-head .delete');
-    const modal = document.querySelector('#accModal');
+    // const closeButton = document.querySelector('.modal-card-head .delete');
+    const modal = document.querySelector('#account-modal-content');
 
     const closeModal = () => {
         modal.classList.remove('is-active');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     modalLink.addEventListener('click', openModal);
     cancelButton.addEventListener('click', closeModal);
-    closeButton.addEventListener('click', closeModal);
+    // closeButton.addEventListener('click', closeModal);
 });
 
 function logout() {
