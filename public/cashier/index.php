@@ -138,25 +138,218 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                 </div>
             </div>
             <div class="column">
-                <div class="box" style="height: 65vh;">
-                    <div class="scrollable-table">
-                        <table class="table is-striped is-fullwidth">
+                <div class="card" style="height: 58vh; display: flex;
+  flex-direction: column;">
+                    <div class="card-content scrollable-table">
+                        <table id="sorTable" class="table is-striped is-fullwidth">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th onclick="sortTable(0)">Product ID</th>
+                                    <th onclick="sortTable(1)">Product Name</th>
+                                    <th onclick="sortTable(2)">Price</th>
+                                    <th onclick="sortTable(3)">Quantity</th>
+                                    <th onclick="sortTable(4)">Total</th>
                                     <th>Action(s)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
+                                    <td>Coca-Cola 500ml</td>
+                                    <td>25.00</td>
+                                    <td>3</td>
+                                    <td>75.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Lays Potato Chips (Regular)</td>
+                                    <td>30.00</td>
+                                    <td>2</td>
+                                    <td>60.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Magnum Classic Ice Cream Bar</td>
+                                    <td>50.00</td>
                                     <td>1</td>
+                                    <td>50.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Red Bull Energy Drink 250ml</td>
+                                    <td>40.00</td>
+                                    <td>2</td>
+                                    <td>80.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Nestle KitKat Chocolate Bar</td>
+                                    <td>20.00</td>
+                                    <td>4</td>
+                                    <td>80.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Pringles Original Chips</td>
+                                    <td>45.00</td>
+                                    <td>2</td>
+                                    <td>90.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Marlboro Red Cigarettes</td>
+                                    <td>150.00</td>
+                                    <td>1</td>
+                                    <td>150.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Colgate Total Toothpaste 150g</td>
+                                    <td>60.00</td>
+                                    <td>1</td>
+                                    <td>60.00</td>
+                                    <td>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-primary is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-danger is-light is-small">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Nissin Cup Noodles (Chicken Flavor)</td>
+                                    <td>20.00</td>
+                                    <td>5</td>
                                     <td>100.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
@@ -177,11 +370,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
+                                    <td>10</td>
+                                    <td>Sprite 1.5L</td>
+                                    <td>45.00</td>
+                                    <td>2</td>
+                                    <td>90.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
                                             <span class="icon">
@@ -201,11 +394,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
+                                    <td>11</td>
+                                    <td>Jack 'n Jill Chippy (Garlic and Vinegar)</td>
+                                    <td>15.00</td>
+                                    <td>4</td>
+                                    <td>60.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
                                             <span class="icon">
@@ -225,11 +418,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
+                                    <td>12</td>
+                                    <td>San Miguel Pale Pilsen (Bottle)</td>
+                                    <td>40.00</td>
+                                    <td>3</td>
+                                    <td>120.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
                                             <span class="icon">
@@ -249,11 +442,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
+                                    <td>13</td>
+                                    <td>Palmolive Naturals Shampoo 180ml</td>
+                                    <td>70.00</td>
+                                    <td>2</td>
+                                    <td>140.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
                                             <span class="icon">
@@ -273,11 +466,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
+                                    <td>14</td>
+                                    <td>Alaska Condensed Milk 300ml</td>
+                                    <td>30.00</td>
+                                    <td>3</td>
+                                    <td>90.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
                                             <span class="icon">
@@ -297,11 +490,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>15</td>
+                                    <td>Head & Shoulders Anti-Dandruff Shampoo 200ml</td>
+                                    <td>120.00</td>
                                     <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
+                                    <td>120.00</td>
                                     <td>
                                         <button class="button is-primary is-light is-small">
                                             <span class="icon">
@@ -320,246 +513,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Product 1</td>
-                                    <td>100.00</td>
-                                    <td>1</td>
-                                    <td>100.00</td>
-                                    <td>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-primary is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                        </button>
-                                        <button class="button is-danger is-light is-small">
-                                            <span class="icon">
-                                                <i class="fas fa-trash"></i>
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -724,6 +678,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     </div>
 
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/sortable.js"></script>
 
 </body>
 
