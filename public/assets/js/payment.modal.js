@@ -20,8 +20,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function updateCashAmount(value) {
     var cashAmountInput = document.querySelector('input[name="cashAmount"]');
-    if (cashAmountInput.value === '0') {
-        cashAmountInput.value = value;
+    if (cashAmountInput.value === '0' || cashAmountInput.value === '00') {
+        if (value !== '0') {
+            cashAmountInput.value = value;
+        }
     } else {
         cashAmountInput.value += value;
     }
