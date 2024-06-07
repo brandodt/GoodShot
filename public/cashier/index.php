@@ -66,11 +66,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     <p>
                         <strong>Transaction Date: </strong>06/06/24
                     </p>
-                    <div class="field">
-                        <div class="control">
-                            <input class="input is-small" type="text" placeholder="Search ... Product ID / Name">
-                        </div>
-                    </div>
                 </div>
                 <div class="box" style="height: 57vh; background: #262322;">
                     <aside class="menu has-text-centered">
