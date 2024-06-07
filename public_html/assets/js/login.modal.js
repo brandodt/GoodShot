@@ -1,4 +1,4 @@
-// Path: public_html/public/index.php
+// Path: public_html/index.php
 document.addEventListener('DOMContentLoaded', (event) => {
     const forgetPasswordLink = document.querySelector('#forgetPassword');
     const cancelButton = document.querySelector('.modal-card-foot .button');

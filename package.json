@@ -3,7 +3,7 @@
     "bulma": "^1.0.1"
   },
   "scripts": {
-    "build-bulma": "sass --load-path=node_modules ./public/assets/css/bulma.scss ./public/assets/css/bulma.css",
+    "build-bulma": "sass --load-path=node_modules ./public_html/assets/css/bulma.scss ./public_html/assets/css/bulma.css",
     "start": "npm run build-bulma -- --watch"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-// Path: public_html/public/cashier/index.php
+// Path: public_html/cashier/index.php
 document.addEventListener('DOMContentLoaded', (event) => {
     const modalLink = document.querySelector('#search-modal-button');
     // const cancelButton = document.querySelector('.modal-card-foot .button');
