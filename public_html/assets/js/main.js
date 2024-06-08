@@ -8,7 +8,7 @@ function updateTransactionDate() {
     var hours = ("0" + now.getHours()).slice(-2);
     var minutes = ("0" + now.getMinutes()).slice(-2);
     var seconds = ("0" + now.getSeconds()).slice(-2);
-    document.getElementById('transaction-date').textContent = month + " " + day + ", " + year + " " + hours + ":" + minutes + ":" + seconds;
+    document.getElementById('transaction-date').textContent = month + " " + day + ", " + year + " " + hours + ":" + minutes;
 }
 
 updateTransactionDate();
