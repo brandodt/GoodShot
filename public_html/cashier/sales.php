@@ -59,25 +59,18 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     </nav>
     <section class="section">
         <div class="columns">
-            <div class="column is-10">
+            <div class="column is-11">
                 <h3 class="title is-3">
                     Daily Sales
                 </h3>
             </div>
             <div class="column">
-                <p class="buttons">
-                    <a href="index.php" class="button is-primary">
-                        <span class="icon">
-                            <i class="fas fa-arrow-left"></i>
-                        </span>
-                        <span>Back</span>
-                    </a>
-                    <button class="button is-primary">
-                        <span class="icon">
-                            <i class="fas fa-print"></i>
-                        </span>
-                        <span>Print Sales</span>
-                    </button>
+                <a href="index.php" class="button is-primary">
+                    <span class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span>Back</span>
+                </a>
                 </p>
             </div>
         </div>
@@ -99,11 +92,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         <td>Juan Dela Cruz</td>
                         <td>1000.00</td>
                         <td>
-                            <button class="button is-primary is-small">
-                                <span class="icon">
-                                    <i class="fas fa-eye"></i>
+                            <button class="button is-primary is-small" onclick="window.open('../includes/receipt.php')">
+                                <span class=" icon">
+                                    <i class="fas fa-print"></i>
                                 </span>
-                                <span>View</span>
+                                <span>View Receipt</span>
                             </button>
                         </td>
                     </tr>
@@ -113,11 +106,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         <td>Brando Dela Torre</td>
                         <td>1500.00</td>
                         <td>
-                            <button class="button is-primary is-small">
-                                <span class="icon">
-                                    <i class="fas fa-eye"></i>
+                            <button class="button is-primary is-small" onclick="window.open('../includes/receipt.php')">
+                                <span class=" icon">
+                                    <i class="fas fa-print"></i>
                                 </span>
-                                <span>View</span>
+                                <span>View Receipt</span>
                             </button>
                         </td>
                     </tr>
@@ -127,11 +120,11 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         <td>Symond Barba</td>
                         <td>2000.00</td>
                         <td>
-                            <button class="button is-primary is-small">
-                                <span class="icon">
-                                    <i class="fas fa-eye"></i>
+                            <button class="button is-primary is-small" onclick="window.open('../includes/receipt.php')">
+                                <span class=" icon">
+                                    <i class="fas fa-print"></i>
                                 </span>
-                                <span>View</span>
+                                <span>View Receipt</span>
                             </button>
                         </td>
                     </tr>
