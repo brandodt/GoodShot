@@ -12,10 +12,13 @@
 } */
 
 .scrollable-table {
-  max-height: 58vh;
+  /* max-height: 72.5vh; */
   overflow-y: auto;
 }
 
 .aside-link:hover {
   color: #bdb17b !important;
+}
+
+#logo {
 }
