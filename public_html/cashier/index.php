@@ -23,7 +23,12 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <script src="../assets/js/search.modal.js"></script>
     <script src="../assets/js/payment.modal.js"></script>
     <script src="../assets/js/clear-cart.modal.js"></script>
-
+    <style>
+        .cell {
+            display: grid;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -59,78 +64,22 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
         </div>
     </nav>
     <section class="section">
-        <div class="columns">
-            <div class="column is-3">
-                <div class="box">
-                    <h1 class="title is-1">Cashier</h1>
-                    <h4 class="subtitle is-4">Juan Dela Cruz</h4>
-                    <p>
-                        <strong>Transaction #: </strong>0606241117
-                    </p>
-                    <p>
-                        <strong>Transaction Date: </strong><span id="transaction-date"></span>
-                    </p>
+        <div class="fixed-grid has-4-cols">
+            <div class="grid">
+                <div class="cell">
+                    <div class="box">
+                        <h1 class="title is-1">Cashier</h1>
+                        <h4 class="subtitle is-4">Juan Dela Cruz</h4>
+                        <p>
+                            <strong>Transaction #: </strong>0606241117
+                        </p>
+                        <p>
+                            <strong>Transaction Date: </strong><span id="transaction-date"></span>
+                        </p>
+                    </div>
                 </div>
-                <div class="box" style="background: #262322;">
-                    <aside class="menu">
-                        <ul class="menu-list">
-                            <li class="subtitle is-5">
-                                <a id="search-modal-button" class="aside-link"
-                                    style="background: #262322; color:white;">
-                                    <span class="icon-text">
-                                        <span class="icon">
-                                            <i class="fas fa-search"></i>
-                                        </span>
-                                        <span>Search Product</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="subtitle is-5">
-                                <a id="payment-modal-button" class="aside-link"
-                                    style="background: #262322; color:white;">
-                                    <span class="icon-text">
-                                        <span class="icon">
-                                            <i class="fas fa-cash-register"></i>
-                                        </span>
-                                        <span>Settle Payment</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="subtitle is-5">
-                                <a id="clear-cart-modal-button" class="aside-link"
-                                    style="background: #262322; color:white;">
-                                    <span class="icon-text has-text-danger">
-                                        <span class="icon">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </span>
-                                        <span>Clear Cart</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="subtitle is-5">
-                                <a href="sales.php" class="aside-link" style="background: #262322; color:white;">
-                                    <span class="icon-text">
-                                        <span class="icon">
-                                            <i class="fas fa-scroll"></i>
-                                        </span>
-                                        <span>Daily Sales</span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                </div>
-                <div class="box">
-                    <h4 class=" title is-4">Total Amount:</h4>
-                    <h2 class="subtitle is-2">
-                        P43,500.00
-                    </h2>
-                </div>
-            </div>
-            <div class="column">
-                <div class="card" style="height: 70.8vh; display: flex;
-  flex-direction: column;">
-                    <div class="card-content scrollable-table">
+                <div class="cell is-row-span-3 is-col-span-3">
+                    <div class="box">
                         <table id="sorTable" class="table is-striped is-fullwidth">
                             <thead>
                                 <tr>
@@ -508,7 +457,65 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         </table>
                     </div>
                 </div>
-
+                <div class="cell">
+                    <div class="box" style="background: #262322;">
+                        <aside class="menu">
+                            <ul class="menu-list">
+                                <li class="subtitle is-5">
+                                    <a id="search-modal-button" class="aside-link"
+                                        style="background: #262322; color:white;">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                            <span>Search Product</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="subtitle is-5">
+                                    <a id="payment-modal-button" class="aside-link"
+                                        style="background: #262322; color:white;">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="fas fa-cash-register"></i>
+                                            </span>
+                                            <span>Settle Payment</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="subtitle is-5">
+                                    <a id="clear-cart-modal-button" class="aside-link"
+                                        style="background: #262322; color:white;">
+                                        <span class="icon-text has-text-danger">
+                                            <span class="icon">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </span>
+                                            <span>Clear Cart</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="subtitle is-5">
+                                    <a href="sales.php" class="aside-link" style="background: #262322; color:white;">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="fas fa-scroll"></i>
+                                            </span>
+                                            <span>Daily Sales</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="box">
+                        <h4 class=" title is-4">Total Amount:</h4>
+                        <h2 class="subtitle is-2">
+                            P43,500.00
+                        </h2>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -605,7 +612,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     value="6500" disabled>
                 <br>
                 <br>
-                <div class="columns  is-multiline">
+                <div class="columns is-multiline">
                     <div class="column is-one-quarter"><button class="button is-link is-fullwidth py-4"
                             onclick="updateCashAmount(7)">7</button></div>
                     <div class="column is-one-quarter"><button class="button is-link is-fullwidth py-4"
