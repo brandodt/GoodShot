@@ -35,7 +35,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <nav class="navbar is-primary is-fixed-top is-spaced">
         <div class="navbar-brand">
             <a class="navbar-item " href="https://bulma.io">
-                <img src="../assets/img/logo_white.png">
+                <img src="../assets/img/logo_white.png" width="150">
 
             </a>
             <div class="navbar-burger js-burger" data-target="navbar">
