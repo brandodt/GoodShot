@@ -103,17 +103,17 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                             <td>{{ item.quantity }}</td>
                                             <td>{{ item.product.price * item.quantity }}</td>
                                             <td>
-                                                <button class="button is-primary is-light is-small">
+                                                <button class="button is-primary is-light is-small" @click="decreaseQuantity(item)">
                                                     <span class="icon">
                                                         <i class="fas fa-minus"></i>
                                                     </span>
                                                 </button>
-                                                <button class="button is-primary is-light is-small">
+                                                <button class="button is-primary is-light is-small" @click="increaseQuantity(item)">
                                                     <span class="icon">
                                                         <i class="fas fa-plus"></i>
                                                     </span>
                                                 </button>
-                                                <button class="button is-danger is-light is-small">
+                                                <button class="button is-danger is-light is-small" @click="removeItem(index)">
                                                     <span class="icon">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
