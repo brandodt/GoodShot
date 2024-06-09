@@ -10,8 +10,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
 
 <div id="search-modal-content" class="modal">
     <div class="modal-background"></div>
-    <div class="notification is-danger" v-if="notification">
-        {{ notification }}
+    <div class="notification" :class="{'is-danger': notificationType === 'danger', 'is-success': notificationType === 'success'}" v-if="notification" v-html="notification">
     </div>
     <div class="modal-card">
         <header class="modal-card-head">
