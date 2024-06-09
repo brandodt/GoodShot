@@ -46,7 +46,11 @@ Vue.createApp({
         },
         addToCart(product) {
             let quantity = prompt("Enter quantity:");
-            if (quantity !== null) {
+            quantity = parseInt(quantity);
+            if (isNaN(quantity) || quantity <= 0) {
+                this.notification = "Invalid quantity. Please try again.";
+                this.notificationType = 'danger';
+            } else if (quantity !== null) {
                 if (quantity > product.quantity) {
                     this.notification = "You can't add more items than available in stock.";
                     this.notificationType = 'danger';
