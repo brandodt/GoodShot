@@ -15,7 +15,7 @@ Vue.createApp({
             .then(response => {
                 this.products = response.data.map(product => ({
                     ...product,
-                    quantityToAdd: 1 // Initialize quantityToAdd for each product
+                    quantityToAdd: 0 // Initialize quantityToAdd for each product
                 }));
                 this.products.forEach(product => {
                     this.stockData[product.product_id] = product.quantity;
@@ -35,7 +35,7 @@ Vue.createApp({
                 .then(response => {
                     this.products = response.data.map(product => ({
                         ...product,
-                        quantityToAdd: 1 // Re-initialize quantityToAdd for each product
+                        quantityToAdd: 0 // Re-initialize quantityToAdd for each product
                     }));
                     this.products.forEach(product => {
                         if (this.stockData[product.product_id] !== undefined) {
@@ -72,7 +72,7 @@ Vue.createApp({
                 }
                 this.stockData[product.product_id] -= quantity;
                 product.quantity -= quantity; // Update product quantity directly in the list
-                product.quantityToAdd = 1; // Reset quantityToAdd after adding to cart
+                product.quantityToAdd = 0; // Reset quantityToAdd after adding to cart
                 this.notification = `Successfully added <strong>${product.name}</strong> x <strong>${quantity}</strong>`;
                 this.notificationType = 'success';
             }
@@ -99,6 +99,14 @@ Vue.createApp({
             item.product.quantity += item.quantity; // Update product quantity in the list
             delete this.cartData[item.product.product_id];
             this.cart.splice(index, 1);
+        }
+    },
+    computed: {
+        totalAmount() {
+            return this.cart.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+        },
+        formattedTotalAmount() {
+            return `${this.totalAmount.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }).replace('PHP', '')}`;
         }
     },
     watch: {
