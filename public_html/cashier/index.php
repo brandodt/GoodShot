@@ -72,7 +72,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     <div class="cell">
                         <div class="box">
                             <h1 class="title is-1">Cashier</h1>
-                            <h4 class="subtitle is-4">Juan Dela Cruz</h4>
+                            <h4 class="subtitle is-4">Brando Dela Torre</h4>
                             <p>
                                 <strong>Transaction #: </strong>0606241117
                             </p>
