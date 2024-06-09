@@ -26,6 +26,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
             <table class="table is-bordered is-fullwidth">
                 <tbody>
                     <tr v-for="product in products" :key="product.product_id">
+                        <td>{{ product.product_id }}</td>
                         <td>{{ product.name }}</td>
                         <td>
                             <button class="button is-success is-light is-small is-fullwidth">

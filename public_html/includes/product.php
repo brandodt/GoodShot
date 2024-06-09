@@ -6,8 +6,8 @@ $conn = $db->connect();
 
 $productName = "%" . $_GET['productName'] . "%";
 
-$stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE ?");
-$stmt->bind_param("s", $productName);
+$stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE ? OR product_id LIKE ?");
+$stmt->bind_param("ss", $productName, $productName);
 
 $stmt->execute();
 
