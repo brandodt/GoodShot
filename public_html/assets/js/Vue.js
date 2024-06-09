@@ -11,7 +11,7 @@ Vue.createApp({
         }
     },
     created() {
-        axios.get('../../../includes/product.php')
+        axios.get('../../includes/product.php')
             .then(response => {
                 this.products = response.data;
                 this.products.forEach(product => {
@@ -24,7 +24,7 @@ Vue.createApp({
     },
     methods: {
         searchProduct() {
-            axios.get('../../../includes/product.php', {
+            axios.get('../../includes/product.php', {
                 params: {
                     productName: this.searchQuery
                 }

@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $user['role'];
 
             if ($user['role'] == 'admin') {
-                header('location: /admin');
+                header('location: admin/');
             } else if ($user['role'] == 'cashier') {
-                header('location: /cashier');
+                header('location: cashier/');
             }
         } else {
             $error = "Invalid username or password.";

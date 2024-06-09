@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
     $_SESSION["error"] = "Unauthorized access. Please login first.";
@@ -7,7 +9,6 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
     exit;
 }
 ?>
-
 <div id="search-modal-content" class="modal">
     <div class="modal-background"></div>
     <div class="notification" :class="{'is-danger': notificationType === 'danger', 'is-success': notificationType === 'success'}" v-if="notification" v-html="notification">
