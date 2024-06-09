@@ -7,8 +7,12 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
     exit;
 }
 ?>
+
 <div id="search-modal-content" class="modal">
     <div class="modal-background"></div>
+    <div class="notification is-danger" v-if="notification">
+        {{ notification }}
+    </div>
     <div class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">Search</p>
@@ -26,10 +30,9 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
             <table class="table is-bordered is-fullwidth">
                 <tbody>
                     <tr v-for="product in products" :key="product.product_id">
-                        <td>{{ product.product_id }}</td>
                         <td>{{ product.name }}</td>
                         <td>
-                            <button class="button is-success is-light is-small is-fullwidth">
+                            <button class="button is-success is-light is-small is-fullwidth" @click="addToCart(product)">
                                 <span class="icon">
                                     <i class="fas fa-shopping-cart"></i>
                                 </span>
@@ -46,35 +49,3 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
         </footer>
     </div>
 </div>
-<script>
-    Vue.createApp({
-        data() {
-            return {
-                searchQuery: '',
-                products: [],
-                searched: false
-            }
-        },
-        methods: {
-            searchProduct() {
-                this.searched = true;
-                axios.get('../../../includes/product.php', {
-                    params: {
-                        productName: this.searchQuery
-                    }
-                })
-                    .then(response => {
-                        this.products = response.data;
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            }
-        },
-        watch: {
-            searchQuery: function (newSearchQuery, oldSearchQuery) {
-                this.searchProduct();
-            }
-        }
-    }).mount('#search-modal-content');
-</script>
