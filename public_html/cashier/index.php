@@ -175,11 +175,12 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     </div>
                     <div class="cell">
                         <div class="box">
-                            <h4 class=" title is-4">Total Amount:</h4>
+                            <h4 class="title is-4">Total Amount:</h4>
                             <h2 class="subtitle is-2">
-                                P43,500.00
+                                {{ formattedTotalAmount }}
                             </h2>
                         </div>
+
                     </div>
                 </div>
             </div>
