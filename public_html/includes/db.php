@@ -1,11 +1,21 @@
 <?php
 
-$host = '127.0.0.1';
-$db = 'goodshot';
-$user = 'dwayne';
-$pass = 'dw4yn3@g00dSh0t';
+class Database
+{
+    private $host = '127.0.0.1';
+    private $db = 'goodshot';
+    private $user = 'dwayne';
+    private $pass = 'dw4yn3@g00dSh0t';
+    private $conn;
 
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    public function connect()
+    {
+        $this->conn = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
+
+        if ($this->conn->connect_error) {
+            die("Connection Failed: " . $this->conn->connect_error);
+        }
+
+        return $this->conn;
+    }
 }

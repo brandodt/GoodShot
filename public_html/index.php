@@ -1,6 +1,9 @@
 <?php
 session_start();
-include("./includes/db.php");
+require_once "./includes/db.php";
+
+$db = new Database();
+$conn = $db->connect();
 
 if (isset($_SESSION["error"])) {
     $error = $_SESSION["error"];
