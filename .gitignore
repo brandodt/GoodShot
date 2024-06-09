@@ -1,3 +1,14 @@
+# Dependency directories
 node_modules/
-package-lock.json
 vendor/
+
+# IDE directories
+.vscode/
+
+# Lock files
+package-lock.json
+composer.lock
+
+# System Files
+.DS_Store
+Thumbs.db
