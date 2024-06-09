@@ -52,7 +52,7 @@ Vue.createApp({
                 this.notificationType = 'danger';
             } else if (quantity !== null) {
                 if (quantity > product.quantity) {
-                    this.notification = "You can't add more items than available in stock.";
+                    this.notification = "You can't add more items than available in stock. " + product.quantity + " item(s) left.";
                     this.notificationType = 'danger';
                 } else {
                     product.quantity -= quantity;
