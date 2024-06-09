@@ -15,7 +15,9 @@ Vue.createApp({
             .then(response => {
                 this.products = response.data;
                 this.products.forEach(product => {
-                    this.stockData[product.id] = product.quantity;
+                    if (!this.stockData[product.id]) {
+                        this.stockData[product.id] = product.quantity;
+                    }
                 });
             })
             .catch(error => {
@@ -34,9 +36,6 @@ Vue.createApp({
                     this.products.forEach(product => {
                         if (this.stockData[product.id]) {
                             product.quantity = this.stockData[product.id];
-                            if (this.cartData[product.id]) {
-                                product.quantity -= this.cartData[product.id];
-                            }
                         }
                     });
                 })
@@ -55,7 +54,6 @@ Vue.createApp({
                     this.notification = "You can't add more items than available in stock. " + product.quantity + " item(s) left.";
                     this.notificationType = 'danger';
                 } else {
-                    product.quantity -= quantity;
                     this.cart.push({
                         product: product,
                         quantity: quantity
@@ -66,6 +64,7 @@ Vue.createApp({
                         this.cartData[product.id] = quantity;
                     }
                     this.stockData[product.id] -= quantity;
+                    product.quantity -= quantity;
                     this.notification = `Successfully added <strong>${product.name}</strong> x <strong>${quantity}</strong>`;
                     this.notificationType = 'success';
                 }
