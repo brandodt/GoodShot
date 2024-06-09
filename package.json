@@ -1,12 +1,26 @@
 {
+  "name": "goodshot.xyz",
+  "description": "This is the final project for the following subjects: DCIT55, ITEC60, ITEC65.",
+  "version": "1.0.0",
   "dependencies": {
-    "bulma": "^1.0.1"
+    "axios": "^1.7.2",
+    "bulma": "^1.0.1",
+    "registry.npmjs.org": "*",
+    "sass": "^1.77.4",
+    "vue": "^3.4.27"
   },
   "scripts": {
     "build-bulma": "sass --load-path=node_modules ./public_html/assets/css/bulma.scss ./public_html/assets/css/bulma.css",
     "start": "npm run build-bulma -- --watch"
   },
-  "devDependencies": {
-    "sass": "^1.77.4"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandodt/GoodShot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandodt/GoodShot/issues"
+  },
+  "homepage": "https://github.com/brandodt/GoodShot#readme"
 }
