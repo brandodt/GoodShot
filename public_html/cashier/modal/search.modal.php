@@ -28,11 +28,21 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                 No products found.
             </div>
             <table class="table is-bordered is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Stock</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr v-for="product in products" :key="product.product_id">
                         <td>{{ product.name }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td><input type="number" class="input" v-model="product.quantityToAdd" :class="{'is-danger': product.quantityToAdd > stockData[product.id]}"></td>
                         <td>
-                            <button class="button is-success is-light is-small is-fullwidth" @click="addToCart(product)">
+                            <button class="button is-success is-light is-fullwidth" @click="addToCart(product)">
                                 <span class="icon">
                                     <i class="fas fa-shopping-cart"></i>
                                 </span>
