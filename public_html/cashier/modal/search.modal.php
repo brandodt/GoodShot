@@ -24,7 +24,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                     <input class="input" type="text" v-model="searchQuery" placeholder="Product ID / Product Name">
                 </div>
             </div>
-            <div v-if="searched && products.length === 0" class="notification is-warning">
+            <div v-if="products.length === 0" class="notification is-warning">
                 No products found.
             </div>
             <table class="table is-bordered is-fullwidth">
@@ -40,7 +40,9 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                     <tr v-for="product in products" :key="product.product_id">
                         <td>{{ product.name }}</td>
                         <td>{{ product.quantity }}</td>
-                        <td><input type="number" class="input" v-model="product.quantityToAdd" :class="{'is-danger': product.quantityToAdd > stockData[product.id]}"></td>
+                        <td>
+                            <input type="number" class="input" v-model.number="product.quantityToAdd" :class="{'is-danger': product.quantityToAdd > stockData[product.product_id]}">
+                        </td>
                         <td>
                             <button class="button is-success is-light is-fullwidth" @click="addToCart(product)">
                                 <span class="icon">
