@@ -12,7 +12,7 @@
 } */
 
 .scrollable-table {
-  /* max-height: 72.5vh; */
+  max-height: 80vh;
   overflow-y: auto;
 }
 
