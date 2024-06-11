@@ -139,12 +139,21 @@ Vue.createApp({
                 });
         },
         clearCart() {
+            // For each item in the cart, add its quantity back to the stock.
+            for (let item of this.cart) {
+                this.stockData[item.product.product_id] += item.quantity;
+            }
+
+            // Clear the cart.
             this.cart = [];
             this.cartData = {};
+
+            // Reset the quantityToAdd for each product.
             this.products.forEach(product => {
-                this.stockData[product.product_id] = product.quantity;
                 product.quantityToAdd = 1;
             });
+
+            // Update the total amount and close the modals.
             this.updateTotalAmount();
             this.closeClearCartModal();
             this.closePasswordModal();
