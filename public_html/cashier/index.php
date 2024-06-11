@@ -22,7 +22,6 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <script src="../assets/js/account.modal.js"></script>
     <script src="../assets/js/search.modal.js"></script>
     <script src="../assets/js/payment.modal.js"></script>
-    <script src="../assets/js/clear-cart.modal.js"></script>
     <script src="https://unpkg.com/vue@latest"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
@@ -150,7 +149,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         </a>
                                     </li>
                                     <li class="subtitle is-5">
-                                        <a id="clear-cart-modal-button" class="aside-link" style="background: #262322; color:white;">
+                                        <a @click="openClearCartModal" class="aside-link" style="background: #262322; color:white;">
                                             <span class="icon-text has-text-danger">
                                                 <span class="icon">
                                                     <i class="fas fa-trash-alt"></i>

@@ -7,11 +7,15 @@ Vue.createApp({
             notification: null,
             notificationType: null,
             cartData: {},
-            stockData: {}
+            stockData: {},
+            isClearCartModalActive: false,
+            isPasswordModalActive: false,
+            adminPassword: '',
+            totalAmount: 0
         }
     },
     created() {
-        axios.get('../../includes/product.php')
+        axios.get('../../includes/api/product.php')
             .then(response => {
                 this.products = response.data.map(product => ({
                     ...product,
@@ -27,7 +31,7 @@ Vue.createApp({
     },
     methods: {
         searchProduct() {
-            axios.get('../../includes/product.php', {
+            axios.get('../../includes/api/product.php', {
                 params: {
                     productName: this.searchQuery
                 }
@@ -75,7 +79,11 @@ Vue.createApp({
                 product.quantityToAdd = 1; // Reset quantityToAdd after adding to cart
                 this.notification = `Successfully added <strong>${product.name}</strong> x <strong>${quantity}</strong>`;
                 this.notificationType = 'success';
+                this.updateTotalAmount();
             }
+        },
+        updateTotalAmount() {
+            this.totalAmount = this.cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
         },
         decreaseQuantity(item) {
             if (item.quantity > 1) {
@@ -83,6 +91,7 @@ Vue.createApp({
                 this.stockData[item.product.product_id]++;
                 this.cartData[item.product.product_id]--;
                 item.product.quantity++; // Update product quantity in the list
+                this.updateTotalAmount();
             }
         },
         increaseQuantity(item) {
@@ -91,6 +100,7 @@ Vue.createApp({
                 this.stockData[item.product.product_id]--;
                 this.cartData[item.product.product_id]++;
                 item.product.quantity--; // Update product quantity in the list
+                this.updateTotalAmount();
             }
         },
         removeItem(index) {
@@ -99,12 +109,48 @@ Vue.createApp({
             item.product.quantity += item.quantity; // Update product quantity in the list
             delete this.cartData[item.product.product_id];
             this.cart.splice(index, 1);
+            this.updateTotalAmount();
+        },
+        openClearCartModal() {
+            this.isClearCartModalActive = true;
+        },
+        closeClearCartModal() {
+            this.isClearCartModalActive = false;
+        },
+        openPasswordModal() {
+            this.isClearCartModalActive = false; // Close the initial modal
+            this.isPasswordModalActive = true;
+        },
+        closePasswordModal() {
+            this.isPasswordModalActive = false;
+            this.adminPassword = '';
+        },
+        confirmClearCart() {
+            axios.post('../../includes/api/admin.php', { password: this.adminPassword })
+                .then(response => {
+                    if (response.data.success) {
+                        this.clearCart();
+                    } else {
+                        alert(response.data.message);
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        clearCart() {
+            this.cart = [];
+            this.cartData = {};
+            this.products.forEach(product => {
+                this.stockData[product.product_id] = product.quantity;
+                product.quantityToAdd = 1;
+            });
+            this.updateTotalAmount();
+            this.closeClearCartModal();
+            this.closePasswordModal();
         }
     },
     computed: {
-        totalAmount() {
-            return this.cart.reduce((total, item) => total + (item.product.price * item.quantity), 0);
-        },
         formattedTotalAmount() {
             return `${this.totalAmount.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }).replace('PHP', '')}`;
         }
