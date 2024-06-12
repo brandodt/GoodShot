@@ -185,5 +185,10 @@ Vue.createApp({
             this.cashAmount = 0;
             this.calculateChange();
         }
+    },
+    watch: {
+        searchQuery() {
+            this.searchProduct();
+        }
     }
 }).mount('#app');

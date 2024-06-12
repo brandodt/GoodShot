@@ -21,7 +21,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
         <section class="modal-card-body">
             <div class="field">
                 <div class="control is-expanded">
-                    <input class="input" type="text" v-model="searchQuery" placeholder="Product ID / Product Name">
+                    <input class="input" type="text" v-model="searchQuery" placeholder="Product ID / Name / Category">
                 </div>
             </div>
             <div v-if="products.length === 0" class="notification is-warning">
@@ -41,7 +41,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                         <td>{{ product.name }}</td>
                         <td>{{ product.quantity }}</td>
                         <td>
-                            <input type="number" class="input" v-model.number="product.quantityToAdd" :class="{'is-danger': product.quantityToAdd > stockData[product.product_id]}">
+                            <input type="number" class="input" style="width: 75%;" v-model.number="product.quantityToAdd" :class="{'is-danger': product.quantityToAdd > stockData[product.product_id]}">
                         </td>
                         <td>
                             <button class="button is-success is-light is-fullwidth" @click="addToCart(product)">
