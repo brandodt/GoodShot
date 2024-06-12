@@ -1,11 +1,10 @@
 <?php
 header('Content-Type: application/json');
-require_once "../db.php";
+require_once "../db/connection.php";
 
 $db = new Database();
 $conn = $db->connect();
 
-// Check if 'productName' is set in the GET request, use a default value if not
 $productName = isset($_GET['productName']) ? "%" . $_GET['productName'] . "%" : "%";
 
 $stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE ? OR product_id LIKE ? OR category LIKE ?");

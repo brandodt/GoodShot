@@ -15,10 +15,10 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <meta name="viewp1ort" content="width=device-width, initial-scale=1">
     <title>Cashier</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/bulma.css">
+    <link rel="stylesheet" href="../assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Scripts -->
-    <script src="../assets/js/account.modal.js"></script>
+    <script src="../assets/js/modals/account.modal.js"></script>
 
 </head>
 

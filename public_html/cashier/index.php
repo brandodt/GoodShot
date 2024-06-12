@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     $_SESSION["error"] = "Unauthorized access. Please login first.";
-    header("location: ../");
+    header("location: ../index.php");
     exit;
 }
 ?>
@@ -15,13 +15,12 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <meta name="viewp1ort" content="width=device-width, initial-scale=1">
     <title>Cashier</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/bulma.css">
+    <link rel="stylesheet" href="../assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="shortcut icon" href="../assets/img/gs.png" type="image/x-icon">
     <!-- Scripts -->
-    <script src="../assets/js/account.modal.js"></script>
-    <script src="../assets/js/search.modal.js"></script>
-    <script src="../assets/js/payment.modal.js"></script>
+    <script src="../assets/js/modals/account.modal.js"></script>
+    <script src="../assets/js/modals/search.modal.js"></script>
+    <script src="../assets/js/modals/payment.modal.js"></script>
     <script src="https://unpkg.com/vue@latest"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
@@ -185,10 +184,10 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </div>
         </section>
         <!-- Modals -->
-        <?php include "modal/account.modal.php"; ?>
-        <?php include "modal/search.modal.php"; ?>
-        <?php include "modal/payment.modal.php"; ?>
-        <?php include "modal/clear-cart.modal.php"; ?>
+        <?php include "./modals/account.modal.php"; ?>
+        <?php include "./modals/search.modal.php"; ?>
+        <?php include "./modals/payment.modal.php"; ?>
+        <?php include "./modals/clear-cart.modal.php"; ?>
     </div>
     <script src="../assets/js/Vue.js"></script>
     <script src="../assets/js/main.js"></script>

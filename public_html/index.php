@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "./includes/db.php";
+require_once "includes/db/connection.php";
 
 $db = new Database();
 $conn = $db->connect();
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GoodShot - POS</title>
-    <link rel="stylesheet" href="assets/css/bulma.css">
+    <link rel="stylesheet" href="assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         html {
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </div>
 
-    <script src="./assets/js/login.modal.js"></script>
+    <script src="assets/js/modals/login.modal.js"></script>
 </body>
 
 </html>
