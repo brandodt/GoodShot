@@ -157,6 +157,7 @@ Vue.createApp({
             // For each item in the cart, add its quantity back to the stock.
             for (let item of this.cart) {
                 this.stockData[item.product.product_id] += item.quantity;
+                item.product.quantity += item.quantity; // Restore product quantity
             }
 
             // Clear the cart.
