@@ -11,7 +11,9 @@ Vue.createApp({
             isClearCartModalActive: false,
             isPasswordModalActive: false,
             adminPassword: '',
-            totalAmount: 0
+            totalAmount: 0,
+            cashAmount: 0,
+            changeAmount: 0
         }
     },
     created() {
@@ -19,6 +21,7 @@ Vue.createApp({
             .then(response => {
                 this.products = response.data.map(product => ({
                     ...product,
+                    price: parseFloat(product.price), // Ensure price is a number
                     quantityToAdd: 1 // Initialize quantityToAdd for each product
                 }));
                 this.products.forEach(product => {
@@ -28,6 +31,17 @@ Vue.createApp({
             .catch(error => {
                 console.log(error);
             });
+    },
+    computed: {
+        formattedTotalAmount() {
+            return `₱${this.totalAmount.toFixed(2)}`;
+        },
+        formattedCashAmount() {
+            return `₱${this.cashAmount.toFixed(2)}`;
+        },
+        formattedChangeAmount() {
+            return `₱${this.changeAmount.toFixed(2)}`;
+        }
     },
     methods: {
         searchProduct() {
@@ -39,6 +53,7 @@ Vue.createApp({
                 .then(response => {
                     this.products = response.data.map(product => ({
                         ...product,
+                        price: parseFloat(product.price), // Ensure price is a number
                         quantityToAdd: 1 // Re-initialize quantityToAdd for each product
                     }));
                     this.products.forEach(product => {
@@ -83,7 +98,7 @@ Vue.createApp({
             }
         },
         updateTotalAmount() {
-            this.totalAmount = this.cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+            this.totalAmount = this.cart.reduce((sum, item) => sum + parseFloat(item.product.price) * item.quantity, 0);
         },
         decreaseQuantity(item) {
             if (item.quantity > 1) {
@@ -157,16 +172,17 @@ Vue.createApp({
             this.updateTotalAmount();
             this.closeClearCartModal();
             this.closePasswordModal();
-        }
-    },
-    computed: {
-        formattedTotalAmount() {
-            return `${this.totalAmount.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }).replace('PHP', '')}`;
-        }
-    },
-    watch: {
-        searchQuery: function (newSearchQuery, oldSearchQuery) {
-            this.searchProduct();
+        },
+        calculateChange() {
+            this.changeAmount = this.cashAmount - this.totalAmount;
+        },
+        updateCashAmount(value) {
+            this.cashAmount = parseFloat(this.cashAmount.toString() + value.toString());
+            this.calculateChange();
+        },
+        clearCashAmount() {
+            this.cashAmount = 0;
+            this.calculateChange();
         }
     }
 }).mount('#app');

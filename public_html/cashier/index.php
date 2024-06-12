@@ -98,9 +98,9 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         <tr v-for="(item, index) in cart" :key="index">
                                             <td>{{ index + 1 }}</td>
                                             <td>{{ item.product.name }}</td>
-                                            <td>{{ item.product.price }}</td>
+                                            <td>₱ {{ item.product.price.toFixed(2) }}</td>
                                             <td>{{ item.quantity }}</td>
-                                            <td>{{ item.product.price * item.quantity }}</td>
+                                            <td>₱ {{ (item.product.price * item.quantity).toFixed(2) }}</td>
                                             <td>
                                                 <button class="button is-primary is-light is-small" @click="decreaseQuantity(item)">
                                                     <span class="icon">
@@ -176,7 +176,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         <div class="box">
                             <h4 class="title is-4">Total Amount:</h4>
                             <h2 class="subtitle is-2">
-                                {{ formattedTotalAmount }}
+                                ₱ {{ totalAmount.toFixed(2) }}
                             </h2>
                         </div>
 
