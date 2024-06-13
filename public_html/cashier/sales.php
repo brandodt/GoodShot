@@ -60,9 +60,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <section class="section">
         <div class="columns">
             <div class="column is-11">
-                <h3 class="title is-3">
-                    Daily Sales
-                </h3>
+                <h3 class="title is-3">Daily Sales</h3>
             </div>
             <div class="column">
                 <a href="index.php" class="button is-primary">
@@ -71,67 +69,40 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     </span>
                     <span>Back</span>
                 </a>
-                </p>
             </div>
         </div>
         <div class="box" style="height: 70vh;">
-            <table id="sorTable" class="table is-fullwidth is-striped">
+            <table id="salesTable" class="table is-fullwidth is-striped">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">Transaction #</th>
-                        <th onclick="sortTable(1)">Date</th>
-                        <th onclick="sortTable(2)">Cashier Name</th>
-                        <th onclick="sortTable(3)">Total Amount</th>
+                        <th>Transaction #</th>
+                        <th>Date</th>
+                        <th>Cashier Name</th>
+                        <th>Total Amount</th>
                         <th>Action(s)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>0606241117</td>
-                        <td>2024-06-07</td>
-                        <td>Juan Dela Cruz</td>
-                        <td>1000.00</td>
-                        <td>
-                            <button class="button is-primary is-small" onclick="window.open('../includes/receipt.php')">
-                                <span class=" icon">
-                                    <i class="fas fa-print"></i>
-                                </span>
-                                <span>View Receipt</span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>0606241118</td>
-                        <td>2024-06-08</td>
-                        <td>Brando Dela Torre</td>
-                        <td>1500.00</td>
-                        <td>
-                            <button class="button is-primary is-small" onclick="window.open('../includes/receipt.php')">
-                                <span class=" icon">
-                                    <i class="fas fa-print"></i>
-                                </span>
-                                <span>View Receipt</span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>0606241119</td>
-                        <td>2024-06-09</td>
-                        <td>Symond Barba</td>
-                        <td>2000.00</td>
-                        <td>
-                            <button class="button is-primary is-small" onclick="window.open('../includes/receipt.php')">
-                                <span class=" icon">
-                                    <i class="fas fa-print"></i>
-                                </span>
-                                <span>View Receipt</span>
-                            </button>
-                        </td>
-                    </tr>
+                    <?php
+                    include '../includes/db/connection.php';
+                    $sql = "SELECT * FROM sales";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>{$row['id']}</td>";
+                        echo "<td>{$row['date']}</td>";
+                        echo "<td>{$row['cashierName']}</td>";
+                        echo "<td>₱{$row['totalAmount']}</td>";
+                        echo "<td><button class='button is-primary is-small' onclick='window.open(\"data:application/pdf;base64," . base64_encode($row['pdf']) . "\")'>View Receipt</button></td>";
+                        echo "</tr>";
+                    }
+                    $conn->close();
+                    ?>
                 </tbody>
             </table>
         </div>
     </section>
+
 
     <!-- Modals -->
 

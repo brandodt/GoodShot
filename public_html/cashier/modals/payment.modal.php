@@ -37,7 +37,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                 <div class="column is-one-quarter"><button class="button is-link is-fullwidth py-4" @click="updateCashAmount('00')">00</button></div>
             </div>
             <div class="columns is-centered">
-                <div class="column is-12"><button class="button is-primary is-fullwidth">Confirm</button></div>
+                <div class="column is-12"><button class="button is-primary is-fullwidth" @click="confirmPayment">Confirm</button></div>
             </div>
         </section>
         <footer class="modal-card-foot">

@@ -23,6 +23,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <script src="../assets/js/modals/payment.modal.js"></script>
     <script src="https://unpkg.com/vue@latest"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
         .cell {
             display: grid;
