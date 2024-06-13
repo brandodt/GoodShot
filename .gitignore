@@ -12,3 +12,6 @@ composer.lock
 # System Files
 .DS_Store
 Thumbs.db
+
+# Database Dump
+goodshot.sql

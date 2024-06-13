@@ -17,7 +17,7 @@ Vue.createApp({
         }
     },
     created() {
-        axios.get('../../includes/api/product.php')
+        axios.get('../includes/api/product.php')
             .then(response => {
                 this.products = response.data.map(product => ({
                     ...product,
@@ -45,7 +45,7 @@ Vue.createApp({
     },
     methods: {
         searchProduct() {
-            axios.get('../../includes/api/product.php', {
+            axios.get('../includes/api/product.php', {
                 params: {
                     productName: this.searchQuery
                 }
@@ -141,7 +141,7 @@ Vue.createApp({
             this.adminPassword = '';
         },
         confirmClearCart() {
-            axios.post('../../includes/api/admin.php', { password: this.adminPassword })
+            axios.post('../includes/api/admin.php', { password: this.adminPassword })
                 .then(response => {
                     if (response.data.success) {
                         this.clearCart();
