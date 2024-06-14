@@ -190,87 +190,90 @@ Vue.createApp({
             const doc = new jsPDF();
 
             // Header
-            doc.setFontSize(36);
-            doc.setFont('bold');
-            doc.text('GoodShot', 105, 20, null, null, 'center');
-            doc.setFontSize(12); doc.setFont('normal'); doc.text('For all Feedback & Comments:', 105, 30, null, null, 'center');
-            doc.text('brando@goodshot.xyz', 105, 36, null, null, 'center');
-            doc.text('or call/text 997-634-1828', 105, 42, null, null, 'center');
-            doc.text('BUY ONE GET ONE MEDIUM FRAPPE', 105, 48, null, null, 'center');
-            doc.text('Go to www.mcdvoice.com within 7 days', 105, 54, null, null, 'center');
-            doc.text('and tell us about your visit.', 105, 60, null, null, 'center');
-            doc.setFont('bold');
-            doc.text('Validation Code:', 105, 66, null, null, 'center');
-            doc.setFont('normal');
-            doc.text('Expires 30 days after receipt date.', 105, 72, null, null, 'center');
-            doc.text('Valid at participating US McDonald\'s.', 105, 78, null, null, 'center');
-            doc.setFont('bold');
-            doc.text('Survey Code:', 105, 84, null, null, 'center');
-            doc.setFont('normal');
-            doc.text('13334-06661-21619-18579-00010-8', 105, 90, null, null, 'center');
-
-            doc.setLineWidth(0.5);
-            doc.line(10, 100, 200, 100);
-
-            // Restaurant Info
             doc.setFontSize(12);
-            doc.setFont('bold');
-            doc.text('McDonald\'s Restaurant #13334', 105, 110, null, null, 'center');
-            doc.setFont('normal');
-            doc.text('6333 FALLS OF NEUSE', 105, 116, null, null, 'center');
-            doc.text('RALEIGH, NC 27609', 105, 122, null, null, 'center');
-            doc.text('TEL# 919-878-0085', 105, 128, null, null, 'center');
+            doc.setFont('Helvetica', 'bold');
+            doc.text('GOODSHOT STORE', 105, 10, null, null, 'center');
+            doc.setFont('Helvetica', 'normal');
+            doc.text('Brgy. Etopaz, Roocab, Etivac', 105, 16, null, null, 'center');
+            doc.text('two-e@goodshot.xyz | goodshot.xyz | 09694201337', 105, 22, null, null, 'center');
 
-            doc.line(10, 138, 200, 138);
-
-            // Date and Order Number
+            // Details
+            doc.setFontSize(10);
+            doc.text('Sold To: Walk-In', 10, 30);
             const now = new Date();
             const dateStr = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${now.toLocaleTimeString()}`;
-            doc.setFontSize(10);
-            doc.text(dateStr, 105, 148, null, null, 'center');
-            doc.text('Order 66', 105, 154, null, null, 'center');
+            doc.text(`Date: ${dateStr}`, 10, 36);
+            doc.text('Cashier: CODE ADMIN', 10, 42);
+            doc.text('T-ID: 77455', 140, 42);
 
-            // Order Details
-            doc.setFontSize(12);
-            doc.setFont('normal');
-            let y = 160;
+            doc.setLineWidth(0.5);
+            doc.line(10, 50, 200, 50);
+
+            // Item details
+            let y = 58;
             this.cart.forEach(item => {
-                doc.text(`${item.product.name} x ${item.quantity}`, 20, y);
-                doc.text(item.product.price.toFixed(2), 190, y, null, null, 'right');
+                doc.text(`${item.product.name}`, 10, y);
+                y += 6;
+                doc.text(`${item.quantity} x ${item.product.price.toFixed(2)}`, 10, y);
+                doc.text((item.quantity * item.product.price).toFixed(2), 190, y, null, null, 'right');
                 y += 6;
             });
 
-            // Subtotal and Total
-            y += 6;
-            doc.text('Subtotal', 20, y);
-            doc.text(this.totalAmount.toFixed(2), 190, y, null, null, 'right'); // Use this.totalAmount instead of this.formattedTotalAmount
-            y += 6;
-            doc.setFont('bold');
-            doc.text('Take-Out Total', 20, y);
-            doc.text(this.totalAmount.toFixed(2), 190, y, null, null, 'right'); // Use this.totalAmount instead of this.formattedTotalAmount
-            doc.setFont('normal');
+            doc.setLineWidth(0.5);
+            doc.line(10, y + 2, 200, y + 2);
+            y += 10;
 
-            doc.line(10, y + 10, 200, y + 10);
-            y += 16;
+            // Summary
+            doc.text('No. of item(s):', 10, y);
+            doc.text(`${this.cart.length}`, 190, y, null, null, 'right');
+            y += 6;
 
-            // Payment Details
-            doc.text('Cash', 20, y);
+            doc.text('SUB TOTAL:', 10, y);
+            doc.text(this.totalAmount.toFixed(2), 190, y, null, null, 'right');
+            y += 6;
+
+            doc.text('Discounts:', 10, y);
+            doc.text('0.00', 190, y, null, null, 'right');
+            y += 6;
+
+            doc.setLineWidth(0.5);
+            doc.line(10, y + 2, 200, y + 2);
+            y += 10;
+
+            doc.setFont('Helvetica', 'bold');
+            doc.text('AMOUNT DUE:', 10, y);
+            doc.text(this.totalAmount.toFixed(2), 190, y, null, null, 'right');
+            y += 6;
+
+            doc.setFont('Helvetica', 'normal');
+            doc.text('Cash Tendered:', 10, y);
             doc.text(this.cashAmount.toFixed(2), 190, y, null, null, 'right');
             y += 6;
-            doc.text('Change', 20, y);
-            doc.text(this.changeAmount.toFixed(2), 190, y, null, null, 'right');
 
-            // Footer
-            doc.setFont('bold');
-            doc.text('PAID', 105, y + 16, null, null, 'center');
+            doc.text('CHANGE:', 10, y);
+            doc.text(this.changeAmount.toFixed(2), 190, y, null, null, 'right');
+            y += 6;
+
+            doc.setLineWidth(0.5);
+            doc.line(10, y + 2, 200, y + 2);
+            y += 10;
+
+            doc.setFont('Helvetica', 'normal');
+            doc.text(`Transaction # ${Math.floor(Math.random() * 100000)}`, 105, y, null, null, 'center');
+            y += 10;
+
+            doc.setFont('Helvetica', 'bold');
+            doc.text('THANK YOU', 105, y, null, null, 'center');
 
             // Save the PDF locally for demonstration purposes
-            doc.save("invoice.pdf");
+            // doc.save("receipt.pdf");
 
             // Get the PDF as a base64 string
             const pdfString = doc.output('datauristring');
 
-            return pdfString;
+            // Open the PDF in a new tab
+            const newTab = window.open();
+            newTab.document.write(`<iframe width='100%' height='100%' src='${pdfString}'></iframe>`);
         },
         confirmPayment() {
             if (this.cashAmount >= this.totalAmount) {
