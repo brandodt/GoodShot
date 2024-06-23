@@ -11,20 +11,5 @@ function updateTransactionDate() {
     document.getElementById('transaction-date').textContent = month + " " + day + ", " + year + " " + hours + ":" + minutes;
 }
 
-function updateTransactionNo() {
-    var now = new Date();
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2); // Months are 0-based in JavaScript
-    var year = now.getFullYear();
-    var hours = ("0" + now.getHours()).slice(-2);
-    var minutes = ("0" + now.getMinutes()).slice(-2);
-    var seconds = ("0" + now.getSeconds()).slice(-2);
-    var transactionNo = month + day + year + hours + minutes + seconds;
-
-    document.getElementById('transactionNum').innerText = transactionNo;
-    return transactionNo;
-}
-
-updateTransactionNo();
 updateTransactionDate();
 setInterval(updateTransactionDate, 1000); // update every second
