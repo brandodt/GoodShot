@@ -159,7 +159,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         </a>
                                     </li>
                                     <li class="subtitle is-5">
-                                        <a href="sales.php" class="aside-link" style="background: #262322; color:white;">
+                                        <a href="invoices.php" class="aside-link" style="background: #262322; color:white;">
                                             <span class="icon-text">
                                                 <span class="icon">
                                                     <i class="fas fa-scroll"></i>

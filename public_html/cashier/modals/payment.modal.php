@@ -11,6 +11,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
 ?>
 <div id="payment-modal-content" class="modal">
     <div class="modal-background"></div>
+    <div class="notification" :class="{'is-danger': notificationType === 'danger', 'is-success': notificationType === 'success'}" v-if="notification" v-html="notification"></div>
     <div class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">Settle Payment</p>
