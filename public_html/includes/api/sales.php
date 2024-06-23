@@ -1,25 +1,29 @@
 <?php
 header('Content-Type: application/json');
+require_once '../db/connection.php'; // Adjust the path as necessary
 
-include '../db/connection.php';
+$db = new Database();
+$conn = $db->connect();
 
-$input = json_decode(file_get_contents('php://input'), true);
+$data = json_decode(file_get_contents('php://input'), true);
 
-$cart = $input['cart'];
-$totalAmount = $input['totalAmount'];
-$cashierName = $input['cashierName'];
-$pdf = $input['pdf'];
+if (isset($data['products']) && is_array($data['products'])) {
+    foreach ($data['products'] as $product) {
+        $productId = $product['productId'];
+        $quantitySold = $product['quantitySold'];
 
-// Save the transaction to the database
-$sql = "INSERT INTO sales (cart, totalAmount, cashierName, pdf) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", json_encode($cart), $totalAmount, $cashierName, $pdf);
+        $stmt = $conn->prepare("UPDATE products SET quantity = quantity - ? WHERE product_id = ?");
+        $stmt->bind_param("ss", $quantitySold, $productId);
 
-if ($stmt->execute()) {
-    echo json_encode(['success' => true]);
+        if (!$stmt->execute()) {
+            echo json_encode(['error' => 'Failed to update product stock.']);
+            http_response_code(500);
+            exit;
+        }
+    }
+
+    echo json_encode(['success' => true, 'message' => 'Stock updated successfully.']);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Failed to save invoice']);
+    echo json_encode(['error' => 'Invalid request data.']);
+    http_response_code(400);
 }
-
-$stmt->close();
-$conn->close();

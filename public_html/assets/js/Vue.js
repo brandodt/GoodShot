@@ -277,30 +277,27 @@ Vue.createApp({
         },
         confirmPayment() {
             if (this.cashAmount >= this.totalAmount) {
-                const pdfString = this.generateInvoice();
+                this.generateInvoice();
 
-                // Prepare invoice data
-                const invoiceData = {
-                    cart: this.cart,
-                    totalAmount: this.totalAmount,
-                    cashierName: "Current Cashier", // Replace with actual cashier name
-                    pdf: pdfString
-                };
+                // Prepare data for stock update
+                const productsToUpdate = this.cart.map(item => ({
+                    productId: item.product.product_id, // Assuming each cart item has an 'id' and 'quantity'
+                    quantitySold: item.quantity
+                }));
 
-                axios.post('../includes/api/sales.php', invoiceData)
+                // Axios POST request to update stock
+                axios.post('../includes/api/sales.php', { products: productsToUpdate })
                     .then(response => {
-                        if (response.data.success) {
-                            this.notification = "Payment settled and invoice saved successfully.";
-                            this.notificationType = 'success';
-                            this.clearCart();
-                        } else {
-                            this.notification = "Error saving invoice: " + response.data.message;
-                            this.notificationType = 'danger';
-                        }
+                        // Handle success
+                        console.log('Stock updated successfully', response);
+                        this.notification = "Payment successful!";
+                        this.notificationType = 'success';
+                        this.clearCart();
                     })
                     .catch(error => {
-                        console.log(error);
-                        this.notification = "Error saving invoice.";
+                        // Handle error
+                        console.error('Error updating stock', error);
+                        this.notification = "Payment successful but error updating stock.";
                         this.notificationType = 'danger';
                     });
             } else {
