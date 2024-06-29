@@ -9,7 +9,7 @@
     "sass": "^1.77.4"
   },
   "scripts": {
-    "build-bulma": "sass --load-path=node_modules ./public_html/assets/css/bulma.scss ./public_html/assets/css/bulma.css",
+    "build-bulma": "sass --load-path=node_modules public_html/admin/assets/css/bulma/bulma.scss public_html/admin/assets/css/bulma/bulma.css",
     "start": "npm run build-bulma -- --watch"
   },
   "repository": {

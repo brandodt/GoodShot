@@ -15,10 +15,10 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <meta name="viewp1ort" content="width=device-width, initial-scale=1">
     <title>Cashier</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/bulma/bulma.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bulma/bulma.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Scripts -->
-    <script src="../assets/js/modals/account.modal.js"></script>
+    <script src="assets/js/modals/account.modal.js"></script>
     <script src="https://unpkg.com/vue@latest"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
@@ -34,7 +34,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <nav class="navbar is-primary is-fixed-top is-spaced">
         <div class="navbar-brand">
             <a class="navbar-item " href="https://bulma.io">
-                <img src="../assets/img/logo_white.png" width="150">
+                <img src="assets/img/logo_white.png" width="150">
 
             </a>
             <div class="navbar-burger js-burger" data-target="navbar">
@@ -96,7 +96,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
         <!-- Modals -->
         <?php include "modals/account.modal.php"; ?>
     </div>
-    <script src="../assets/js/sortable.js"></script>
+    <script src="assets/js/sortable.js"></script>
 </body>
 
 </html>
