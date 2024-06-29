@@ -35,9 +35,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
 <body>
     <nav class="navbar is-primary is-fixed-top is-spaced">
         <div class="navbar-brand">
-            <a class="navbar-item " href="https://bulma.io">
+            <a class="navbar-item" href="https://bulma.io">
                 <img src="assets/img/logo_white.png" width="150">
-
             </a>
             <div class="navbar-burger js-burger" data-target="navbar">
                 <span></span>
@@ -73,7 +72,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                             <h1 class="title is-1">Cashier</h1>
                             <h4 class="subtitle is-4">Brando Dela Torre</h4>
                             <p>
-                                <strong>Transaction #: </strong><span id="transactionNum"></span>
+                                <strong>Transaction #: </strong><span>{{ formattedTransactionNum }}</span>
                             </p>
                             <p>
                                 <strong>Transaction Date: </strong><span id="transaction-date"></span>
