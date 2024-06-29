@@ -49,16 +49,16 @@
             <div class="cell nigga">
                 <aside class="menu has-background-grey-light px-4 py-6">
                     <ul class="menu-list is-primary flex-column">
-                        <li class="py-2"><a>Dashboard</a></li>
-                        <li class="py-2"><a>Sales Management</a></li>
-                        <li class="py-2"><a>Inventory</a></li>
-                        <li class="py-2"><a>Product</a></li>
-                        <li class="py-2"><a>Supplies</a></li>
-                        <li class="pt-2"><a>Report</a></li>
+                        <li class="py-2"><a class="has-background-primary has-text-white">Dashboard</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white" >Sales Management</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white">Inventory</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white">Product</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white">Supplies</a></li>
+                        <li class="pt-2"><a class="has-background-grey-light has-text-white">Report</a></li>
                         <li class="flex-spacer"></li>
                         <hr>
-                        <li class="pb-2"><a>Settings</a></li>
-                        <li class="py-2"><a>Logout</a></li>
+                        <li class="pb-2"><a class="has-background-grey-light has-text-white">Settings</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white">Logout</a></li>
                     </ul>
                 </aside>
             </div>
