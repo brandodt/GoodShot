@@ -121,6 +121,31 @@
                                 <span class="has-text-weight-bold">
                                     Purchase Overview
                                 </span>
+                                <section class="section">
+
+                                    <div class="columns has-text-centered">
+                                        <div class="column has-text-centered">
+                                            <span class="icon-text is-flex is-flex-direction-column is-align-items-center">
+                                                <span class="icon has-text-link has-text-centered is-centered">
+                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                </span>
+                                                <h5 class="title is-6">No. of Purchases<br><b>79</b></h5>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns has-text-centered">
+                                        <div class="column has-text-centered">
+                                            <span class="icon-text is-flex is-flex-direction-column is-align-items-center">
+                                                <span class="icon has-text-success">
+                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                </span>
+                                                <h5 class="title is-6">Purchase Amount<br><b>₱68,855</b></h5>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                </section>
                             </div>
                         </div>
                         <div class="nigger cell is-col-span-2">
