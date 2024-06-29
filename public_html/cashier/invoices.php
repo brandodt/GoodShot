@@ -85,6 +85,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                 <tbody>
                     <?php
                     include '../includes/db/connection.php';
+                    $db = new Database();
+                    $conn = $db->connect();
                     $sql = "SELECT * FROM sales";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
@@ -93,7 +95,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                         echo "<td>{$row['date']}</td>";
                         echo "<td>{$row['cashierName']}</td>";
                         echo "<td>₱{$row['totalAmount']}</td>";
-                        echo "<td><button class='button is-primary is-small' onclick='window.open(\"data:application/pdf;base64," . base64_encode($row['pdf']) . "\")'>View Receipt</button></td>";
+                        echo "<td><button class='button is-primary is-small' onclick='window.open(\"data:application/pdf;base64," . base64_encode($row['pdfFilePath']) . "\")'>View Receipt</button></td>";
                         echo "</tr>";
                     }
                     $conn->close();
