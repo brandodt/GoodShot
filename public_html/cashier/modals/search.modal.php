@@ -31,6 +31,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Item</th>
                         <th>Stock</th>
                         <th>Quantity</th>
                         <th>Action</th>
@@ -39,6 +40,7 @@ if (!isset($_SESSION["username"]) && $_SESSION["role"] !== "cashier") {
                 <tbody>
                     <tr v-for="product in products" :key="product.product_id">
                         <td>{{ product.name }}</td>
+                        <td><img :src="product.img_path" alt="Product Image" style="max-width: 100px;"></td>
                         <td>{{ product.quantity }}</td>
                         <td>
                             <input type="number" class="input" style="width: 75%;" v-model.number="product.quantityToAdd" :class="{'is-danger': product.quantityToAdd > stockData[product.product_id]}">
