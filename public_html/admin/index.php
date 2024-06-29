@@ -147,21 +147,21 @@
                                             <td class="has-text-weight-semibold">₱96,564</td>
                                         </tr>
                                         <tr>
-                                            <<td>10010</td>
+                                            <td>10010</td>
                                             <td class="has-text-weight-semibold">Tubol</td>
                                             <td class="has-text-weight-semibold">₱600</td>
                                             <td class="has-text-weight-semibold">421</td>
                                             <td class="has-text-weight-semibold">₱96,564</td>
                                         </tr>
                                         <tr>
-                                            <<td>10010</td>
+                                            <td>10010</td>
                                             <td class="has-text-weight-semibold">Tubol</td>
                                             <td class="has-text-weight-semibold">₱600</td>
                                             <td class="has-text-weight-semibold">421</td>
                                             <td class="has-text-weight-semibold">₱96,564</td>
                                         </tr>
                                         <tr>
-                                            <<td>10010</td>
+                                            <td>10010</td>
                                             <td class="has-text-weight-semibold">Tubol</td>
                                             <td class="has-text-weight-semibold">₱600</td>
                                             <td class="has-text-weight-semibold">421</td>
