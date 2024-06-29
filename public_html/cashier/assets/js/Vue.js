@@ -13,7 +13,8 @@ Vue.createApp({
             adminPassword: '',
             totalAmount: 0,
             cashAmount: 0,
-            changeAmount: 0
+            changeAmount: 0,
+            transactionNum: null
         };
     },
     created() {
@@ -41,6 +42,18 @@ Vue.createApp({
         },
         formattedChangeAmount() {
             return `₱${this.changeAmount.toFixed(2)}`;
+        },
+        formattedTransactionNum() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            this.transactionNum = `${year}${month}${day}${hours}${minutes}${seconds}`;
+            return `${this.transactionNum}`;
         }
     },
     methods: {
@@ -204,7 +217,7 @@ Vue.createApp({
             const dateStr = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${now.toLocaleTimeString()}`;
             doc.text(`Date: ${dateStr}`, 10, 36);
             doc.text('Cashier: CODE ADMIN', 10, 42);
-            doc.text('T-ID: 77455', 140, 42);
+            // doc.text(`T-ID: ${this.transactionNum}`, 140, 42);
 
             doc.setLineWidth(0.5);
             doc.line(10, 50, 200, 50);
@@ -232,9 +245,9 @@ Vue.createApp({
             doc.text(this.totalAmount.toFixed(2), 190, y, null, null, 'right');
             y += 6;
 
-            doc.text('Discounts:', 10, y);
-            doc.text('0.00', 190, y, null, null, 'right');
-            y += 6;
+            // doc.text('Discounts:', 10, y);
+            // doc.text('0.00', 190, y, null, null, 'right');
+            // y += 6;
 
             doc.setLineWidth(0.5);
             doc.line(10, y + 2, 200, y + 2);
@@ -259,7 +272,7 @@ Vue.createApp({
             y += 10;
 
             doc.setFont('Helvetica', 'normal');
-            doc.text(`Transaction # ${Math.floor(Math.random() * 100000)}`, 105, y, null, null, 'center');
+            doc.text(`Transaction # ${this.transactionNum}`, 105, y, null, null, 'center');
             y += 10;
 
             doc.setFont('Helvetica', 'bold');
@@ -278,7 +291,6 @@ Vue.createApp({
         confirmPayment() {
             if (this.cashAmount >= this.totalAmount) {
                 this.generateInvoice();
-
                 // Prepare data for stock update
                 const productsToUpdate = this.cart.map(item => ({
                     productId: item.product.product_id, // Assuming each cart item has an 'id' and 'quantity'

@@ -15,12 +15,12 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <meta name="viewp1ort" content="width=device-width, initial-scale=1">
     <title>Cashier</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/bulma/bulma.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bulma/bulma.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Scripts -->
-    <script src="../assets/js/modals/account.modal.js"></script>
-    <script src="../assets/js/modals/search.modal.js"></script>
-    <script src="../assets/js/modals/payment.modal.js"></script>
+    <script src="assets/js/modals/account.modal.js"></script>
+    <script src="assets/js/modals/search.modal.js"></script>
+    <script src="assets/js/modals/payment.modal.js"></script>
     <script src="https://unpkg.com/vue@latest"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
@@ -35,9 +35,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
 <body>
     <nav class="navbar is-primary is-fixed-top is-spaced">
         <div class="navbar-brand">
-            <a class="navbar-item " href="https://bulma.io">
-                <img src="../assets/img/logo_white.png" width="150">
-
+            <a class="navbar-item" href="index.php">
+                <img src="assets/img/logo_white.png" width="150">
             </a>
             <div class="navbar-burger js-burger" data-target="navbar">
                 <span></span>
@@ -73,7 +72,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                             <h1 class="title is-1">Cashier</h1>
                             <h4 class="subtitle is-4">Brando Dela Torre</h4>
                             <p>
-                                <strong>Transaction #: </strong><span id="transactionNum"></span>
+                                <strong>Transaction #: </strong><span>{{ formattedTransactionNum }}</span>
                             </p>
                             <p>
                                 <strong>Transaction Date: </strong><span id="transaction-date"></span>
@@ -185,14 +184,14 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
             </div>
         </section>
         <!-- Modals -->
-        <?php include "./modals/account.modal.php"; ?>
-        <?php include "./modals/search.modal.php"; ?>
-        <?php include "./modals/payment.modal.php"; ?>
-        <?php include "./modals/clear-cart.modal.php"; ?>
+        <?php include "modals/account.modal.php"; ?>
+        <?php include "modals/search.modal.php"; ?>
+        <?php include "modals/payment.modal.php"; ?>
+        <?php include "modals/clear-cart.modal.php"; ?>
     </div>
-    <script src="../assets/js/Vue.js"></script>
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/sortable.js"></script>
+    <script src="assets/js/Vue.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/sortable.js"></script>
 </body>
 
 </html>
