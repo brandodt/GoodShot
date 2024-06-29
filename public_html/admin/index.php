@@ -36,6 +36,10 @@
         .box {
             margin: 5px;
         }
+        .scrollable-table {
+            max-height: 30vh;
+            overflow-y: auto;
+          }
     </style>
 </head>
 
@@ -122,18 +126,84 @@
                         <div class="nigger cell is-col-span-2">
                             <div class="box">
                                 <span class="has-text-weight-bold">
-                                    Total Revenue
+                                    Total Product Sold
                                 </span>
+                                <div class="scrollable-table">
+                                    <table class="table is-fullwidth">
+                                        <thead>
+                                            <tr>
+                                                <td>ID</td>
+                                                <td>Name</td>
+                                                <td>Price</td>
+                                                <td>Sold</td>
+                                                <td>Earning</td>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                        <tr>
+                                            <<td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                        <tr>
+                                            <<td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                        <tr>
+                                            <<td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div class="niggus cell is-col-span-3">
                             <div class="box">
-                                4
+                                <span class="has-text-weight-bold">
+                                    Total Item Solds
+                                </span>
                             </div>
                         </div>
                         <div class="niggus cell is-col-span-2">
                             <div class="box">
-                                5
+                                <span class="has-text-weight-bold">
+                                    Top Revenue
+                                </span>
                             </div>
                         </div>
                     </div>
