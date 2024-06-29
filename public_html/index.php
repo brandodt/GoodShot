@@ -49,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GoodShot - POS</title>
-    <link rel="stylesheet" href="assets/css/bulma/bulma.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="cashier/assets/css/bulma/bulma.css">
+    <link rel="stylesheet" href="cashier/assets/css/style.css">
     <style>
         html {
             background-color: #383736;
