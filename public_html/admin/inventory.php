@@ -53,16 +53,16 @@
                                 <li class="py-2"><a href="product.php"
                                         class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="pt-2"><a class="has-background-grey-light has-text-white nice">Report</a></li>
+                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a class="has-background-grey-light has-text-white nice">Settings</a></li>
+                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice"
                                 onclick="logout()">Logout</a></li>
                     </ul>
@@ -295,7 +295,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="cell is-col-span-2" style="height: 20vh;">
                              <div class="box">
 1
