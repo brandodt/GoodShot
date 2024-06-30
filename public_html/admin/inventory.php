@@ -24,7 +24,8 @@
         }
 
         .scrollable-table {
-            max-height: 35vh;
+            height: 54vh;
+            max-height: 54vh;
             overflow-y: auto;
         }
     </style>
@@ -146,7 +147,7 @@
                                 <span class="has-text-weight-bold has-text-danger">
                                     Low Stock Products
                                 </span>
-                                <div class="table" style="flex-grow: 1; overflow-y: auto;">
+                                <div class="scrollable-table">
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
@@ -223,6 +224,36 @@
                                             <td class="has-text-weight-semibold">421</td>
                                             <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
+                                        <tr>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -230,13 +261,10 @@
 
                         <div class="cell is-col-span-2 is-row-span-3">
                             <div class="box">
-                                <span class="title is-4 has-text-weight-bold has-text-success">
+                                <span class="has-text-weight-bold has-text-success">
                                     New Arrival
-                                </span>
-                                <i class="fas fa-expand-arrows-alt "></i>
-                                <br>
-                                <span>as of May 21 2024</span>
-                                <div class="table">
+                                </span><span>as of May 21 2024</span> 
+                                <div class="scrollable-table">
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
@@ -291,6 +319,36 @@
                                             <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -298,23 +356,37 @@
 
                         <div class="cell is-col-span-2" style="height: 20vh;">
                              <div class="box">
-1
+                                <span class="title is-4">Search Product:</span>
+                                <input class="input mt-5" type="text" placeholder="Search">
                              </div>
                         </div>
                         <div class="cell" style="height: 20vh;">
-                             <div class="box">
-2
-                             </div>
+                                <div class="icon-text-stack box">
+                                <span class="fa-stack fa-2x has-text-primary">
+                                    <i class="far fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-trash fa-stack-1x"></i>
+                                </span>
+                                <br>
+                                <span class="title is-5">Pull Out Product</span>
+                            </div>
                         </div>
                               <div class="cell" style="height: 20vh;">
-                             <div class="box">
-2
-                             </div>
+                             <div class="icon-text-stack box">
+                                <span class="fa-stack fa-2x has-text-primary">
+                                    <i class="far fa-circle fa-stack-2x"></i>
+                                   <i class="fas fa-plus-square fa-stack-1x"></i>
+                                </span>
+                                <br>
+                                <span class="title is-5">Add New Product</span>
+                            </div>
                         </div>
                         
                         <div class=" cell is-col-span-2" style="height: 20vh;">
                              <div class="box">
-3
+                                <span class="title is-5">Top Suppliers:</span><br>
+                                <span class="subtitle is 5 ml-6">Burat co.</span><br><br>
+                                <span class="subtitle is 5 ml-6">Burat co.</span><br><br>
+                                <span class="subtitle is 5 ml-6">Burat co.</span><br>
                              </div>
                         </div>
                     </div>
