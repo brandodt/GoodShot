@@ -1,27 +1,25 @@
-.menu-list.flex-column {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.flex-spacer {
-  flex: 1;
+html,
+body {
+  background-color: #4c4c4c;
 }
 
 .box {
+  height: 100%;
   margin: 5px;
-}
-
-.scrollable-table {
-  max-height: 35vh;
-  overflow-y: auto;
 }
 
 .nice:hover {
   color: #ac7de8 !important;
 }
 
-.nigga {
-  display: grid;
-  height: 100vh;
+.column.is-2 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100%;
+  background-color: #4c4c4c;
+}
+
+.is-10 {
+  overflow-y: auto;
 }

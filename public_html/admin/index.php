@@ -7,13 +7,9 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        html,
-        body {
-            background-color: #4c4c4c;
-        }
-
         .nigger {
             display: grid;
             height: 43vh;
@@ -31,25 +27,6 @@
             height: auto !important;
             max-height: 30vh;
             /* Prevent it from getting too tall */
-        }
-
-        .column.is-2 {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            height: 100%;
-            /* Ensure it spans the full viewport height */
-            /* Allow scrolling if content overflows */
-            background-color: #4c4c4c;
-        }
-
-        .is-10 {
-            overflow-y: auto;
-
-        }
-
-        .nice:hover {
-            color: #ac7de8 !important;
         }
 
         .scrollable-table {
