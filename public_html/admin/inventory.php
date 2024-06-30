@@ -72,7 +72,7 @@
                 <h1 class="title has-text-white">Inventory Overview</h1>
                 <div class="fixed-grid has-7-cols">
                     <div class="grid">
-                        <div class=" cell" style="height: 20vh;">
+                        <div class="cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-link">
                                     <i class="far fa-circle fa-stack-2x"></i>
@@ -116,7 +116,7 @@
                                 <span class="title is-4">41</span>
                             </div>
                         </div>
-                        <div class="cell is-col-span-3 is-row-span-12" style="height: 20vh;">
+                        <div class="cell is-col-span-3" style="height: 20vh;">
                             <div class="box">
                                 <span class="has-text-weight-bold">
                                     Product Overview
@@ -141,7 +141,7 @@
                             </div>
                         </div>
 
-                        <div class=" cell is-col-span-3 is-row-span-12">
+                        <div class="cell is-col-span-3 is-row-span-3">
                             <div class="box" style="height:100%;">
                                 <span class="has-text-weight-bold has-text-danger">
                                     Low Stock Products
@@ -228,8 +228,8 @@
                             </div>
                         </div>
 
-                        <div class=" cell is-col-span-2" style="height: 50vh;">
-                            <div class="box" style="height:100%;">
+                        <div class="cell is-col-span-2 is-row-span-3">
+                            <div class="box">
                                 <span class="title is-4 has-text-weight-bold has-text-success">
                                     New Arrival
                                 </span>
@@ -295,9 +295,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="cell is-col-span-2" style="height: 20vh;">
+                             <div class="box">
+1
+                             </div>
+                        </div>
+                        <div class="cell" style="height: 20vh;">
+                             <div class="box">
+2
+                             </div>
+                        </div>
+                              <div class="cell" style="height: 20vh;">
+                             <div class="box">
+2
+                             </div>
+                        </div>
+                        
                         <div class=" cell is-col-span-2" style="height: 20vh;">
                              <div class="box">
-
+3
                              </div>
                         </div>
                     </div>
