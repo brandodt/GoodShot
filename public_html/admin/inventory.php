@@ -69,9 +69,9 @@
                     <div class="grid">
                         <div class=" cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                                <span class="fa-stack fa-2x has-text-link">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-coins fa-stack-1x"></i>
+                                    <i class="fas fas fa-shopping-basket fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Total Products<br><br></h5>
@@ -82,7 +82,7 @@
                             <div class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-chart-line fa-stack-1x"></i>
+                                    <i class="fas fa-boxes fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Items Sold<br><br></h5>
@@ -91,9 +91,9 @@
                         </div>
                         <div class=" cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                                <span class="fa-stack fa-2x has-text-success">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                    <i class="fas fa-shopping-basket fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">New Products<br><br></h5>
@@ -102,9 +102,9 @@
                         </div>
                         <div class=" cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                                <span class="fa-stack fa-2x has-text-danger">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-money-bill-wave fa-stack-1x"></i>
+                                    <i class="fas fa-shopping-basket fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Low Stocks<br><br></h5>
@@ -247,7 +247,7 @@
                             </div>
                         </div>
                         
-                        <div class=" cell is-col-span-4" style="height: 50vh;">
+                        <div class=" cell is-col-span-2" style="height: 50vh;">
                             <div class="box">
                                 <span class="has-text-weight-bold has-text-danger">
                                     Least Selling Products
