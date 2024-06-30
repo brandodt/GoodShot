@@ -63,34 +63,48 @@
 </head>
 
 <body>
-    <div class="fixed-grid has-7-cols" id="division">
-        <div class="grid">
-            <div class="cell nigga">
-                <aside class="menu has-background-grey-light px-4 py-6">
-                    <ul class="menu-list is-primary flex-column">
-                        <li class="py-2"><a href="#" class="has-background-grey-light has-text-white nice">Dashboard</a>
+    <div class="section">
+        <div class="columns">
+            <div class="column is-2">
+                <aside class="menu">
+                    <img src="assets/img/logo_purple.png">
+                    <p class="menu-label has-text-white">Overview</p>
+                    <ul class="menu-list">
+                        <li class="pt-2"><a href="index.php"
+                                class="has-background-grey-light has-text-white nice">Dashboard</a>
                         </li>
-                        <li class="py-2"><a href="sales-mgmt.php"
-                                class="has-background-grey-light has-text-white nice">Sales Management</a>
+                        <li class="pt-2"><a href="sales-mgmt.php"
+                                class="has-background-grey-light has-text-white nice">Sales
+                                Management</a></li>
+                    </ul>
+                    <hr>
+                    <p class="menu-label has-text-white">Storage</p>
+                    <ul class="menu-list">
+                        <li class="pt-2">
+                            <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
+                            <ul>
+                                <li class="py-2"><a href="#" class="has-background-primary has-text-white">Product</a>
+                                </li>
+                                <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Inventory</a></li>
-                        <li class="py-2"><a class="has-background-primary has-text-white">Product</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a></li>
                         <li class="pt-2"><a class="has-background-grey-light has-text-white nice">Report</a></li>
-                        <li class="flex-spacer"></li>
-                        <hr>
+                    </ul>
+                    <hr>
+                    <p class="menu-label has-text-white">Account</p>
+                    <ul class="menu-list">
                         <li class="pb-2"><a class="has-background-grey-light has-text-white nice">Settings</a></li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice">Logout</a></li>
                     </ul>
                 </aside>
             </div>
-            <div class="cell is-col-span-6 pt-6">
+            <div class="column is-10">
                 <h1 class="title">Product</h1>
                 <div class="columns">
                     <div class="negar column is-9">
                         <div class="box">
                             <div class="container">
-
                                 <div class="columns" id="searchTools">
                                     <div class="column is-3" id="searchbar">
                                         <input class="input" type="text" placeholder="Search" />
@@ -257,7 +271,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

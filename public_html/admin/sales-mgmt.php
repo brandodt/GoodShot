@@ -49,7 +49,25 @@
                     <ul class="menu-list is-primary flex-column">
                         <li class="py-2"><a href="index.php"
                                 class="has-background-grey-light has-text-white nice">Dashboard</a></li>
+<<<<<<< HEAD
                         <li class="py-2"><a href="#" class="has-background-primary has-text-white">Sales Management</a>
+=======
+                        <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Sales
+                                Management</a></li>
+                    </ul>
+                    <hr>
+                    <p class="menu-label has-text-white">Storage</p>
+                    <ul class="menu-list">
+                        <li class="pt-2">
+                            <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
+                            <ul>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
+                                </li>
+                                <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a>
+                                </li>
+                            </ul>
+>>>>>>> edd51cf31a6307271fc6828347b3ffa6f2d0fcd1
                         </li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice">Inventory</a></li>
                         <li class="py-2"><a href="product.php"
