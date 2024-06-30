@@ -72,9 +72,9 @@
                     <div class="grid">
                         <div class=" cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                                <span class="fa-stack fa-2x has-text-link">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-coins fa-stack-1x"></i>
+                                    <i class="fas fa-shopping-basket fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Total Products<br><br></h5>
@@ -85,7 +85,7 @@
                             <div class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-chart-line fa-stack-1x"></i>
+                                    <i class="fas fa-boxes fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Items Sold<br><br></h5>
@@ -94,9 +94,9 @@
                         </div>
                         <div class=" cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                                <span class="fa-stack fa-2x has-text-success">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-dollar-sign fa-stack-1x"></i>
+                                    <i class="fas fa-shopping-basket fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">New Products<br><br></h5>
@@ -105,9 +105,9 @@
                         </div>
                         <div class=" cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                                <span class="fa-stack fa-2x has-text-danger">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                    <i class="fas fa-money-bill-wave fa-stack-1x"></i>
+                                    <i class="fas fa-shopping-basket fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Low Stocks<br><br></h5>
@@ -122,18 +122,18 @@
                                 <br>
                                 <br>
                                 <div class="column is-flex is-justify-content-space-between">
-                                    <span class="icon-text">
+                                    <span class="icon-text ml-5">
                                         <span class="icon is-large has-text-primary">
                                             <i class="fas fa-2x fas fa-shopping-cart""></i>
                                                 </span>
                                                 <span class=" title is-5">Total Category<br><b>13</b></span>
                                     </span>
 
-                                    <span class="icon-text">
+                                    <span class="icon-text mr-6">
                                         <span class="icon is-large has-text-primary">
-                                            <i class="fas fa-2x fas fa-shopping-cart""></i>
+                                            <i class="fas fa-2x fas fa-tag""></i>
                                                 </span>
-                                                <span class=" title is-5">Total Category<br><b>13</b></span>
+                                                <span class=" title is-5">Brands<br><b>18</b></span>
                                     </span>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                 <span class="has-text-weight-bold has-text-danger">
                                     Low Stock Products
                                 </span>
-                                <div class="scrollable-table" style="flex-grow: 1; overflow-y: auto;">
+                                <div class="table" style="flex-grow: 1; overflow-y: auto;">
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
@@ -156,166 +156,147 @@
                                             </tr>
                                         </thead>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td>Amogus</td>
+                                            <td class="has-text-weight-semibold">108012</td>
                                             <td class="has-text-weight-semibold">421</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <div class=" cell is-col-span-4" style="height: 50vh;">
-                            <div class="box">
-                                <span class="has-text-weight-bold has-text-danger">
-                                    Least Selling Products
+                        <div class=" cell is-col-span-2" style="height: 50vh;">
+                            <div class="box" style="height:100%;">
+                                <span class="title is-4 has-text-weight-bold has-text-success">
+                                    New Arrival
                                 </span>
-                                <div class="scrollable-table">
+                                <i class="fas fa-expand-arrows-alt "></i>
+                                <br>
+                                <span>as of May 21 2024</span>
+                                <div class="table">
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
-                                                <td>ID</td>
-                                                <td>Name</td>
+                                                <td>Product</td>
+                                                <td>Code</td>
                                                 <td>Price</td>
-                                                <td>Sold Qty</td>
-                                                <td>Stock</td>
-                                                <td>Status</td>
+
                                             </tr>
                                         </thead>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
+                                           
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
+                                           
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
+                                           
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">300</td>
-                                            <td><span class="tag is-danger">Out of Stock</span></td>
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
+                                           
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
+                                           
                                         </tr>
                                         <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">0</td>
-                                            <td><span class="tag is-danger">Out of Stock</span></td>
+                                        </tr>
+                                         <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div class=" cell is-col-span-2" style="height: 20vh;">
+                             <div class="box">
+
+                             </div>
                         </div>
                     </div>
                 </div>
