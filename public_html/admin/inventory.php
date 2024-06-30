@@ -295,6 +295,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="cell is-col-span-2" style="height: 20vh;">
                              <div class="box">
 1
