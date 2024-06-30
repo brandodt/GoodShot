@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/addProduct.modal.js"></script>
+    <script src="assets/js/removeProduct.modal.js"></script>
     <script src="assets/js/main.js"></script>
     <style>
         .nigger {
@@ -38,11 +40,9 @@
                     <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php"
-                                class="has-background-grey-light has-text-white nice">Dashboard</a>
+                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a>
                         </li>
-                        <li class="pt-2"><a href="sales-mgmt.php"
-                                class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales Management</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Storage</p>
@@ -50,24 +50,19 @@
                         <li class="pt-2">
                             <a href="#" class="has-background-primary has-text-white">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php"
-                                        class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="supplies.php"
-                                        class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="pt-2"><a href="report.php"
-                                class="has-background-grey-light has-text-white nice">Report</a></li>
+                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php"
-                                class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
-                                onclick="logout()">Logout</a></li>
+                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
@@ -145,7 +140,7 @@
                         </div>
 
 
-                        
+
                         <div class="cell is-col-span-3 is-row-span-2">
                             <div class="box" style="height:100%;">
                                 <span class="has-text-weight-bold has-text-danger">
@@ -363,17 +358,17 @@
                             </div>
                         </div> -->
                         <div class="cell" style="height: 20vh;">
-                            <div class="icon-text-stack box">
+                            <a id="removeProduct-modal-button" class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
                                     <i class="far fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-trash fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <span class="title is-5">Pull Out Product</span>
-                            </div>
+                            </a>
                         </div>
                         <div class="cell" style="height: 20vh;">
-                            <a href="add-product.php" class="icon-text-stack box">
+                            <a id="addProduct-modal-button" class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
                                     <i class="far fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-plus-square fa-stack-1x"></i>
@@ -386,13 +381,13 @@
                             <div class="box">
                                 <div class="container content is-large">
                                     <p class="title is-3">Top Suppliers:</p>
-                                <ol>
-                                    <li>KCO</li>
-                                    <li>Jesus</li>
-                                    <li>Hitler</li>
-                                    <li>Hitler</li>
-                                    <li>Hitler</li>
-                                </ol>
+                                    <ol>
+                                        <li>KCO</li>
+                                        <li>Jesus</li>
+                                        <li>Hitler</li>
+                                        <li>Hitler</li>
+                                        <li>Hitler</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -401,6 +396,8 @@
             </div>
         </div>
     </div>
+    <?php include "add-product.modal.php"; ?>
+    <?php include "remove-product.modal.php"; ?>
 
 </body>
 

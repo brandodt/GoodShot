@@ -35,7 +35,7 @@
         <div class="columns">
             <div class="column is-2">
                 <aside class="menu">
-                    <img src="assets/img/logo_purple.png">
+                    <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
                         <li class="pt-2"><a href="index.php"
@@ -51,10 +51,10 @@
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="#"
-                                        class="has-background-primary has-text-white">Supplies</a>
+                                <li class="py-2"><a href="#" class="has-background-primary has-text-white">Supplies</a>
                                 </li>
                             </ul>
                         </li>
@@ -156,7 +156,7 @@
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
                                             <td>Image here</td>
-                                            <td>Piattos</td>                          
+                                            <td>Piattos</td>
                                             <td>FoodSupplies.co</td>
                                             <td>421</td>
                                             <td><span class="tag is-success">In Stock</span></td>
@@ -209,7 +209,7 @@
                                             <td>17</td>
                                             <td><span class="tag is-danger">Out of Stock</span></td>
                                         </tr>
-                                        <tr >
+                                        <tr>
                                             <td class="has-text-weight-semibold">10010</td>
                                             <td>Image here</td>
                                             <td>Piattos</td>

@@ -865,7 +865,7 @@
   --bulma-grey-darker: hsl(221, 14%, 21%);
   --bulma-grey-dark: hsl(221, 14%, 29%);
   --bulma-grey: hsl(221, 14%, 48%);
-  --bulma-grey-light: #4C4C4C;
+  --bulma-grey-light: #4c4c4c;
   --bulma-grey-lighter: hsl(221, 14%, 86%);
   --bulma-white-ter: hsl(221, 14%, 96%);
   --bulma-white-bis: hsl(221, 14%, 98%);
@@ -1766,7 +1766,7 @@
     --bulma-grey-darker: hsl(221, 14%, 21%);
     --bulma-grey-dark: hsl(221, 14%, 29%);
     --bulma-grey: hsl(221, 14%, 48%);
-    --bulma-grey-light: #4C4C4C;
+    --bulma-grey-light: #4c4c4c;
     --bulma-grey-lighter: hsl(221, 14%, 86%);
     --bulma-white-ter: hsl(221, 14%, 96%);
     --bulma-white-bis: hsl(221, 14%, 98%);
@@ -2684,7 +2684,7 @@
   --bulma-grey-darker: hsl(221, 14%, 21%);
   --bulma-grey-dark: hsl(221, 14%, 29%);
   --bulma-grey: hsl(221, 14%, 48%);
-  --bulma-grey-light: #4C4C4C;
+  --bulma-grey-light: #4c4c4c;
   --bulma-grey-lighter: hsl(221, 14%, 86%);
   --bulma-white-ter: hsl(221, 14%, 96%);
   --bulma-white-bis: hsl(221, 14%, 98%);
@@ -7030,7 +7030,7 @@ button.dropdown-item.is-selected {
   --bulma-modal-card-head-background-color: var(--bulma-scheme-main);
   --bulma-modal-card-head-padding: 2rem;
   --bulma-modal-card-head-radius: var(--bulma-radius-large);
-  --bulma-modal-card-title-color: var(--bulma-text-strong);
+  --bulma-modal-card-title-color: #4c4c4c;
   --bulma-modal-card-title-line-height: 1;
   --bulma-modal-card-title-size: var(--bulma-size-4);
   --bulma-modal-card-foot-background-color: var(--bulma-scheme-main-bis);
@@ -20450,12 +20450,12 @@ has-background-danger.is-hoverable:active {
 
 .is-color-grey-light,
 .has-text-grey-light {
-  color: #4C4C4C !important;
+  color: #4c4c4c !important;
 }
 
 .is-background-grey-light,
 .has-background-grey-light {
-  background-color: #4C4C4C !important;
+  background-color: #4c4c4c !important;
 }
 
 .is-color-grey-lighter,

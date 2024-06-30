@@ -6,11 +6,12 @@
 // $beige-light: #d0d1cd;
 // $beige-lighter: #eff0eb;
 
-$pink: #AC7DE8;
-$greyish: #EEEEEE;
-$nigga: #4C4C4C;
+$pink: #ac7de8;
+$greyish: #eeeeee;
+$nigga: #4c4c4c;
 // Path to Bulma's sass folder
-@use "bulma/sass" with ($family-primary: '"Lexend Exa", sans-serif',
+@use "bulma/sass" with (
+    $family-primary: '"Lexend Exa", sans-serif',
     // $grey-dark: $brown,
     $grey-light: $nigga,
     $primary: $pink,
@@ -18,11 +19,12 @@ $nigga: #4C4C4C;
     // $link: $pink,
     $control-border-width: 2px,
     $input-shadow: none,
-    // $modal-card-head-padding: 1rem,
+    // $modal-card-head-padding: 5rem,
     // $modal-card-head-background-color: $dark-gray,
-    // $modal-card-title-color: $beige-lighter,
-    // $modal-card-title-size: var(--bulma-size-5), 
-);
+    // $modal-content-width: 40rem,
+    $modal-card-title-color: $nigga,
+    // $modal-card-title-size: var(--bulma-size-5),
+  );
 
 // Import the Google Font
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap");
