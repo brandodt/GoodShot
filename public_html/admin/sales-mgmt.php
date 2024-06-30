@@ -49,9 +49,10 @@
                     <p class="menu-label has-text-white">Storage</p>
                     <ul class="menu-list">
                         <li class="pt-2">
-                            <a class="has-background-grey-light has-text-white nice">Inventory</a>
+                            <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
                                 <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
