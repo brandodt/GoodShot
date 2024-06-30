@@ -54,16 +54,19 @@
                                 <li class="py-2"><a href="product.php"
                                         class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="supplies.php"
+                                        class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
+                        <li class="pt-2"><a href="report.php"
+                                class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
+                        <li class="pb-2"><a href="settings.php"
+                                class="has-background-grey-light has-text-white nice">Settings</a></li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice"
                                 onclick="logout()">Logout</a></li>
                     </ul>
@@ -263,7 +266,7 @@
                             <div class="box">
                                 <span class="has-text-weight-bold has-text-success">
                                     New Arrival
-                                </span><span>as of May 21 2024</span> 
+                                </span><span>as of May 21 2024</span>
                                 <div class="scrollable-table">
                                     <table class="table is-fullwidth">
                                         <thead>
@@ -278,43 +281,43 @@
                                             <td>Boar rat</td>
                                             <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                           
+
                                         </tr>
                                         <tr>
                                             <td>Boar rat</td>
                                             <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                           
+
                                         </tr>
                                         <tr>
                                             <td>Boar rat</td>
                                             <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                           
+
                                         </tr>
                                         <tr>
                                             <td>Boar rat</td>
                                             <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
                                         </tr>
-                                         <tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Boar rat</td>
+                                            <td class="has-text-weight-semibold">101100</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                        </tr>
+                                        <tr>
                                             <td>Boar rat</td>
                                             <td class="has-text-weight-semibold">101100</td>
                                             <td class="has-text-weight-semibold">₱600</td>
@@ -355,13 +358,13 @@
                         </div>
 
                         <div class="cell is-col-span-2" style="height: 20vh;">
-                             <div class="box">
+                            <div class="box">
                                 <span class="title is-4">Search Product:</span>
                                 <input class="input mt-5" type="text" placeholder="Search">
-                             </div>
+                            </div>
                         </div>
                         <div class="cell" style="height: 20vh;">
-                                <div class="icon-text-stack box">
+                            <div class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
                                     <i class="far fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-trash fa-stack-1x"></i>
@@ -370,24 +373,24 @@
                                 <span class="title is-5">Pull Out Product</span>
                             </div>
                         </div>
-                              <div class="cell" style="height: 20vh;">
-                             <div class="icon-text-stack box">
+                        <div class="cell" style="height: 20vh;">
+                            <a href="add-product.php" class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
                                     <i class="far fa-circle fa-stack-2x"></i>
-                                   <i class="fas fa-plus-square fa-stack-1x"></i>
+                                    <i class="fas fa-plus-square fa-stack-1x"></i>
                                 </span>
                                 <br>
                                 <span class="title is-5">Add New Product</span>
-                            </div>
+                            </a>
                         </div>
-                        
+
                         <div class=" cell is-col-span-2" style="height: 20vh;">
-                             <div class="box">
+                            <div class="box">
                                 <span class="title is-5">Top Suppliers:</span><br>
                                 <span class="subtitle is 5 ml-6">Burat co.</span><br><br>
                                 <span class="subtitle is 5 ml-6">Burat co.</span><br><br>
                                 <span class="subtitle is 5 ml-6">Burat co.</span><br>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
