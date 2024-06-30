@@ -24,8 +24,7 @@
         }
 
         .scrollable-table {
-            height: 54vh;
-            max-height: 54vh;
+            max-height: 56vh;
             overflow-y: auto;
         }
     </style>
@@ -145,7 +144,9 @@
                             </div>
                         </div>
 
-                        <div class="cell is-col-span-3 is-row-span-3">
+
+                        
+                        <div class="cell is-col-span-3 is-row-span-2">
                             <div class="box" style="height:100%;">
                                 <span class="has-text-weight-bold has-text-danger">
                                     Low Stock Products
@@ -261,8 +262,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="cell is-col-span-2 is-row-span-3">
+                        <div class="cell is-col-span-2 is-row-span-2">
                             <div class="box">
                                 <span class="has-text-weight-bold has-text-success">
                                     New Arrival
@@ -356,13 +356,12 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="cell is-col-span-2" style="height: 20vh;">
+                        <!-- <div class="cell is-col-span-2" style="height: 20vh;">
                             <div class="box">
                                 <span class="title is-4">Search Product:</span>
                                 <input class="input mt-5" type="text" placeholder="Search">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="cell" style="height: 20vh;">
                             <div class="icon-text-stack box">
                                 <span class="fa-stack fa-2x has-text-primary">
@@ -383,13 +382,18 @@
                                 <span class="title is-5">Add New Product</span>
                             </a>
                         </div>
-
-                        <div class=" cell is-col-span-2" style="height: 20vh;">
+                        <div class="cell is-col-span-2 is-row-span-1" style="height: 43vh;">
                             <div class="box">
-                                <span class="title is-5">Top Suppliers:</span><br>
-                                <span class="subtitle is 5 ml-6">Burat co.</span><br><br>
-                                <span class="subtitle is 5 ml-6">Burat co.</span><br><br>
-                                <span class="subtitle is 5 ml-6">Burat co.</span><br>
+                                <div class="container content is-large">
+                                    <p class="title is-3">Top Suppliers:</p>
+                                <ol>
+                                    <li>KCO</li>
+                                    <li>Jesus</li>
+                                    <li>Hitler</li>
+                                    <li>Hitler</li>
+                                    <li>Hitler</li>
+                                </ol>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -76,7 +76,62 @@
                 <div class="columns">
                     <div class="column">
                         <div class="box" style="height:84vh">
-
+                            <form action="add-product.php" method="post">
+                                <div class="columns">
+                                    <div class="column is-6">
+                                        <div class="field">
+                                            <label class="label">Product Name</label>
+                                            <div class="control">
+                                                <input class="input" type="text" name="product_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Brand Name</label>
+                                            <div class="control">
+                                                <input class="input" type="text" name="brand" required>
+                                            </div>
+                                            <!-- <div class="control">
+                                                <input class="input" type="number" name="product_price" required>
+                                            </div> -->
+                                            <div class="field">
+                                                <label class="label">Product Category</label>
+                                                <div class="field has-addons">
+                                                    <div class="control is-expanded">
+                                                        <div class="select is-fullwidth">
+                                                            <select name="category">
+                                                                <option value="1">Category 1</option>
+                                                                <option value="2">Category 2</option>
+                                                                <option value="3">Category 3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <label class="label">Unit</label>
+                                            <div class="field has-addons">
+                                                <div class="control is-expanded">
+                                                    <div class="select is-fullwidth">
+                                                        <select name="unit">
+                                                            <option value="1">pieces</option>
+                                                            <option value="2">kg</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field is-grouped is-grouped-right">
+                                    <div class="control">
+                                        <button class="button is-primary" type="submit">Submit</button>
+                                    </div>
+                                    <div class="control">
+                                        <button class="button is-primary is-light" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
