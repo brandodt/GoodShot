@@ -22,9 +22,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <script src="assets/js/modals/search.modal.js"></script>
     <script src="assets/js/modals/payment.modal.js"></script>
     <script src="https://unpkg.com/vue@latest"></script>
-    <script src="https://unpkg.com/qs@latest"></script>
+    <script src="https://unpkg.com/qs@6.12.1/dist/qs.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
         .cell {
@@ -38,7 +37,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
     <nav class="navbar is-primary is-fixed-top is-spaced">
         <div class="navbar-brand">
             <a class="navbar-item" href="index.php">
-                <img src="assets/img/logo_white.png" width="150">
+                <p class="lego has-text-white is-size-6">GOODSHOT</p>
             </a>
             <div class="navbar-burger js-burger" data-target="navbar">
                 <span></span>

@@ -33,9 +33,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
 <body>
     <nav class="navbar is-primary is-fixed-top is-spaced">
         <div class="navbar-brand">
-            <a class="navbar-item " href="https://bulma.io">
-                <img src="assets/img/logo_white.png" width="150">
-
+            <a class="navbar-item " href="index.php">
+                <p class="lego has-text-white is-size-6">GOODSHOT</p>
             </a>
             <div class="navbar-burger js-burger" data-target="navbar">
                 <span></span>
@@ -107,7 +106,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                             echo "<td>{$row['cashierName']}</td>";
                             echo "<td>₱{$row['total_amount']}</td>";
                             echo "<td>
-                <button class='button is-primary is-small' @click='viewReceipt(\"{$row['transactNo']}\")'>View Receipt</button>
+                <button class='button is-primary is-small is-outlined' @click='viewReceipt(\"{$row['transactNo']}\")'>View Receipt</button>
               </td>";
                             echo "</tr>";
                         }
@@ -166,8 +165,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     </div>
                 </footer>
             </div>
+            <script src="assets/js/Vue.js"></script>
         </div>
-        <script src="assets/js/Vue.js"></script>
         <script src="assets/js/sortable.js"></script>
 </body>
 
