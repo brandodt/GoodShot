@@ -239,7 +239,7 @@ Vue.createApp({
       }/${now.getDate()}/${now.getFullYear()} ${now.toLocaleTimeString()}`;
       doc.text(`Date: ${dateStr}`, 10, 36);
       doc.text("Cashier: CODE ADMIN", 10, 42);
-      doc.text(`T-ID: ${this.transactionNum}`, 140, 42); // Added T-ID for transaction number
+      doc.text(`T-ID: ${this.transactionNum}`, 140, 42);
 
       doc.setLineWidth(0.5);
       doc.line(10, 50, 200, 50);
@@ -312,14 +312,28 @@ Vue.createApp({
 
       // Convert PDF to base64 string
       const pdfString = doc.output("datauristring");
-      const base64String = pdfString.split(",")[1];
+      console.log("PDF String:", pdfString); // Debug: Check the entire data URI string
 
+      // Ensure base64String is correctly extracted
+      const base64String = pdfString.split(",")[1];
+      console.log("Base64 String:", base64String); // Debug: Check base64 string
+
+      // Send base64 data to server
       axios
-        .post("../includes/api/save_pdf.php", {
-          transactionNum: this.transactionNum,
-          pdfData: base64String,
-        })
+        .post(
+          "../includes/api/save_pdf.php",
+          Qs.stringify({
+            transactionNum: this.transactionNum,
+            pdfData: base64String,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        )
         .then((response) => {
+          console.log("Response:", response.data); // Debug: Check server response
           if (response.data.success) {
             this.notification = "Invoice saved successfully!";
             this.notificationType = "success";

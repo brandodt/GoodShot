@@ -167,6 +167,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                 </footer>
             </div>
         </div>
+        <script src="assets/js/Vue.js"></script>
         <script src="assets/js/sortable.js"></script>
 </body>
 
