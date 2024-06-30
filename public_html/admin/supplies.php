@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>Supplies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -35,7 +35,7 @@
         <div class="columns">
             <div class="column is-2">
                 <aside class="menu">
-                    <p class="lego has-text-primary is-size-1">GOODSHOT</p>
+                    <img src="assets/img/logo_purple.png">
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
                         <li class="pt-2"><a href="index.php"
@@ -51,10 +51,10 @@
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="#" class="has-background-primary has-text-white">Product</a>
+                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="supplies.php"
-                                        class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="#"
+                                        class="has-background-primary has-text-white">Supplies</a>
                                 </li>
                             </ul>
                         </li>
@@ -71,10 +71,10 @@
                     </ul>
                 </aside>
             </div>
-            <div class="column is-10">
-                <h1 class="title has-text-white">Product</h1>
+            <div class="column is-10    ">
+                <h1 class="title has-text-white">Supplies</h1>
                 <div class="columns">
-                    <div class="negar column is-8">
+                    <div class="negar column is-9">
                         <div class="box">
                             <div class="container">
 
@@ -114,21 +114,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="negar column is-4">
+                    <div class="negar column is-3">
                         <div class="box">
                             <div class="container" id="sortTools">
                                 <div class="buttons">
                                     <button class="button is-primary">
                                         <span class="icon is-small">
-                                            <i class="fas fa-arrow-down"></i>
-                                        </span>
-                                        <span>Import Item</span>
-                                    </button>
-                                    <button class="button is-primary">
-                                        <span class="icon is-small">
                                             <i class="fas fa-plus"></i>
                                         </span>
-                                        <span>New Item</span>
+                                        <span>Add Item</span>
                                     </button>
                                 </div>
                                 <div class="buttons" id="setOfButtons2">
@@ -152,102 +146,116 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Category</th>
-                                                <th>Quantity</th>
-                                                <th>Brand</th>
-                                                <th>Stock</th>
+                                                <th>Image</th>
+                                                <th>Product</th>
+                                                <th>Supplier</th>
+                                                <th>Quanity</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>                          
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
+                                            <td>17</td>
+                                            <td><span class="tag is-danger">Out of Stock</span></td>
+                                        </tr>
+                                        <tr >
+                                            <td class="has-text-weight-semibold">10010</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
-                                            <td>421</td>
-                                            <td>300</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
+                                            <td>19</td>
+                                            <td><span class="tag is-danger">Out of Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                         <tr>
                                             <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
+                                            <td>Image here</td>
+                                            <td>Piattos</td>
+                                            <td>FoodSupplies.co</td>
                                             <td>421</td>
-                                            <td>300</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>₱600</td>
-                                            <td>421</td>
-                                            <td>300</td>
+                                            <td><span class="tag is-success">In Stock</span></td>
                                         </tr>
                                     </table>
                                 </div>

@@ -35,7 +35,7 @@
         <div class="columns">
             <div class="column is-2">
                 <aside class="menu">
-                    <img src="assets/img/logo_purple.png">
+                    <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
                         <li class="pt-2"><a href="index.php"
