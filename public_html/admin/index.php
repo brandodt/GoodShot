@@ -4,46 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .nigga {
-            display: grid;
-            height: 100vh;
-        }
-
         .nigger {
             display: grid;
-            height: 40vh;
+            height: 43vh;
         }
 
         .niggus {
             display: grid;
             height: 40vh;
-        }
-
-        .menu-list.flex-column {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .flex-spacer {
-            flex: 1;
-        }
-
-        .box {
-            margin: 5px;
-        }
-
-        .scrollable-table {
-            max-height: 35vh;
-            overflow-y: auto;
-        }
-
-        .nice:hover {
-            color: #AC7DE8 !important;
         }
 
         canvas#orderChart,
@@ -55,7 +29,6 @@
             /* Prevent it from getting too tall */
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -64,8 +37,9 @@
             <div class="cell nigga">
                 <aside class="menu has-background-grey-light px-4 py-6">
                     <ul class="menu-list is-primary flex-column">
-                        <li class="py-2"><a class="has-background-primary has-text-white">Dashboard</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Sales Management</a>
+                        <li class="py-2"><a href="#" class="has-background-primary has-text-white">Dashboard</a></li>
+                        <li class="py-2"><a href="sales-mgmt.php"
+                                class="has-background-grey-light has-text-white nice">Sales Management</a>
                         </li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice">Inventory</a></li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice">Product</a></li>
@@ -93,18 +67,18 @@
                                         <div class="column">
                                             <span class="icon-text">
                                                 <span class="icon is-large has-text-link">
-                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                    <i class="fas fa-2x fas fa-chart-line"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Total Sales<br><b>1,981,865</b></h5>
+                                                <h5 class="subtitle is-5">Total Sales<br><b>₱1,981,865</b></h5>
                                             </span>
                                         </div>
 
                                         <div class="column">
                                             <span class="icon-text">
                                                 <span class="icon is-large has-text-link">
-                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                    <i class="fas fa-2x fa-money-bill-wave"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Total Profit<br><b>1,981,865</b></h5>
+                                                <h5 class="subtitle is-5">Total Profit<br><b>₱908,855</b></h5>
                                             </span>
                                         </div>
                                     </div>
@@ -112,19 +86,19 @@
                                     <div class="columns">
                                         <div class="column">
                                             <span class="icon-text">
-                                                <span class="icon is-large has-text-success">
+                                                <span class="icon is-large has-text-primary">
                                                     <i class="fas fa-2x fa-shopping-basket"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Daily Sales<br><b>1,981,865</b></h5>
+                                                <h5 class="subtitle is-5">Daily Sales<br><b>₱65,457</b></h5>
                                             </span>
                                         </div>
 
                                         <div class="column">
                                             <span class="icon-text">
-                                                <span class="icon is-large has-text-success">
-                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                <span class="icon is-large has-text-primary">
+                                                    <i class="fas fa-2x fa-money-check-alt"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Daily Profit<br><b>1,981,865</b></h5>
+                                                <h5 class="subtitle is-5">Daily Profit<br><b>₱32,600</b></h5>
                                             </span>
                                         </div>
                                     </div>
@@ -144,7 +118,7 @@
                                             <span
                                                 class="icon-text is-flex is-flex-direction-column is-align-items-center">
                                                 <span class="icon has-text-link has-text-centered is-centered">
-                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                    <i class="fas fa-2x fa-hand-holding-usd"></i>
                                                 </span>
                                                 <h5 class="subtitle is-6">No. of Purchases<br></h5><span
                                                     class="title is-4">79</span>
@@ -156,8 +130,8 @@
                                         <div class="column has-text-centered">
                                             <span
                                                 class="icon-text is-flex is-flex-direction-column is-align-items-center">
-                                                <span class="icon has-text-success">
-                                                    <i class="fas fa-2x fa-shopping-basket"></i>
+                                                <span class="icon has-text-primary">
+                                                    <i class="fas fa-2x fa-dollar-sign"></i>
                                                 </span>
                                                 <h5 class="subtitle is-6">Sold Amount<br></h5><span
                                                     class="title is-4">₱68,855</span>
@@ -257,58 +231,7 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            var abc = document.getElementById('orderChart').getContext('2d');
-            var orderChart = new Chart(abc, {
-                type: 'line',
-                data: {
-                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                    datasets: [{
-                        label: 'Orders Shipped',
-                        data: [13, 19, 9, 13, 6, 3, 7],
-                        borderColor: "rgba(26, 100, 156, 1)",
-                        fill: false,
-                        tension: 0 // No curvature
-                    }, {
-                        label: 'Orders Placed',
-                        data: [5, 29, 5, 5, 2, 3, 10],
-                        borderColor: "rgba(71, 175, 225, 1)",
-                        fill: false,
-                        tension: 0 // No curvature
-                    }]
-                }
-            });
-
-            var def = document.getElementById("ticketChart").getContext('2d');
-            var ticketChart = new Chart(def, {
-                type: 'bar',
-                data: {
-                    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                    datasets: [{
-                        label: 'Important Metric',
-                        data: [169, 174, 195, 187, 140, 150, 189, 210, 175, 150, 193, 139],
-                        backgroundColor: [
-                            'rgba(26, 100, 156,0.6)',
-                            'rgba(71, 175, 225,0.4)',
-                            'rgba(26, 100, 156,0.6)',
-                            'rgba(71, 175, 225,0.4)',
-                            'rgba(26, 100, 156,0.6)',
-                            'rgba(71, 175, 225,0.4)',
-                            'rgba(26, 100, 156,0.6)',
-                            'rgba(71, 175, 225,0.4)',
-                            'rgba(26, 100, 156,0.6)',
-                            'rgba(71, 175, 225,0.4)',
-                            'rgba(26, 100, 156,0.6)',
-                            'rgba(71, 175, 225,0.4)'
-                        ]
-                    }]
-                },
-                options: {
-                    indexAxis: 'y' // Make the bars horizontal
-                }
-            });
-        </script>
+        <script src="assets/js/localChart.js"></script>
 </body>
 
 </html>

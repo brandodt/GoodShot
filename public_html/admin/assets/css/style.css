@@ -1,0 +1,27 @@
+.menu-list.flex-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex-spacer {
+  flex: 1;
+}
+
+.box {
+  margin: 5px;
+}
+
+.scrollable-table {
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+.nice:hover {
+  color: #ac7de8 !important;
+}
+
+.nigga {
+  display: grid;
+  height: 100vh;
+}
