@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </div>
 
-    <script src="assets/js/modals/login.modal.js"></script>
+    <script src="cashier/assets/js/modals/login.modal.js"></script>
 </body>
 
 </html>

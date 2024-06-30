@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/main.js"></script>
     <style>
         .nigger {
             display: grid;
@@ -62,7 +63,8 @@
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
                         <li class="pb-2"><a class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Logout</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>

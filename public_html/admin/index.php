@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/main.js"></script>
     <style>
         .nigger {
             display: grid;
@@ -54,7 +55,8 @@
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
                                 <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
@@ -66,7 +68,8 @@
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
                         <li class="pb-2"><a class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Logout</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
