@@ -64,7 +64,8 @@
                         <li class="py-2"><a href="sales-mgmt.php"
                                 class="has-background-grey-light has-text-white nice">Sales Management</a>
                         </li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Inventory</a></li>
+                        <li class="py-2"><a href="invetory.php"
+                                class="has-background-grey-light has-text-white nice">Inventory</a></li>
                         <li class="py-2"><a class="has-background-primary has-text-white">Product</a></li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a></li>
                         <li class="pt-2"><a class="has-background-grey-light has-text-white nice">Report</a></li>
