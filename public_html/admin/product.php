@@ -18,6 +18,13 @@
         }
     </script>
     <style>
+        #setOfButtons2 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 10px;
+        }
+
         #searchbar {
             width: 53vh;
         }
@@ -27,6 +34,8 @@
         }
 
         #dropdownmenu {
+            margin-top: 10px;
+            margin-bottom: 0px;
             margin-left: -40px;
         }
 
@@ -54,7 +63,7 @@
 </head>
 
 <body>
-    <div class="fixed-grid has-7-cols">
+    <div class="fixed-grid has-7-cols" id="division">
         <div class="grid">
             <div class="cell nigga">
                 <aside class="menu has-background-grey-light px-4 py-6">
@@ -82,7 +91,7 @@
                         <div class="box">
                             <div class="container">
 
-                                <div class="columns">
+                                <div class="columns" id="searchTools">
                                     <div class="column is-3" id="searchbar">
                                         <input class="input" type="text" placeholder="Search" />
                                     </div>
@@ -136,13 +145,13 @@
                     </div>
                     <div class="negar column is-3 ">
                         <div class="box">
-                            <div class="container">
+                            <div class="container" id="sortTools">
                                 <div class="buttons">
                                     <button class="button is-primary"><i class="fas fa-arrow-down"></i>Import
                                         Item</button>
                                     <button class="button is-primary"><i class="fas fa-plus"></i>New Item</button>
                                 </div>
-                                <div class="buttons">
+                                <div class="buttons" id="setOfButtons2">
                                     <button class="button is-dark">Sort</button>
                                     <button class="button is-primary"><i class="fas fa-redo-alt"></i></button>
                                 </div>

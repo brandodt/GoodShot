@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,9 +7,13 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        html,
+        body {
+            background-color: #4c4c4c;
+        }
+
         .nigger {
             display: grid;
             height: 43vh;
@@ -28,32 +32,69 @@
             max-height: 30vh;
             /* Prevent it from getting too tall */
         }
+
+        .column.is-2 {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            height: 100%;
+            /* Ensure it spans the full viewport height */
+            /* Allow scrolling if content overflows */
+            background-color: #4c4c4c;
+        }
+
+        .is-10 {
+            overflow-y: auto;
+
+        }
+
+        .nice:hover {
+            color: #ac7de8 !important;
+        }
+
+        .scrollable-table {
+            max-height: 35vh;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
 <body>
-    <div class="fixed-grid has-7-cols">
-        <div class="grid">
-            <div class="cell nigga">
-                <aside class="menu has-background-grey-light px-4 py-6">
-                    <ul class="menu-list is-primary flex-column">
-                        <li class="py-2"><a href="#" class="has-background-primary has-text-white">Dashboard</a></li>
-                        <li class="py-2"><a href="sales-mgmt.php"
-                                class="has-background-grey-light has-text-white nice">Sales Management</a>
+    <div class="section">
+        <div class="columns">
+            <div class="column is-2">
+                <aside class="menu">
+                    <img src="assets/img/logo_purple.png">
+                    <p class="menu-label has-text-white">Overview</p>
+                    <ul class="menu-list">
+                        <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Dashboard</a></li>
+                        <li class="pt-2"><a href="sales-mgmt.php"
+                                class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                    </ul>
+                    <hr>
+                    <p class="menu-label has-text-white">Storage</p>
+                    <ul class="menu-list">
+                        <li class="pt-2">
+                            <a class="has-background-grey-light has-text-white nice">Inventory</a>
+                            <ul>
+                                <li class="py-2"><a class="has-background-grey-light has-text-white nice">Product</a>
+                                </li>
+                                <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Inventory</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Product</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice">Supplies</a></li>
                         <li class="pt-2"><a class="has-background-grey-light has-text-white nice">Report</a></li>
-                        <li class="flex-spacer"></li>
-                        <hr>
+                    </ul>
+                    <hr>
+                    <p class="menu-label has-text-white">Account</p>
+                    <ul class="menu-list">
                         <li class="pb-2"><a class="has-background-grey-light has-text-white nice">Settings</a></li>
                         <li class="py-2"><a class="has-background-grey-light has-text-white nice">Logout</a></li>
                     </ul>
                 </aside>
             </div>
-            <div class="cell is-col-span-6 pt-6">
-                <h1 class="title">Dashboard</h1>
+            <div class="column is-10">
+                <h1 class="title has-text-white">Dashboard</h1>
                 <div class="fixed-grid has-5-cols">
                     <div class="grid">
                         <div class="nigger cell is-col-span-2">
@@ -207,6 +248,13 @@
                                             <td class="has-text-weight-semibold">421</td>
                                             <td class="has-text-weight-semibold">₱96,564</td>
                                         </tr>
+                                        <tr>
+                                            <td>10010</td>
+                                            <td class="has-text-weight-semibold">Tubol</td>
+                                            <td class="has-text-weight-semibold">₱600</td>
+                                            <td class="has-text-weight-semibold">421</td>
+                                            <td class="has-text-weight-semibold">₱96,564</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
@@ -231,7 +279,59 @@
                 </div>
             </div>
         </div>
-        <script src="assets/js/localChart.js"></script>
+    </div>
+    <script>
+        var abc = document.getElementById("orderChart").getContext("2d");
+        var orderChart = new Chart(abc, {
+            type: "line",
+            data: {
+                labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                datasets: [
+                    {
+                        label: "Total Item Sold",
+                        data: [0, 9, 19, 14, 19, 34, 36, 37],
+                        borderColor: "rgba(172, 125, 232)",
+                        backgroundColor: "rgba(172, 125, 232, 0.4)",
+                        fill: false,
+                        tension: 0.1, // No curvature
+                        borderWidth: 5,
+                    },
+                ],
+            },
+        });
+
+        var def = document.getElementById("ticketChart").getContext("2d");
+        var ticketChart = new Chart(def, {
+            type: "line",
+            data: {
+                labels: ["0", "5", "10", "15", "20", "25", "30"],
+                datasets: [
+                    {
+                        label: "Total Revenue",
+                        data: [0, 499000, 210000, 510000, 220000, 585000, 685000],
+                        borderColor: "rgba(172, 125, 232)",
+                        backgroundColor: "rgba(172, 125, 232, 0.4)",
+                        tension: 0.1,
+                        borderWidth: 5,
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: function (value, index, values) {
+                                if (value >= 1000) {
+                                    return value / 1000 + "k";
+                                }
+                                return value;
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    </script>
 </body>
 
 </html>
