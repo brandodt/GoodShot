@@ -1,3 +1,78 @@
+<?php
+include '../includes/db/connection.php';
+$db = new Database();
+$conn = $db->connect();
+
+// Fetch Total Products
+$totalProducts = "SELECT COUNT(*) AS total_products FROM products";
+$totalProductsResult = $conn->query($totalProducts);
+$total_products = $totalProductsResult->fetch_assoc()['total_products'];
+
+// Fetch Total Items Sold
+$itemSold = "SELECT SUM(quantity_sold) AS total_sold FROM sales";
+$itemSoldResult = $conn->query($itemSold);
+$total_sold = $itemSoldResult->fetch_assoc()['total_sold'];
+
+// Fetch Low Stock Products
+$low_stock_threshold = 20;
+$low_stock = "SELECT COUNT(*) AS low_stock_count FROM products WHERE quantity < ?";
+$stmts = $conn->prepare($low_stock);
+$stmts->bind_param("i", $low_stock_threshold);
+$stmts->execute();
+$lowStockResult = $stmts->get_result();
+$low_stock_count = $lowStockResult->fetch_assoc()['low_stock_count'];
+
+// Fetch Total Categories
+$category = "SELECT COUNT(DISTINCT category) AS total_categories FROM products";
+$categoryResult = $conn->query($category);
+$total_categories = $categoryResult->fetch_assoc()['total_categories'];
+
+// Fetch Low Stock Products
+$low_stock_threshold = 20; // Define the threshold for low stocks
+$lowStock = "SELECT product_id AS ID, 
+                 name AS Product, 
+                 quantity AS Stocks, 
+                 price AS Price
+          FROM products
+          WHERE quantity < ?
+          ORDER BY quantity ASC";
+$stmt = $conn->prepare($lowStock);
+$stmt->bind_param("i", $low_stock_threshold);
+$stmt->execute();
+$lowStockResult = $stmt->get_result();
+
+// New Arrival Data
+$newarrival = "SELECT name, product_id, supplier_name 
+            FROM products
+            JOIN suppliers ON products.supplier_id = suppliers.supplier_id
+            WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY);";
+$newarrivalResult = $conn->query($newarrival);
+
+// Count new products
+$newproduct = "SELECT COUNT(*) AS new_products FROM products WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY);";
+$newproductResult = $conn->query($newproduct);
+
+// Total Suppliers
+$supplierQuery = "SELECT COUNT(*) AS total_supplier FROM suppliers;";
+$supplierResult = $conn->query($supplierQuery);
+
+if ($supplierResult) {
+    $total_supplier = $supplierResult->fetch_assoc()['total_supplier'];
+} else {
+    $total_supplier = "N/A"; // Set a default value or error message
+}
+
+// Top Suppliers
+$topSupplierQuery = "SELECT supplier_name FROM suppliers ORDER BY supplier_id DESC LIMIT 5;";
+$topSupplierResult = $conn->query($topSupplierQuery);
+if ($topSupplierResult) {
+    $total_topSupplier = $topSupplierResult->fetch_all(MYSQLI_ASSOC);
+} else {
+    $total_topSupplier = "N/A"; // Set a default value or error message
+}
+$conn->close();
+?>
+
 <!doctype html>
 <html>
 
@@ -68,6 +143,11 @@
             </div>
             <div class="column is-10">
                 <h1 class="title has-text-white">Inventory Overview</h1>
+                <?php if (isset($_GET['message'])) : ?>
+                    <div class="notification is-success has-text-weight-bold">
+                        <?php echo htmlspecialchars($_GET['message']); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="fixed-grid has-7-cols">
                     <div class="grid">
                         <div class="cell" style="height: 20vh;">
@@ -78,7 +158,7 @@
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Total Products<br><br></h5>
-                                <span class="title is-4">3,149</span>
+                                <span class="title is-4"><?php echo $total_products; ?></span>
                             </div>
                         </div>
                         <div class=" cell" style="height: 20vh;">
@@ -89,7 +169,7 @@
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Items Sold<br><br></h5>
-                                <span class="title is-4">21,092</span>
+                                <span class="title is-4"><?php echo $total_sold; ?></span>
                             </div>
                         </div>
                         <div class=" cell" style="height: 20vh;">
@@ -100,7 +180,7 @@
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">New Products<br><br></h5>
-                                <span class="title is-4">21</span>
+                                <span class="title is-4"><?php echo $total_categories; ?></span>
                             </div>
                         </div>
                         <div class=" cell" style="height: 20vh;">
@@ -111,7 +191,7 @@
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Low Stocks<br><br></h5>
-                                <span class="title is-4">41</span>
+                                <span class="title is-4"><?php echo $low_stock_count; ?></span>
                             </div>
                         </div>
                         <div class="cell is-col-span-3" style="height: 20vh;">
@@ -126,14 +206,14 @@
                                         <span class="icon is-large has-text-primary">
                                             <i class="fas fa-2x fas fa-shopping-cart""></i>
                                                 </span>
-                                                <span class=" title is-5">Total Category<br><b>13</b></span>
+                                                <span class=" title is-5">Category:<br><b><?php echo $total_categories; ?></b></span>
                                     </span>
 
                                     <span class="icon-text mr-6">
                                         <span class="icon is-large has-text-primary">
                                             <i class="fas fa-2x fas fa-tag""></i>
                                                 </span>
-                                                <span class=" title is-5">Brands<br><b>18</b></span>
+                                                <span class=" title is-5">Suppliers:<br><b><?php echo $total_supplier; ?></b></span>
                                     </span>
                                 </div>
                             </div>
@@ -150,109 +230,22 @@
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
+                                                <td>ID</td>
                                                 <td>Product</td>
-                                                <td>Code</td>
                                                 <td>Stocks</td>
                                                 <td>Price</td>
-
                                             </tr>
                                         </thead>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amogus</td>
-                                            <td class="has-text-weight-semibold">108012</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
+                                        <tbody>
+                                            <?php while ($row = $lowStockResult->fetch_assoc()) : ?>
+                                                <tr>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['ID']; ?></td>
+                                                    <td><?php echo $row['Product']; ?></td>
+                                                    <td class=""><?php echo $row['Stocks']; ?></td>
+                                                    <td class="">₱<?php echo number_format($row['Price'], 2); ?></td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -261,92 +254,25 @@
                             <div class="box">
                                 <span class="has-text-weight-bold has-text-success">
                                     New Arrival
-                                </span><span>as of May 21 2024</span>
+                                </span><span><?php echo "as of " . date("F d, Y"); ?></span>
                                 <div class="scrollable-table">
-                                    <table class="table is-fullwidth">
+                                    <table class="table is-narrow">
                                         <thead>
                                             <tr>
+                                                <td>ID</td>
                                                 <td>Product</td>
-                                                <td>Code</td>
-                                                <td>Price</td>
-
+                                                <td>Supplier</td>
                                             </tr>
                                         </thead>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Boar rat</td>
-                                            <td class="has-text-weight-semibold">101100</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                        </tr>
+                                        <tbody>
+                                            <?php while ($row = $newarrivalResult->fetch_assoc()) : ?>
+                                                <tr>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['product_id']; ?></td>
+                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td class=""><?php echo $row['supplier_name']; ?></td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -382,11 +308,9 @@
                                 <div class="container content is-large">
                                     <p class="title is-3">Top Suppliers:</p>
                                     <ol>
-                                        <li>KCO</li>
-                                        <li>Jesus</li>
-                                        <li>Hitler</li>
-                                        <li>Hitler</li>
-                                        <li>Hitler</li>
+                                        <?php foreach ($total_topSupplier as $row) : ?>
+                                            <li><?php echo $row['supplier_name']; ?></li>
+                                        <?php endforeach; ?>
                                     </ol>
                                 </div>
                             </div>
@@ -396,8 +320,8 @@
             </div>
         </div>
     </div>
-    <?php include "add-product.modal.php"; ?>
-    <?php include "remove-product.modal.php"; ?>
+    <?php include_once "add-product.modal.php"; ?>
+    <?php include_once "remove-product.modal.php"; ?>
 
 </body>
 

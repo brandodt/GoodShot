@@ -1,3 +1,68 @@
+<?php
+include "../includes/db/connection.php";
+$db = new Database();
+$conn = $db->connect();
+
+// Total Sales
+$totalSalesQuery = "SELECT SUM(total_amount) AS total_sales FROM sales";
+$totalSalesResult = $conn->query($totalSalesQuery);
+$totalSales = $totalSalesResult->fetch_assoc()['total_sales'];
+
+// Total Profit
+$totalProfitQuery = "SELECT SUM(s.total_amount - (p.cost * s.quantity_sold)) AS total_profit
+                     FROM sales s
+                     JOIN products p ON s.product_id = p.product_id";
+$totalProfitResult = $conn->query($totalProfitQuery);
+$totalProfitRow = $totalProfitResult->fetch_assoc();
+$totalProfit = $totalProfitRow['total_profit'] ?? 0; // Set to 0 if null
+
+//Daily Sales
+$dailySalesQuery = "SELECT SUM(total_amount) AS daily_sales
+                    FROM sales
+                    GROUP BY DATE(sale_date)
+                    ORDER BY DATE(sale_date)
+                    DESC LIMIT 1;";
+$dailySalesResult = $conn->query($dailySalesQuery);
+$dailySales = $dailySalesResult->fetch_assoc()['daily_sales'] ?? 0;
+
+// Average Daily Profit
+$dailyProfitQuery = "SELECT SUM(s.total_amount - (p.cost * s.quantity_sold)) AS daily_profit
+                    FROM sales s
+                    JOIN products p ON s.product_id = p.product_id
+                    GROUP BY DATE(sale_date)
+                    ORDER BY DATE(sale_date)
+                    DESC LIMIT 1";
+$dailyProfitResult = $conn->query($dailyProfitQuery);
+$dailyProfit = $dailyProfitResult->fetch_assoc()['daily_profit'] ?? 0; // Set to 0 if null
+
+// No. Of Purchases
+$purchasesQuery = "SELECT COUNT(*) AS number_of_purchases FROM sales";
+$purchasesResult = $conn->query($purchasesQuery);
+$numberOfPurchases = $purchasesResult->fetch_assoc()['number_of_purchases'];
+
+// Average Sold Amount
+$avgSoldAmountQuery = "SELECT SUM(total_amount / quantity_sold) AS avg_sold_amount 
+                    FROM sales";
+$avgSoldAmountResult = $conn->query($avgSoldAmountQuery);
+$avgSoldAmount = $avgSoldAmountResult->fetch_assoc()['avg_sold_amount'];
+
+// Top Products
+$topProduct = "SELECT p.product_id AS ID, 
+                 p.name AS Name, 
+                 p.price AS Price, 
+                 SUM(s.quantity_sold) AS Sold, 
+                 SUM(s.total_amount) AS Earning
+          FROM sales s
+          JOIN products p ON s.product_id = p.product_id
+          GROUP BY p.product_id, p.name, p.price
+          ORDER BY SUM(s.quantity_sold) DESC
+          LIMIT 10";
+$topProductResult = $conn->query($topProduct);
+
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +78,7 @@
     <style>
         .nigger {
             display: grid;
-            height: 43vh;
+            height: 46vh;
         }
 
         .niggus {
@@ -31,7 +96,7 @@
         }
 
         .scrollable-table {
-            max-height: 35vh;
+            max-height: 38vh;
             overflow-y: auto;
         }
     </style>
@@ -46,8 +111,7 @@
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
                         <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Dashboard</a></li>
-                        <li class="pt-2"><a href="sales-mgmt.php"
-                                class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales Management</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Storage</p>
@@ -55,8 +119,7 @@
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php"
-                                        class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
                                 <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
@@ -68,8 +131,7 @@
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
                         <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
-                                onclick="logout()">Logout</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
@@ -90,7 +152,9 @@
                                                 <span class="icon is-large has-text-link">
                                                     <i class="fas fa-2x fas fa-chart-line"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Total Sales<br><b>₱1,981,865</b></h5>
+                                                <h5 class="subtitle is-5">Total Sales<br><b>₱
+                                                        <?php echo number_format($totalSales, 2); ?>
+                                                    </b></h5>
                                             </span>
                                         </div>
 
@@ -99,7 +163,9 @@
                                                 <span class="icon is-large has-text-link">
                                                     <i class="fas fa-2x fa-money-bill-wave"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Total Profit<br><b>₱908,855</b></h5>
+                                                <h5 class="subtitle is-5">Total Profit<br><b>₱
+                                                        <?php echo number_format($totalProfit, 2); ?>
+                                                    </b></h5>
                                             </span>
                                         </div>
                                     </div>
@@ -110,7 +176,9 @@
                                                 <span class="icon is-large has-text-primary">
                                                     <i class="fas fa-2x fa-shopping-basket"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Daily Sales<br><b>₱65,457</b></h5>
+                                                <h5 class="subtitle is-5">Daily Sales<br><b>₱
+                                                        <?php echo number_format($dailySales, 2); ?>
+                                                    </b></h5>
                                             </span>
                                         </div>
 
@@ -119,7 +187,9 @@
                                                 <span class="icon is-large has-text-primary">
                                                     <i class="fas fa-2x fa-money-check-alt"></i>
                                                 </span>
-                                                <h5 class="subtitle is-5">Daily Profit<br><b>₱32,600</b></h5>
+                                                <h5 class="subtitle is-5">Daily Profit<br><b>₱
+                                                        <?php echo number_format($dailyProfit, 2); ?>
+                                                    </b></h5>
                                             </span>
                                         </div>
                                     </div>
@@ -136,26 +206,26 @@
                                     <br>
                                     <div class="columns has-text-centered">
                                         <div class="column has-text-centered">
-                                            <span
-                                                class="icon-text is-flex is-flex-direction-column is-align-items-center">
+                                            <span class="icon-text is-flex is-flex-direction-column is-align-items-center">
                                                 <span class="icon has-text-link has-text-centered is-centered">
                                                     <i class="fas fa-2x fa-hand-holding-usd"></i>
                                                 </span>
-                                                <h5 class="subtitle is-6">No. of Purchases<br></h5><span
-                                                    class="title is-4">79</span>
+                                                <h5 class="subtitle is-6">No. of Purchases<br></h5><span class="title is-4">
+                                                    <?php echo $numberOfPurchases; ?>
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
 
                                     <div class="columns has-text-centered">
                                         <div class="column has-text-centered">
-                                            <span
-                                                class="icon-text is-flex is-flex-direction-column is-align-items-center">
+                                            <span class="icon-text is-flex is-flex-direction-column is-align-items-center">
                                                 <span class="icon has-text-primary">
                                                     <i class="fas fa-2x fa-dollar-sign"></i>
                                                 </span>
-                                                <h5 class="subtitle is-6">Sold Amount<br></h5><span
-                                                    class="title is-4">₱68,855</span>
+                                                <h5 class="subtitle is-6">Avg Sale Amount<br></h5><span class="title is-4">₱
+                                                    <?php echo number_format($avgSoldAmount, 2); ?>
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
@@ -166,75 +236,38 @@
                         <div class="nigger cell is-col-span-2">
                             <div class="box">
                                 <span class="has-text-weight-bold">
-                                    Total Product Sold
+                                    Top Product Sold
                                 </span>
                                 <div class="scrollable-table">
-                                    <table class="table is-fullwidth">
+                                    <table class="table is-narrow">
                                         <thead>
                                             <tr>
-                                                <td>ID</td>
-                                                <td>Name</td>
-                                                <td>Price</td>
-                                                <td>Sold</td>
-                                                <td>Earning</td>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Sold</th>
+                                                <th>Earning</th>
                                             </tr>
                                         </thead>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10010</td>
-                                            <td class="has-text-weight-semibold">Tubol</td>
-                                            <td class="has-text-weight-semibold">₱600</td>
-                                            <td class="has-text-weight-semibold">421</td>
-                                            <td class="has-text-weight-semibold">₱96,564</td>
-                                        </tr>
+                                        <tbody>
+                                            <?php while ($row = $topProductResult->fetch_assoc()) : ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo $row['ID']; ?>
+                                                    </td>
+                                                    <td class="">
+                                                        <?php echo $row['Name']; ?>
+                                                    </td>
+                                                    <td class="">₱<?php echo number_format($row['Price']); ?>
+                                                    </td>
+                                                    <td class="">
+                                                        <?php echo $row['Sold']; ?>
+                                                    </td>
+                                                    <td class="has-text-weight-semibold has-text-success">₱<?php echo number_format($row['Earning']); ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -261,46 +294,64 @@
         </div>
     </div>
     <script>
-        var abc = document.getElementById("orderChart").getContext("2d");
-        var orderChart = new Chart(abc, {
+        // Function to fetch data and update both charts
+        function updateChartsWithData() {
+            fetch('../../includes/api/admin/getChartData.php')
+                .then(response => response.json())
+                .then(data => {
+                    // Update Total Item Sold chart
+                    orderChart.data.labels = data.totalSoldLabels;
+                    orderChart.data.datasets[0].data = data.totalSoldValues;
+                    orderChart.update();
+
+                    // Update Top Revenue chart
+                    ticketChart.data.labels = data.topRevenueLabels;
+                    ticketChart.data.datasets[0].data = data.topRevenueValues;
+                    ticketChart.update();
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // Initialize Total Item Sold chart
+        var orderCtx = document.getElementById("orderChart").getContext("2d");
+        var orderChart = new Chart(orderCtx, {
             type: "line",
             data: {
-                labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-                datasets: [
-                    {
-                        label: "Total Item Sold",
-                        data: [0, 9, 19, 14, 19, 34, 36, 37],
-                        borderColor: "rgba(172, 125, 232)",
-                        backgroundColor: "rgba(172, 125, 232, 0.4)",
-                        fill: false,
-                        tension: 0.1, // No curvature
-                        borderWidth: 5,
-                    },
-                ],
+                labels: [], // Initially empty labels (to be populated dynamically)
+                datasets: [{
+                    label: "Total Item Sold",
+                    data: [], // Initially empty data array (to be populated dynamically)
+                    borderColor: "rgba(172, 125, 232)",
+                    backgroundColor: "rgba(172, 125, 232, 0.4)",
+                    fill: false,
+                    tension: 0.1, // No curvature
+                    borderWidth: 5,
+                }],
             },
         });
 
-        var def = document.getElementById("ticketChart").getContext("2d");
-        var ticketChart = new Chart(def, {
+        // Initialize Top Revenue chart
+        var ticketCtx = document.getElementById("ticketChart").getContext("2d");
+        var ticketChart = new Chart(ticketCtx, {
             type: "line",
             data: {
-                labels: ["0", "5", "10", "15", "20", "25", "30"],
-                datasets: [
-                    {
-                        label: "Total Revenue",
-                        data: [0, 499000, 210000, 510000, 220000, 585000, 685000],
-                        borderColor: "rgba(172, 125, 232)",
-                        backgroundColor: "rgba(172, 125, 232, 0.4)",
-                        tension: 0.1,
-                        borderWidth: 5,
-                    },
-                ],
+                labels: [], // Initially empty labels (to be populated dynamically)
+                datasets: [{
+                    label: "Total Revenue",
+                    data: [], // Initially empty data array (to be populated dynamically)
+                    borderColor: "rgba(172, 125, 232)",
+                    backgroundColor: "rgba(172, 125, 232, 0.4)",
+                    tension: 0.1,
+                    borderWidth: 5,
+                }],
             },
             options: {
                 scales: {
                     y: {
                         ticks: {
-                            callback: function (value, index, values) {
+                            callback: function(value, index, values) {
                                 if (value >= 1000) {
                                     return value / 1000 + "k";
                                 }
@@ -311,6 +362,9 @@
                 },
             },
         });
+
+        // Call the function to initially update both charts with real data
+        updateChartsWithData();
     </script>
 </body>
 

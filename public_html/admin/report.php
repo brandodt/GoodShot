@@ -1,3 +1,18 @@
+<?php
+include '../includes/db/connection.php';
+$db = new Database();
+$conn = $db->connect();
+
+// Fetch Sales Report
+$salesreport = "SELECT sales.transactNo, sales.product_id, products.name, products.category, sales.quantity_sold, sales.total_amount, sales.sale_date
+            FROM sales
+            INNER JOIN products ON sales.product_id = products.product_id
+            ORDER BY sale_date DESC;";
+$salesreportResult = $conn->query($salesreport);
+
+$conn->close();
+?>
+
 <!doctype html>
 <html>
 
@@ -38,11 +53,9 @@
                     <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php"
-                                class="has-background-grey-light has-text-white nice">Dashboard</a>
+                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a>
                         </li>
-                        <li class="pt-2"><a href="sales-mgmt.php"
-                                class="has-background-grey-light has-text-white nice">Sales
+                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales
                                 Management</a></li>
                     </ul>
                     <hr>
@@ -51,11 +64,9 @@
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php"
-                                        class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="supplies.php"
-                                        class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
                                 </li>
                             </ul>
                         </li>
@@ -64,10 +75,8 @@
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php"
-                                class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
-                                onclick="logout()">Logout</a></li>
+                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
@@ -153,106 +162,31 @@
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
+                                                <th>TransactionNo.</th>
                                                 <th>ID</th>
                                                 <th>Product</th>
                                                 <th>Category</th>
                                                 <th>Sold Qty.</th>
                                                 <th>Total Amount</th>
+                                                <th>Date</th>
                                             </tr>
                                         </thead>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Tubol</td>
-                                            <td>FOOD</td>
-                                            <td>69</td>
-                                            <td>₱1337</td>
-                                        </tr>
+                                        <tbody>
+                                            <?php while ($row = $salesreportResult->fetch_assoc()) : ?>
+                                                <tr>
+                                                    <td><?php echo $row['transactNo']; ?></td>
+                                                    <td><?php echo $row['product_id']; ?></td>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['name']; ?></td>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['category']; ?></td>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['quantity_sold']; ?></td>
+                                                    <td class="has-text-weight-semibold">₱<?php echo number_format($row['total_amount'], 2); ?></td>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['sale_date']; ?></td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
                                     </table>
                                 </div>
+
                             </div>
                         </div>
                     </div>

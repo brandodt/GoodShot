@@ -1,3 +1,16 @@
+<?php
+include '../includes/db/connection.php';
+$db = new Database();
+$conn = $db->connect();
+
+// Fetch Supply
+$supplies = "SELECT product_id, img_path, name, quantity FROM products";
+$suppliesResult = $conn->query($supplies);
+
+$conn->close();
+?>
+
+
 <!doctype html>
 <html>
 
@@ -38,11 +51,9 @@
                     <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php"
-                                class="has-background-grey-light has-text-white nice">Dashboard</a>
+                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a>
                         </li>
-                        <li class="pt-2"><a href="sales-mgmt.php"
-                                class="has-background-grey-light has-text-white nice">Sales
+                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales
                                 Management</a></li>
                     </ul>
                     <hr>
@@ -51,23 +62,19 @@
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php"
-                                        class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
                                 <li class="py-2"><a href="#" class="has-background-primary has-text-white">Supplies</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="pt-2"><a href="report.php"
-                                class="has-background-grey-light has-text-white nice">Report</a></li>
+                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php"
-                                class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
-                                onclick="logout()">Logout</a></li>
+                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
@@ -141,124 +148,32 @@
                     <div class="column is-12">
                         <div class="box">
                             <div class="scrollable-table">
-                                <div class="table">
-                                    <table class="table is-fullwidth">
-                                        <thead>
+                                <table class="table is-fullwidth">
+                                    <thead>
+                                        <tr>
+                                            <th>Product ID</th>
+                                            <th>Image Path</th>
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php while ($row = $suppliesResult->fetch_assoc()) : ?>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Image</th>
-                                                <th>Product</th>
-                                                <th>Supplier</th>
-                                                <th>Quanity</th>
-                                                <th>Status</th>
+                                                <td><?php echo $row['product_id']; ?></td>
+                                                <td><img src="<?php echo $row['img_path']; ?>" alt="Product Image" width="50"></td>
+                                                <td class="has-text-weight-semibold"><?php echo $row['name']; ?></td>
+                                                <td class="has-text-weight-semibold"><?php echo $row['quantity']; ?></td>
+                                                <td>
+                                                    <span class="tag <?php echo $row['quantity'] > 0 ? 'is-success' : 'is-danger'; ?>">
+                                                        <?php echo $row['quantity'] > 0 ? 'In Stock' : 'Out of Stock'; ?>
+                                                    </span>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>17</td>
-                                            <td><span class="tag is-danger">Out of Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>19</td>
-                                            <td><span class="tag is-danger">Out of Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="has-text-weight-semibold">10010</td>
-                                            <td>Image here</td>
-                                            <td>Piattos</td>
-                                            <td>FoodSupplies.co</td>
-                                            <td>421</td>
-                                            <td><span class="tag is-success">In Stock</span></td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                        <?php endwhile; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
