@@ -31,27 +31,34 @@
                         <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                         <p class="menu-label has-text-white">Overview</p>
                         <ul class="menu-list">
-                            <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a></li>
-                            <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                            <li class="pt-2"><a href="index.php"
+                                    class="has-background-grey-light has-text-white nice">Dashboard</a></li>
+                            <li class="pt-2"><a href="sales-mgmt.php"
+                                    class="has-background-grey-light has-text-white nice">Sales Management</a></li>
                         </ul>
                         <hr>
                         <p class="menu-label has-text-white">Storage</p>
                         <ul class="menu-list">
                             <li class="pt-2">
-                                <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
+                                <a href="inventory.php"
+                                    class="has-background-grey-light has-text-white nice">Inventory</a>
                                 <ul>
-                                    <li class="py-2"><a href="#" class="has-background-primary has-text-white">Product</a></li>
-                                    <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
-                                    </li>
+                                    <li class="py-2"><a href="#"
+                                            class="has-background-primary has-text-white">Product</a></li>
+                                    <li class="py-2"><a href="category.php"
+                                            class="has-background-grey-light has-text-white nice">Category</a></li>
                                 </ul>
                             </li>
-                            <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
+                            <li class="pt-2"><a href="report.php"
+                                    class="has-background-grey-light has-text-white nice">Report</a></li>
                         </ul>
                         <hr>
                         <p class="menu-label has-text-white">Account</p>
                         <ul class="menu-list">
-                            <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                            <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
+                            <li class="pb-2"><a href="settings.php"
+                                    class="has-background-grey-light has-text-white nice">Settings</a></li>
+                            <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                    onclick="logout()">Logout</a></li>
                         </ul>
                     </aside>
                 </div>
@@ -62,7 +69,8 @@
                             <div class="box">
                                 <div class="field">
                                     <p class="control">
-                                        <input v-model="searchQuery" class="input" type="text" placeholder="Search item...">
+                                        <input v-model="searchQuery" class="input" type="text"
+                                            placeholder="Search item...">
                                     </p>
                                 </div>
                                 <div class="scrollable-table">
@@ -83,7 +91,8 @@
                                             <tbody>
                                                 <tr v-for="product in filteredProducts" :key="product.product_id">
                                                     <td class="has-text-weight-semibold">{{ product.product_id }}</td>
-                                                    <td><img :src="product.img_path" alt="Product Image" width="50"></td>
+                                                    <td><img :src="product.img_path" alt="Product Image" width="50">
+                                                    </td>
                                                     <td>{{ product.name }}</td>
                                                     <td>{{ product.category_name }}</td>
                                                     <td>{{ product.supplier_name }}</td>
@@ -91,8 +100,12 @@
                                                     <td>{{ product.price }}</td>
                                                     <td>
                                                         <div class="buttons are-small">
-                                                            <button class="button is-small is-success is-light is-responsive">Update</button>
-                                                            <button class="button is-small is-danger is-light is-responsive">Delete</button>
+                                                            <button
+                                                                class="button is-small is-success is-light is-responsive"
+                                                                @click="openUpdateModal(product)">Update</button>
+                                                            <button
+                                                                class="button is-small is-danger is-light is-responsive"
+                                                                @click="deleteProduct(product.product_id)">Delete</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -106,6 +119,63 @@
                 </div>
             </div>
         </div>
+
+        <!-- Update Modal -->
+        <div class="modal" :class="{ 'is-active': showModal }">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Update Product</p>
+                    <button class="delete" aria-label="close" @click="closeModal"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Product Name</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="currentProduct.name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Category</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select v-model="currentProduct.category_id">
+                                    <option v-for="category in categories" :key="category.category_id"
+                                        :value="category.category_id">{{ category.category_name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Supplier</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select v-model="currentProduct.supplier_id">
+                                    <option v-for="supplier in suppliers" :key="supplier.supplier_id"
+                                        :value="supplier.supplier_id">{{ supplier.supplier_name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Quantity</label>
+                        <div class="control">
+                            <input class="input" type="number" v-model="currentProduct.quantity">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Price</label>
+                        <div class="control">
+                            <input class="input" type="number" v-model="currentProduct.price">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" @click="updateProduct">Save changes</button>
+                    <button class="button" @click="closeModal">Cancel</button>
+                </footer>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -113,11 +183,24 @@
             data() {
                 return {
                     searchQuery: "",
-                    products: []
+                    products: [],
+                    categories: [],
+                    suppliers: [],
+                    showModal: false,
+                    currentProduct: {
+                        product_id: '',
+                        name: '',
+                        category_id: '',
+                        supplier_id: '',
+                        quantity: 0,
+                        price: 0
+                    }
                 };
             },
             created() {
                 this.fetchProducts();
+                this.fetchCategories();
+                this.fetchSuppliers();
             },
             methods: {
                 fetchProducts() {
@@ -126,51 +209,86 @@
                         .then((response) => {
                             this.products = response.data.map((product) => ({
                                 ...product,
-                                price: parseFloat(product.price) // Ensure price is a number
+                                price: parseFloat(product.price)
                             }));
                         })
                         .catch((error) => {
                             console.log(error);
                         });
                 },
-                searchProduct() {
+                fetchCategories() {
                     axios
-                        .get("../includes/api/admin/searchProduct.php", {
-                            params: {
-                                searchTerm: this.searchQuery,
-                            },
-                        })
+                        .get("../includes/api/admin/fetchCategories.php")
                         .then((response) => {
-                            this.products = response.data.map((product) => ({
-                                ...product,
-                                price: parseFloat(product.price) // Ensure price is a number
-                            }));
+                            this.categories = response.data;
                         })
                         .catch((error) => {
                             console.log(error);
                         });
-                }
-            },
-            watch: {
-                searchQuery() {
-                    this.searchProduct();
+                },
+                fetchSuppliers() {
+                    axios
+                        .get("../includes/api/admin/fetchSuppliers.php")
+                        .then((response) => {
+                            this.suppliers = response.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                },
+                openUpdateModal(product) {
+                    this.currentProduct = { ...product };
+                    this.showModal = true;
+                },
+                closeModal() {
+                    this.showModal = false;
+                    this.currentProduct = {
+                        product_id: '',
+                        name: '',
+                        category_id: '',
+                        supplier_id: '',
+                        quantity: 0,
+                        price: 0
+                    };
+                },
+                updateProduct() {
+                    axios
+                        .post("../includes/api/admin/updateProduct.php", this.currentProduct)
+                        .then((response) => {
+                            if (response.data.status === 'success') {
+                                this.fetchProducts();
+                                this.closeModal();
+                            } else {
+                                alert(response.data.message);
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                },
+                deleteProduct(product_id) {
+                    if (confirm('Are you sure you want to delete this product?')) {
+                        axios
+                            .post("../includes/api/admin/deleteProduct.php", { product_id })
+                            .then((response) => {
+                                if (response.data.status === 'success') {
+                                    this.products = this.products.filter(product => product.product_id !== product_id);
+                                } else {
+                                    alert(response.data.message);
+                                }
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    }
                 }
             },
             computed: {
                 filteredProducts() {
-                    if (this.searchQuery) {
-                        return this.products.filter(product =>
-                            product.product_id.toString().includes(this.searchQuery) ||
-                            product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                            product.category_name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                            product.supplier_name.toLowerCase().includes(this.searchQuery.toLowerCase())
-                        );
-                    } else {
-                        return this.products;
-                    }
+                    return this.products.filter(product => product.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
                 }
             }
-        }).mount("#app");
+        }).mount('#app');
     </script>
 </body>
 

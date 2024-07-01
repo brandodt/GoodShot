@@ -1,28 +1,3 @@
-<?php
-include '../includes/db/connection.php';
-$db = new Database();
-$conn = $db->connect();
-
-// Categories
-$category = "SELECT category_id, category_name FROM category";
-$categoryResult = $conn->query($category);
-
-// Total Items per Category
-$totalItemsQuery = "SELECT c.category_id, COUNT(p.product_id) AS total_items
-                    FROM products p 
-                    JOIN category c ON p.category_id = c.category_id 
-                    GROUP BY c.category_id";
-$totalItemsResult = $conn->query($totalItemsQuery);
-
-// Create an associative array for total items per category
-$totalItems = [];
-while ($row = $totalItemsResult->fetch_assoc()) {
-    $totalItems[$row['category_id']] = $row['total_items'];
-}
-
-$conn->close();
-?>
-
 <!doctype html>
 <html>
 
@@ -48,85 +23,210 @@ $conn->close();
 </head>
 
 <body>
-    <div class="section">
-        <div class="columns">
-            <div class="column is-2">
-                <aside class="menu">
-                    <p class="lego has-text-primary is-size-1">GOODSHOT</p>
-                    <p class="menu-label has-text-white">Overview</p>
-                    <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a></li>
-                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales Management</a></li>
-                    </ul>
-                    <hr>
-                    <p class="menu-label has-text-white">Storage</p>
-                    <ul class="menu-list">
-                        <li class="pt-2">
-                            <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
-                            <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a></li>
-                                <li class="py-2"><a href="#" class="has-background-primary has-text-white">Category</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
-                    </ul>
-                    <hr>
-                    <p class="menu-label has-text-white">Account</p>
-                    <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
-                    </ul>
-                </aside>
-            </div>
-            <div class="column is-10">
-                <div class="columns">
-                    <div class="column is-10">
-                        <h3 class="title has-text-white">Category</h3>
-                    </div>
-                    <div class="column">
-                        <div class="buttons is-right">
-                            <button class="button is-primary"><span class="icon"><i class="fas fa-plus"></i></span>
-                                <span>Add Category</span></button>
+    <div id="app">
+        <div class="section">
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="lego has-text-primary is-size-1">GOODSHOT</p>
+                        <p class="menu-label has-text-white">Overview</p>
+                        <ul class="menu-list">
+                            <li class="pt-2"><a href="index.php"
+                                    class="has-background-grey-light has-text-white nice">Dashboard</a></li>
+                            <li class="pt-2"><a href="sales-mgmt.php"
+                                    class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                        </ul>
+                        <hr>
+                        <p class="menu-label has-text-white">Storage</p>
+                        <ul class="menu-list">
+                            <li class="pt-2">
+                                <a href="inventory.php"
+                                    class="has-background-grey-light has-text-white nice">Inventory</a>
+                                <ul>
+                                    <li class="py-2"><a href="product.php"
+                                            class="has-background-grey-light has-text-white nice">Product</a></li>
+                                    <li class="py-2"><a href="#"
+                                            class="has-background-primary has-text-white">Category</a></li>
+                                </ul>
+                            </li>
+                            <li class="pt-2"><a href="report.php"
+                                    class="has-background-grey-light has-text-white nice">Report</a></li>
+                        </ul>
+                        <hr>
+                        <p class="menu-label has-text-white">Account</p>
+                        <ul class="menu-list">
+                            <li class="pb-2"><a href="settings.php"
+                                    class="has-background-grey-light has-text-white nice">Settings</a></li>
+                            <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                    onclick="logout()">Logout</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column is-10">
+                    <div class="columns">
+                        <div class="column is-10">
+                            <h3 class="title has-text-white">Category</h3>
+                        </div>
+                        <div class="column">
+                            <div class="buttons is-right">
+                                <button class="button is-primary" @click="openAddCategoryModal"><span class="icon"><i
+                                            class="fas fa-plus"></i></span>
+                                    <span>Add Category</span></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="columns">
-                    <div class="column is-12">
-                        <div class="box">
-                            <div class="scrollable-table">
-                                <table class="table is-fullwidth">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Category Name</th>
-                                            <th>Total Items</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php while ($row = $categoryResult->fetch_assoc()) : ?>
+                    <div class="columns">
+                        <div class="column is-12">
+                            <div class="box">
+                                <div class="scrollable-table">
+                                    <table class="table is-fullwidth">
+                                        <thead>
                                             <tr>
-                                                <td class="has-text-weight-semibold"><?php echo $row['category_id']; ?></td>
-                                                <td><?php echo $row['category_name']; ?></td>
-                                                <td><?php echo $totalItems[$row['category_id']] ?? 0; ?></td>
+                                                <th>#</th>
+                                                <th>Category Name</th>
+                                                <th>Total Items</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="category in categories" :key="category.category_id">
+                                                <td class="has-text-weight-semibold">{{ category.category_id }}</td>
+                                                <td>{{ category.category_name }}</td>
+                                                <td>{{ totalItems[category.category_id] || 0 }}</td>
                                                 <td>
                                                     <div class="buttons are-small">
-                                                        <button class="button is-small is-success is-light is-responsive">Update</button>
-                                                        <button class="button is-small is-danger is-light is-responsive">Delete</button>
+                                                        <button
+                                                            class="button is-small is-success is-light is-responsive"
+                                                            @click="openUpdateCategoryModal(category)">Update</button>
+                                                        <button
+                                                            class="button is-small is-danger is-light is-responsive">Delete</button>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php endwhile; ?>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Add Category Modal -->
+        <div class="modal" :class="{ 'is-active': showAddCategoryModal }">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Add Category</p>
+                    <button class="delete" aria-label="close" @click="closeAddCategoryModal"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Category Name</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="newCategoryName">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" @click="addCategory">Save</button>
+                    <button class="button" @click="closeAddCategoryModal">Cancel</button>
+                </footer>
+            </div>
+        </div>
+
+
+        <!-- Update Category Modal -->
+        <div class="modal" :class="{ 'is-active': showUpdateCategoryModal }">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Update Category</p>
+                    <button class="delete" aria-label="close" @click="closeUpdateCategoryModal"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Category Name</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="currentCategory.category_name">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" @click="updateCategory">Save changes</button>
+                    <button class="button" @click="closeUpdateCategoryModal">Cancel</button>
+                </footer>
+            </div>
+        </div>
     </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    searchQuery: "",
+                    categories: [],
+                    totalItems: {},
+                    showAddCategoryModal: false,
+                    showUpdateCategoryModal: false,
+                    newCategoryName: "",
+                    currentCategory: {
+                        category_id: '',
+                        category_name: ''
+                    }
+                };
+            },
+            created() {
+                this.fetchCategories();
+            },
+            methods: {
+                fetchCategories() {
+                    axios
+                        .get("../includes/api/admin/fetchCategories.php")
+                        .then((response) => {
+                            this.categories = response.data;
+                            this.fetchTotalItems();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                },
+                fetchTotalItems() {
+                    axios
+                        .get("../includes/api/admin/fetchTotalItems.php")
+                        .then((response) => {
+                            this.totalItems = response.data;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                },
+                openAddCategoryModal() {
+                    this.showAddCategoryModal = true;
+                },
+                closeAddCategoryModal() {
+                    this.showAddCategoryModal = false;
+                    this.newCategoryName = "";
+                },
+                addCategory() {
+                    axios
+                        .post("../includes/api/admin/addCategory.php", { category_name: this.newCategoryName })
+                        .then((response) => {
+                            if (response.data.status === 'success') {
+                                this.fetchCategories();
+                                this.closeAddCategoryModal();
+                            } else {
+                                alert(response.data.message);
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            }
+        }).mount('#app');
+    </script>
 </body>
 
 </html>
