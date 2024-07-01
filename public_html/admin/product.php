@@ -41,7 +41,8 @@
                                 <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                                 <ul>
                                     <li class="py-2"><a href="#" class="has-background-primary has-text-white">Product</a></li>
-                                    <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a></li>
+                                    <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
@@ -84,7 +85,7 @@
                                                     <td class="has-text-weight-semibold">{{ product.product_id }}</td>
                                                     <td><img :src="product.img_path" alt="Product Image" width="50"></td>
                                                     <td>{{ product.name }}</td>
-                                                    <td>{{ product.category }}</td>
+                                                    <td>{{ product.category_name }}</td>
                                                     <td>{{ product.supplier_name }}</td>
                                                     <td>{{ product.quantity }}</td>
                                                     <td>{{ product.price }}</td>
@@ -161,7 +162,7 @@
                         return this.products.filter(product =>
                             product.product_id.toString().includes(this.searchQuery) ||
                             product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                            product.category.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                            product.category_name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
                             product.supplier_name.toLowerCase().includes(this.searchQuery.toLowerCase())
                         );
                     } else {

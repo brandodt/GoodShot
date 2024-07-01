@@ -1,8 +1,3 @@
-<?php
-include_once '../includes/db/connection.php';
-$db = new Database();
-$conn = $db->connect();
-?>
 <div id="addProduct-modal-content" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -26,12 +21,12 @@ $conn = $db->connect();
                             <select name="category">
                                 <?php
                                 // Assuming $conn is your database connection object
-                                $query = "SELECT DISTINCT category FROM products";
+                                $query = "SELECT category_id, category_name FROM category";
                                 $result = $conn->query($query);
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        echo "<option>" . $row['category'] . "</option>";
+                                        echo "<option value='" . $row['category_id'] . "'>" . $row['category_name'] . "</option>";
                                     }
                                 }
                                 ?>

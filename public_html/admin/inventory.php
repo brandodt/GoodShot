@@ -1,5 +1,5 @@
 <?php
-include '../includes/db/connection.php';
+include_once '../includes/db/connection.php';
 $db = new Database();
 $conn = $db->connect();
 
@@ -23,7 +23,8 @@ $lowStockResult = $stmts->get_result();
 $low_stock_count = $lowStockResult->fetch_assoc()['low_stock_count'];
 
 // Fetch Total Categories
-$category = "SELECT COUNT(DISTINCT category) AS total_categories FROM products";
+$category = "SELECT COUNT(DISTINCT c.category_name) AS total_categories FROM products
+            JOIN category c ON products.category_id = c.category_id;";
 $categoryResult = $conn->query($category);
 $total_categories = $categoryResult->fetch_assoc()['total_categories'];
 
@@ -70,7 +71,7 @@ if ($topSupplierResult) {
 } else {
     $total_topSupplier = "N/A"; // Set a default value or error message
 }
-$conn->close();
+
 ?>
 
 <!doctype html>
@@ -127,7 +128,7 @@ $conn->close();
                             <ul>
                                 <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
                                 </li>
                             </ul>
                         </li>
@@ -320,9 +321,146 @@ $conn->close();
             </div>
         </div>
     </div>
-    <?php include_once "add-product.modal.php"; ?>
-    <?php include_once "remove-product.modal.php"; ?>
 
+
+    <!-- MODALS -->
+    <div id="addProduct-modal-content" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add Product</p>
+                <button id="close-modal-addProduct" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="forms/add-product.php" method="POST" enctype="multipart/form-data">
+                    <div class="field">
+                        <label class="label">Product Name</label>
+                        <div class="control">
+                            <input class="input" type="text" name="product_name" placeholder="Enter product name" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Category</label>
+                        <p class="control">
+                            <span class="select is-fullwidth">
+                                <select name="category">
+                                    <?php
+                                    // Assuming $conn is your database connection object
+                                    $query = "SELECT DISTINCT category_name FROM category";
+                                    $result = $conn->query($query);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option>" . $row['category_name'] . "</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Supplier</label>
+                        <p class="control">
+                            <span class="select is-fullwidth">
+                                <select name="supplier_id">
+                                    <?php
+                                    $query = "SELECT * FROM suppliers";
+                                    $result = $conn->query($query);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_name'] . "</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Image</label>
+                        <div class="control">
+                            <input class="input" type="file" name="image">
+                        </div>
+                    </div>
+
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">Quantity</label>
+                            <div class="control">
+                                <input class="input" type="number" name="quantity" placeholder="Enter quantity" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Price</label>
+                            <div class="control">
+                                <input class="input" type="number" name="price" placeholder="Enter price" required>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary" type="submit" name="submit">Add Product</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+            </footer>
+        </div>
+    </div>
+
+    <div id="removeProduct-modal-content" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Remove Product</p>
+                <button id="close-modal-removeProduct" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="forms/remove-product.php" method="POST" enctype="multipart/form-data">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">Product ID</label>
+                            <div class="control">
+                                <input class="input" type="number" name="product_id" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Quantity</label>
+                            <div class="control">
+                                <input id="quantityInput" class="input" type="number" name="quantity" required>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" name="remove_all">
+                                All product?
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="control">
+                        <button class="button is-primary" name="submit" type="submit">Remove Product</button>
+                    </div>
+                </form>
+            </section>
+            </section>
+            <footer class="modal-card-foot">
+            </footer>
+        </div>
+    </div>
 </body>
 
 </html>

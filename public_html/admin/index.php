@@ -17,13 +17,14 @@ $totalProfitRow = $totalProfitResult->fetch_assoc();
 $totalProfit = $totalProfitRow['total_profit'] ?? 0; // Set to 0 if null
 
 //Daily Sales
-$dailySalesQuery = "SELECT SUM(total_amount) AS daily_sales
-                    FROM sales
-                    GROUP BY DATE(sale_date)
-                    ORDER BY DATE(sale_date)
-                    DESC LIMIT 1;";
+$dailySalesQuery = "SELECT AVG(daily_sales) AS avg_daily_sales
+                FROM (
+                SELECT DATE(sale_date) AS date, SUM(total_amount) AS daily_sales
+                FROM sales
+                GROUP BY DATE(sale_date)
+                ) AS daily_totals;";
 $dailySalesResult = $conn->query($dailySalesQuery);
-$dailySales = $dailySalesResult->fetch_assoc()['daily_sales'] ?? 0;
+$dailySales = $dailySalesResult->fetch_assoc()['avg_daily_sales'] ?? 0;
 
 // Average Daily Profit
 $dailyProfitQuery = "SELECT SUM(s.total_amount - (p.cost * s.quantity_sold)) AS daily_profit
@@ -121,7 +122,7 @@ $conn->close();
                             <ul>
                                 <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
+                                <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
                                 </li>
                             </ul>
                         </li>

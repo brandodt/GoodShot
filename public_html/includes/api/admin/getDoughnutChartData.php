@@ -5,10 +5,11 @@ $db = new Database();
 $conn = $db->connect();
 
 // Example query to fetch category sales data
-$categorySalesQuery = "SELECT p.category, SUM(s.quantity_sold) AS total_sold 
+$categorySalesQuery = "SELECT c.category_name, SUM(s.quantity_sold) AS total_sold 
                        FROM products AS p
                        JOIN sales AS s ON p.product_id = s.product_id
-                       GROUP BY category";
+                       JOIN category AS c ON p.category_id = c.category_id
+                       GROUP BY category_name";
 $result = $conn->query($categorySalesQuery);
 
 $labels = [];
@@ -16,7 +17,7 @@ $values = [];
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $labels[] = $row['category'];
+        $labels[] = $row['category_name'];
         $values[] = (int) $row['total_sold'];
     }
 }

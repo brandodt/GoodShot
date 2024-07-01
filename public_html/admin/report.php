@@ -1,16 +1,31 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
+    $_SESSION["error"] = "Unauthorized access. Please login first.";
+    header("location: ../index.php");
+    exit;
+}
+
 include '../includes/db/connection.php';
 $db = new Database();
 $conn = $db->connect();
 
-// Fetch Sales Report
-$salesreport = "SELECT sales.transactNo, sales.product_id, products.name, products.category, sales.quantity_sold, sales.total_amount, sales.sale_date
-            FROM sales
-            INNER JOIN products ON sales.product_id = products.product_id
-            ORDER BY sale_date DESC;";
-$salesreportResult = $conn->query($salesreport);
+// Pagination setup
 
-$conn->close();
+
+// Get total records
+$sql_total = "SELECT COUNT(*) FROM sales";
+$result_total = $conn->query($sql_total);
+
+
+// Fetch paginated results
+$sql = "SELECT s.transactNo, s.sale_date, CONCAT(u.firstName, ' ', u.lastName) AS cashierName, SUM(s.total_amount) AS total_amount 
+        FROM sales s 
+        JOIN users u ON s.cashier_id = u.id
+        GROUP BY s.transactNo, s.sale_date, u.firstName, u.lastName
+        ORDER BY s.transactNo DESC";
+$result = $conn->query($sql);
 ?>
 
 <!doctype html>
@@ -24,21 +39,18 @@ $conn->close();
     <link rel="stylesheet" href="assets/css/bulma/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/sortable.js"></script>
     <style>
-        .nigger {
+        .container-table {
             display: grid;
             height: 43vh;
         }
 
-        .niggus {
-            display: grid;
-            height: 40vh;
-        }
-
         .scrollable-table {
-            height: 55vh;
+            height: 79vh;
             max-height: 80vh;
             overflow-y: auto;
         }
@@ -46,154 +58,82 @@ $conn->close();
 </head>
 
 <body>
-    <div class="section">
-        <div class="columns">
-            <div class="column is-2">
-                <aside class="menu">
-                    <p class="lego has-text-primary is-size-1">GOODSHOT</p>
-                    <p class="menu-label has-text-white">Overview</p>
-                    <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a>
-                        </li>
-                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales
-                                Management</a></li>
-                    </ul>
-                    <hr>
-                    <p class="menu-label has-text-white">Storage</p>
-                    <ul class="menu-list">
-                        <li class="pt-2">
-                            <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
-                            <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
-                                </li>
-                                <li class="py-2"><a href="supplies.php" class="has-background-grey-light has-text-white nice">Supplies</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Report</a></li>
-                    </ul>
-                    <hr>
-                    <p class="menu-label has-text-white">Account</p>
-                    <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
-                    </ul>
-                </aside>
-            </div>
-            <div class="column is-10">
-                <h1 class="title has-text-white">Sales Report</h1>
-                <div class="columns">
-                    <div class="negar column">
-                        <div class="box">
-                            <div class="container">
-                                <div class="columns">
-                                    <div class="column is-3">
-                                        <!-- <div class="columns is-vcentered">
-                                            <div class="column is-narrow">
-                                                <span class="icon-text-stack fa-md">
-                                                    <span class="fa-stack fa-2x has-text-primary">
-                                                        <i class="far fa-circle fa-stack-2x"></i>
-                                                        <i class="fas fa-box fa-stack-1x"></i>
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="column is-narrow">
-                                                <div>
-                                                    <span class="is-size-6">Available Products:</span>
-                                                    <br>
-                                                    <p class="has-text-weight-bold is-size-4 has-text-right">103</p>
-                                                </div>
-                                                <div>
-                                                    <span class="is-size-6">Low Stock:</span>
-                                                    <br>
-                                                    <p class="has-text-weight-bold is-size-4 has-text-right">16</p>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                </div>
-
-                                <!-- <div class="field">
-                                    <div class="control">
-                                        <label class="radio">
-                                            <input type="radio" name="question">
-                                            Ascending
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" name="question">
-                                            Descending
-                                        </label>
-                                    </div>
-                                </div> -->
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="negar column is-4">
-                        <div class="box">
-                            
-                        </div>
-                    </div> -->
+    <div id="app">
+        <div class="section">
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="lego has-text-primary is-size-1">GOODSHOT</p>
+                        <p class="menu-label has-text-white">Overview</p>
+                        <ul class="menu-list">
+                            <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white">Dashboard</a></li>
+                            <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white">Sales Management</a></li>
+                        </ul>
+                        <hr>
+                        <p class="menu-label has-text-white">Storage</p>
+                        <ul class="menu-list">
+                            <li class="pt-2">
+                                <a href="inventory.php" class="has-background-grey-light has-text-white">Inventory</a>
+                                <ul>
+                                    <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white">Product</a></li>
+                                    <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white">Category</a></li>
+                                </ul>
+                            </li>
+                            <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Report</a></li>
+                        </ul>
+                        <hr>
+                        <p class="menu-label has-text-white">Account</p>
+                        <ul class="menu-list">
+                            <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white">Settings</a></li>
+                            <li class="py-2"><a class="has-background-grey-light has-text-white" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </aside>
                 </div>
-                <div class="columns">
-                    <div class="column">
-                        <div class="box">
-                            <div class="field has-addons">
-                                <p class="control">
-                                    <span class="select">
-                                        <select>
-                                            <option>ID</option>
-                                            <option>Product</option>
-                                            <option>Category</option>
-                                        </select>
-                                    </span>
-                                </p>
-                                <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="Search item...">
-                                </p>
-                                <p class="control">
-                                    <button class="button">
-                                        Search
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="scrollable-table">
-                                <div class="table">
+                <div class="column is-10">
+                    <h1 class="title has-text-white">Sales Report</h1>
+                    <div class="columns">
+                        <div class="column is-12">
+                            <div class="box">
+                                <div class="scrollable-table">
                                     <table class="table is-fullwidth">
                                         <thead>
                                             <tr>
-                                                <th>TransactionNo.</th>
-                                                <th>ID</th>
-                                                <th>Product</th>
-                                                <th>Category</th>
-                                                <th>Sold Qty.</th>
-                                                <th>Total Amount</th>
+                                                <th>Transaction #</th>
                                                 <th>Date</th>
+                                                <th>Cashier Name</th>
+                                                <th>Total Amount</th>
+                                                <th>Action(s)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $salesreportResult->fetch_assoc()) : ?>
+                                            <?php while ($row = $result->fetch_assoc()) : ?>
                                                 <tr>
-                                                    <td><?php echo $row['transactNo']; ?></td>
-                                                    <td><?php echo $row['product_id']; ?></td>
-                                                    <td class="has-text-weight-semibold"><?php echo $row['name']; ?></td>
-                                                    <td class="has-text-weight-semibold"><?php echo $row['category']; ?></td>
-                                                    <td class="has-text-weight-semibold"><?php echo $row['quantity_sold']; ?></td>
-                                                    <td class="has-text-weight-semibold">₱<?php echo number_format($row['total_amount'], 2); ?></td>
-                                                    <td class="has-text-weight-semibold"><?php echo $row['sale_date']; ?></td>
+                                                    <td><?php echo htmlspecialchars($row['transactNo']); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['sale_date']); ?></td>
+                                                    <td><?php echo htmlspecialchars($row['cashierName']); ?></td>
+                                                    <td>₱<?php echo htmlspecialchars($row['total_amount']); ?></td>
+                                                    <td>
+                                                        <button class='button is-primary is-small is-outlined' onclick='viewReceipt("<?php echo htmlspecialchars($row['transactNo']); ?>")'>View Receipt</button>
+                                                    </td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function viewReceipt(transactionNum) {
+            const pdfUrl = `../includes/receipts/${transactionNum}.pdf`;
+            window.open(pdfUrl, "_blank");
+        }
+    </script>
 </body>
 
 </html>
