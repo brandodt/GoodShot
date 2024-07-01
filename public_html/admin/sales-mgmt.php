@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
+    $_SESSION["error"] = "Unauthorized access. Please login first.";
+    header("location: ../index.php");
+    exit;
+}
 include '../includes/db/connection.php';
 $db = new Database();
 $conn = $db->connect();
@@ -140,7 +147,8 @@ $conn->close();
                     <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a></li>
+                        <li class="pt-2"><a href="index.php"
+                                class="has-background-grey-light has-text-white nice">Dashboard</a></li>
                         <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Sales
                                 Management</a></li>
                     </ul>
@@ -150,19 +158,23 @@ $conn->close();
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
-                                </li>
+                                <li class="pt-2"><a href="report.php"
+                                        class="has-background-grey-light has-text-white nice">Report</a></li>
+                                <!-- <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
+                                </li> -->
                             </ul>
                         </li>
-                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
+                        <!-- <li class="pb-2"><a href="settings.php"
+                                class="has-background-grey-light has-text-white nice">Settings</a></li> -->
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
@@ -178,7 +190,8 @@ $conn->close();
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Total Sales<br><br></h5>
-                                <span class="title is-4" id="counter">₱<?php echo number_format($totalSales, 2); ?></span>
+                                <span class="title is-4"
+                                    id="counter">₱<?php echo number_format($totalSales, 2); ?></span>
                             </div>
                         </div>
                         <div class="cell" style="height: 20vh;">
@@ -200,7 +213,8 @@ $conn->close();
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Sales Growth Rate<br></h5>
-                                <span class="numeric-value title is-4"><?php echo number_format($salesGrowthRate, 2); ?>%</span>
+                                <span
+                                    class="numeric-value title is-4"><?php echo number_format($salesGrowthRate, 2); ?>%</span>
                             </div>
                         </div>
                         <div class="cell" style="height: 20vh;">
@@ -211,7 +225,8 @@ $conn->close();
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">Avg Sale Value<br><br></h5>
-                                <span class="numeric-value title is-4">₱<?php echo number_format($averageSaleValue, 2); ?></span>
+                                <span
+                                    class="numeric-value title is-4">₱<?php echo number_format($averageSaleValue, 2); ?></span>
                             </div>
                         </div>
                         <div class="cell is-col-span-3 is-row-span-12" style="height: 65vh;">
@@ -243,7 +258,7 @@ $conn->close();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $topProductResult->fetch_assoc()) : ?>
+                                            <?php while ($row = $topProductResult->fetch_assoc()): ?>
                                                 <tr>
                                                     <td class="has-text-weight-semibold"><?php echo $row['ID']; ?></td>
                                                     <td class=""><?php echo $row['Name']; ?></td>
@@ -251,7 +266,8 @@ $conn->close();
                                                     <td class=""><?php echo $row['SoldQty']; ?></td>
                                                     <td class=""><?php echo $row['Stock']; ?></td>
                                                     <td>
-                                                        <span class="tag <?php echo $row['Stock'] > 0 ? 'is-success' : 'is-danger'; ?>">
+                                                        <span
+                                                            class="tag <?php echo $row['Stock'] > 0 ? 'is-success' : 'is-danger'; ?>">
                                                             <?php echo $row['Stock'] > 0 ? 'In Stock' : 'Out of Stock'; ?>
                                                         </span>
                                                     </td>
@@ -288,15 +304,17 @@ $conn->close();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $leastProductResult->fetch_assoc()) : ?>
+                                            <?php while ($row = $leastProductResult->fetch_assoc()): ?>
                                                 <tr>
                                                     <td><?php echo $row['ID']; ?></td>
                                                     <td class="has-text-weight-semibold"><?php echo $row['Name']; ?></td>
-                                                    <td class="has-text-weight-semibold">₱<?php echo number_format($row['Price'], 2); ?></td>
+                                                    <td class="has-text-weight-semibold">
+                                                        ₱<?php echo number_format($row['Price'], 2); ?></td>
                                                     <td class="has-text-weight-semibold"><?php echo $row['SoldQty']; ?></td>
                                                     <td class="has-text-weight-semibold"><?php echo $row['Stock']; ?></td>
                                                     <td>
-                                                        <span class="tag <?php echo $row['Stock'] > 0 ? 'is-success' : 'is-danger'; ?>">
+                                                        <span
+                                                            class="tag <?php echo $row['Stock'] > 0 ? 'is-success' : 'is-danger'; ?>">
                                                             <?php echo $row['Stock'] > 0 ? 'In Stock' : 'Out of Stock'; ?>
                                                         </span>
                                                     </td>
@@ -355,7 +373,7 @@ $conn->close();
                                 y: {
                                     beginAtZero: true,
                                     ticks: {
-                                        callback: function(value, index, values) {
+                                        callback: function (value, index, values) {
                                             if (value >= 1000) {
                                                 return "₱" + value / 1000 + "k";
                                             }
@@ -439,7 +457,7 @@ $conn->close();
                                 },
                                 tooltip: {
                                     callbacks: {
-                                        label: function(tooltipItem) {
+                                        label: function (tooltipItem) {
                                             return tooltipItem.label + ': ' + tooltipItem.raw + ' Sold';
                                         }
                                     }

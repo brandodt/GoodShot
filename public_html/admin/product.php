@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
+    $_SESSION["error"] = "Unauthorized access. Please login first.";
+    header("location: ../index.php");
+    exit;
+}
+?>
 <!doctype html>
 <html>
 
@@ -45,18 +54,18 @@
                                 <ul>
                                     <li class="py-2"><a href="#"
                                             class="has-background-primary has-text-white">Product</a></li>
-                                    <li class="py-2"><a href="category.php"
-                                            class="has-background-grey-light has-text-white nice">Category</a></li>
+                                    <li class="pt-2"><a href="report.php"
+                                            class="has-background-grey-light has-text-white nice">Report</a></li>
+                                    <!-- <li class="py-2"><a href="category.php"
+                                            class="has-background-grey-light has-text-white nice">Category</a></li> -->
                                 </ul>
                             </li>
-                            <li class="pt-2"><a href="report.php"
-                                    class="has-background-grey-light has-text-white nice">Report</a></li>
                         </ul>
                         <hr>
                         <p class="menu-label has-text-white">Account</p>
                         <ul class="menu-list">
-                            <li class="pb-2"><a href="settings.php"
-                                    class="has-background-grey-light has-text-white nice">Settings</a></li>
+                            <!-- <li class="pb-2"><a href="settings.php"
+                                    class="has-background-grey-light has-text-white nice">Settings</a></li> -->
                             <li class="py-2"><a class="has-background-grey-light has-text-white nice"
                                     onclick="logout()">Logout</a></li>
                         </ul>

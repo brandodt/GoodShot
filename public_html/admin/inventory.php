@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
+    $_SESSION["error"] = "Unauthorized access. Please login first.";
+    header("location: ../index.php");
+    exit;
+}
 include_once '../includes/db/connection.php';
 $db = new Database();
 $conn = $db->connect();
@@ -116,9 +123,11 @@ if ($topSupplierResult) {
                     <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
-                        <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white nice">Dashboard</a>
+                        <li class="pt-2"><a href="index.php"
+                                class="has-background-grey-light has-text-white nice">Dashboard</a>
                         </li>
-                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                        <li class="pt-2"><a href="sales-mgmt.php"
+                                class="has-background-grey-light has-text-white nice">Sales Management</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Storage</p>
@@ -126,25 +135,29 @@ if ($topSupplierResult) {
                         <li class="pt-2">
                             <a href="#" class="has-background-primary has-text-white">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
-                                </li>
+                                <li class="pt-2"><a href="report.php"
+                                        class="has-background-grey-light has-text-white nice">Report</a></li>
+                                <!-- <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
+                                </li> -->
                             </ul>
                         </li>
-                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
+                        <!-- <li class="pb-2"><a href="settings.php"
+                                class="has-background-grey-light has-text-white nice">Settings</a></li> -->
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
             <div class="column is-10">
                 <h1 class="title has-text-white">Inventory Overview</h1>
-                <?php if (isset($_GET['message'])) : ?>
+                <?php if (isset($_GET['message'])): ?>
                     <div class="notification is-success has-text-weight-bold">
                         <?php echo htmlspecialchars($_GET['message']); ?>
                     </div>
@@ -207,14 +220,16 @@ if ($topSupplierResult) {
                                         <span class="icon is-large has-text-primary">
                                             <i class="fas fa-2x fas fa-shopping-cart""></i>
                                                 </span>
-                                                <span class=" title is-5">Category:<br><b><?php echo $total_categories; ?></b></span>
+                                                <span class=" title
+                                                is-5">Category:<br><b><?php echo $total_categories; ?></b></span>
                                     </span>
 
                                     <span class="icon-text mr-6">
                                         <span class="icon is-large has-text-primary">
                                             <i class="fas fa-2x fas fa-tag""></i>
                                                 </span>
-                                                <span class=" title is-5">Suppliers:<br><b><?php echo $total_supplier; ?></b></span>
+                                                <span class=" title
+                                                is-5">Suppliers:<br><b><?php echo $total_supplier; ?></b></span>
                                     </span>
                                 </div>
                             </div>
@@ -238,7 +253,7 @@ if ($topSupplierResult) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $lowStockResult->fetch_assoc()) : ?>
+                                            <?php while ($row = $lowStockResult->fetch_assoc()): ?>
                                                 <tr>
                                                     <td class="has-text-weight-semibold"><?php echo $row['ID']; ?></td>
                                                     <td><?php echo $row['Product']; ?></td>
@@ -266,9 +281,10 @@ if ($topSupplierResult) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $newarrivalResult->fetch_assoc()) : ?>
+                                            <?php while ($row = $newarrivalResult->fetch_assoc()): ?>
                                                 <tr>
-                                                    <td class="has-text-weight-semibold"><?php echo $row['product_id']; ?></td>
+                                                    <td class="has-text-weight-semibold"><?php echo $row['product_id']; ?>
+                                                    </td>
                                                     <td><?php echo $row['name']; ?></td>
                                                     <td class=""><?php echo $row['supplier_name']; ?></td>
                                                 </tr>
@@ -309,7 +325,7 @@ if ($topSupplierResult) {
                                 <div class="container content is-large">
                                     <p class="title is-3">Top Suppliers:</p>
                                     <ol>
-                                        <?php foreach ($total_topSupplier as $row) : ?>
+                                        <?php foreach ($total_topSupplier as $row): ?>
                                             <li><?php echo $row['supplier_name']; ?></li>
                                         <?php endforeach; ?>
                                     </ol>
@@ -325,97 +341,99 @@ if ($topSupplierResult) {
 
     <!-- MODALS -->
     <div id="addProduct-modal-content" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Add Product</p>
-            <button id="close-modal-addProduct" class="delete" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-            <form action="forms/add-product.php" method="POST" enctype="multipart/form-data">
-                <div class="field">
-                    <label class="label">Product Name</label>
-                    <div class="control">
-                        <input class="input" type="text" name="product_name" placeholder="Enter product name" required>
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add Product</p>
+                <button id="close-modal-addProduct" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="forms/add-product.php" method="POST" enctype="multipart/form-data">
+                    <div class="field">
+                        <label class="label">Product Name</label>
+                        <div class="control">
+                            <input class="input" type="text" name="product_name" placeholder="Enter product name"
+                                required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Category</label>
-                    <p class="control">
-                        <span class="select is-fullwidth">
-                            <select name="category">
-                                <?php
-                                // Assuming $conn is your database connection object
-                                $query = "SELECT category_id, category_name FROM category";
-                                $result = $conn->query($query);
+                    <div class="field">
+                        <label class="label">Category</label>
+                        <p class="control">
+                            <span class="select is-fullwidth">
+                                <select name="category">
+                                    <?php
+                                    // Assuming $conn is your database connection object
+                                    $query = "SELECT category_id, category_name FROM category";
+                                    $result = $conn->query($query);
 
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<option value='" . $row['category_id'] . "'>" . $row['category_name'] . "</option>";
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option value='" . $row['category_id'] . "'>" . $row['category_name'] . "</option>";
+                                        }
                                     }
-                                }
-                                ?>
-                            </select>
-                        </span>
-                    </p>
-                </div>
+                                    ?>
+                                </select>
+                            </span>
+                        </p>
+                    </div>
 
-                <div class="field">
-                    <label class="label">Supplier</label>
-                    <p class="control">
-                        <span class="select is-fullwidth">
-                            <select name="supplier_id">
-                                <?php
-                                $query = "SELECT * FROM suppliers";
-                                $result = $conn->query($query);
+                    <div class="field">
+                        <label class="label">Supplier</label>
+                        <p class="control">
+                            <span class="select is-fullwidth">
+                                <select name="supplier_id">
+                                    <?php
+                                    $query = "SELECT * FROM suppliers";
+                                    $result = $conn->query($query);
 
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_name'] . "</option>";
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option value='" . $row['supplier_id'] . "'>" . $row['supplier_name'] . "</option>";
+                                        }
                                     }
-                                }
-                                ?>
-                            </select>
-                        </span>
-                    </p>
-                </div>
+                                    ?>
+                                </select>
+                            </span>
+                        </p>
+                    </div>
 
-                <div class="field">
-                    <label class="label">Image</label>
-                    <div class="control">
-                        <input class="input" type="file" name="image">
+                    <div class="field">
+                        <label class="label">Image</label>
+                        <div class="control">
+                            <input class="input" type="file" name="image">
+                        </div>
                     </div>
-                </div>
 
-                <div class="field-body">
-                    <div class="field">
-                        <label class="label">Quantity</label>
-                        <div class="control">
-                            <input class="input" type="number" name="quantity" placeholder="Enter quantity" required>
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">Quantity</label>
+                            <div class="control">
+                                <input class="input" type="number" name="quantity" placeholder="Enter quantity"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Price</label>
+                            <div class="control">
+                                <input class="input" type="number" name="price" placeholder="Enter price" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Price</label>
-                        <div class="control">
-                            <input class="input" type="number" name="price" placeholder="Enter price" required>
+                    <br>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary" type="submit" name="submit">Add Product</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-primary" type="submit" name="submit">Add Product</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section>
-        <footer class="modal-card-foot">
-        </footer>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+            </footer>
+        </div>
     </div>
-</div>
 
     <div id="removeProduct-modal-content" class="modal">
         <div class="modal-background"></div>

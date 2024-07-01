@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
     $_SESSION["error"] = "Unauthorized access. Please login first.";
     header("location: ../index.php");
     exit;
@@ -66,8 +66,10 @@ $result = $conn->query($sql);
                         <p class="lego has-text-primary is-size-1">GOODSHOT</p>
                         <p class="menu-label has-text-white">Overview</p>
                         <ul class="menu-list">
-                            <li class="pt-2"><a href="index.php" class="has-background-grey-light has-text-white">Dashboard</a></li>
-                            <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white">Sales Management</a></li>
+                            <li class="pt-2"><a href="index.php"
+                                    class="has-background-grey-light has-text-white">Dashboard</a></li>
+                            <li class="pt-2"><a href="sales-mgmt.php"
+                                    class="has-background-grey-light has-text-white">Sales Management</a></li>
                         </ul>
                         <hr>
                         <p class="menu-label has-text-white">Storage</p>
@@ -75,17 +77,21 @@ $result = $conn->query($sql);
                             <li class="pt-2">
                                 <a href="inventory.php" class="has-background-grey-light has-text-white">Inventory</a>
                                 <ul>
-                                    <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white">Product</a></li>
-                                    <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white">Category</a></li>
+                                    <li class="py-2"><a href="product.php"
+                                            class="has-background-grey-light has-text-white">Product</a></li>
+                                    <li class="pt-2"><a href="#"
+                                            class="has-background-primary has-text-white">Report</a></li>
+                                    <!-- <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white">Category</a></li> -->
                                 </ul>
                             </li>
-                            <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Report</a></li>
                         </ul>
                         <hr>
                         <p class="menu-label has-text-white">Account</p>
                         <ul class="menu-list">
-                            <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white">Settings</a></li>
-                            <li class="py-2"><a class="has-background-grey-light has-text-white" onclick="logout()">Logout</a></li>
+                            <!-- <li class="pb-2"><a href="settings.php"
+                                    class="has-background-grey-light has-text-white">Settings</a></li> -->
+                            <li class="py-2"><a class="has-background-grey-light has-text-white"
+                                    onclick="logout()">Logout</a></li>
                         </ul>
                     </aside>
                 </div>
@@ -106,14 +112,16 @@ $result = $conn->query($sql);
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $result->fetch_assoc()) : ?>
+                                            <?php while ($row = $result->fetch_assoc()): ?>
                                                 <tr>
                                                     <td><?php echo htmlspecialchars($row['transactNo']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['sale_date']); ?></td>
                                                     <td><?php echo htmlspecialchars($row['cashierName']); ?></td>
                                                     <td>₱<?php echo htmlspecialchars($row['total_amount']); ?></td>
                                                     <td>
-                                                        <button class='button is-primary is-small is-outlined' onclick='viewReceipt("<?php echo htmlspecialchars($row['transactNo']); ?>")'>View Receipt</button>
+                                                        <button class='button is-primary is-small is-outlined'
+                                                            onclick='viewReceipt("<?php echo htmlspecialchars($row['transactNo']); ?>")'>View
+                                                            Receipt</button>
                                                     </td>
                                                 </tr>
                                             <?php endwhile; ?>

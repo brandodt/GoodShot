@@ -5,7 +5,7 @@ class Database
     private $host = '127.0.0.1';
     private $db = 'goodshot';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'r00t@Dw4yn3';
     private $conn;
 
     public function connect()

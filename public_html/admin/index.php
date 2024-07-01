@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
+    $_SESSION["error"] = "Unauthorized access. Please login first.";
+    header("location: ../index.php");
+    exit;
+}
 include "../includes/db/connection.php";
 $db = new Database();
 $conn = $db->connect();
@@ -112,7 +119,8 @@ $conn->close();
                     <p class="menu-label has-text-white">Overview</p>
                     <ul class="menu-list">
                         <li class="pt-2"><a href="#" class="has-background-primary has-text-white">Dashboard</a></li>
-                        <li class="pt-2"><a href="sales-mgmt.php" class="has-background-grey-light has-text-white nice">Sales Management</a></li>
+                        <li class="pt-2"><a href="sales-mgmt.php"
+                                class="has-background-grey-light has-text-white nice">Sales Management</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Storage</p>
@@ -120,19 +128,24 @@ $conn->close();
                         <li class="pt-2">
                             <a href="inventory.php" class="has-background-grey-light has-text-white nice">Inventory</a>
                             <ul>
-                                <li class="py-2"><a href="product.php" class="has-background-grey-light has-text-white nice">Product</a>
+                                <li class="py-2"><a href="product.php"
+                                        class="has-background-grey-light has-text-white nice">Product</a>
                                 </li>
-                                <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
-                                </li>
+                                <li class="pt-2"><a href="report.php"
+                                        class="has-background-grey-light has-text-white nice">Report</a></li>
+                                <!-- <li class="py-2"><a href="category.php" class="has-background-grey-light has-text-white nice">Category</a>
+                                </li> -->
+
                             </ul>
                         </li>
-                        <li class="pt-2"><a href="report.php" class="has-background-grey-light has-text-white nice">Report</a></li>
                     </ul>
                     <hr>
                     <p class="menu-label has-text-white">Account</p>
                     <ul class="menu-list">
-                        <li class="pb-2"><a href="settings.php" class="has-background-grey-light has-text-white nice">Settings</a></li>
-                        <li class="py-2"><a class="has-background-grey-light has-text-white nice" onclick="logout()">Logout</a></li>
+                        <!-- <li class="pb-2"><a href="settings.php"
+                                class="has-background-grey-light has-text-white nice">Settings</a></li> -->
+                        <li class="py-2"><a class="has-background-grey-light has-text-white nice"
+                                onclick="logout()">Logout</a></li>
                     </ul>
                 </aside>
             </div>
@@ -207,11 +220,13 @@ $conn->close();
                                     <br>
                                     <div class="columns has-text-centered">
                                         <div class="column has-text-centered">
-                                            <span class="icon-text is-flex is-flex-direction-column is-align-items-center">
+                                            <span
+                                                class="icon-text is-flex is-flex-direction-column is-align-items-center">
                                                 <span class="icon has-text-link has-text-centered is-centered">
                                                     <i class="fas fa-2x fa-hand-holding-usd"></i>
                                                 </span>
-                                                <h5 class="subtitle is-6">No. of Purchases<br></h5><span class="title is-4">
+                                                <h5 class="subtitle is-6">No. of Purchases<br></h5><span
+                                                    class="title is-4">
                                                     <?php echo $numberOfPurchases; ?>
                                                 </span>
                                             </span>
@@ -220,11 +235,13 @@ $conn->close();
 
                                     <div class="columns has-text-centered">
                                         <div class="column has-text-centered">
-                                            <span class="icon-text is-flex is-flex-direction-column is-align-items-center">
+                                            <span
+                                                class="icon-text is-flex is-flex-direction-column is-align-items-center">
                                                 <span class="icon has-text-primary">
                                                     <i class="fas fa-2x fa-dollar-sign"></i>
                                                 </span>
-                                                <h5 class="subtitle is-6">Avg Sale Amount<br></h5><span class="title is-4">₱
+                                                <h5 class="subtitle is-6">Avg Sale Amount<br></h5><span
+                                                    class="title is-4">₱
                                                     <?php echo number_format($avgSoldAmount, 2); ?>
                                                 </span>
                                             </span>
@@ -251,7 +268,7 @@ $conn->close();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = $topProductResult->fetch_assoc()) : ?>
+                                            <?php while ($row = $topProductResult->fetch_assoc()): ?>
                                                 <tr>
                                                     <td>
                                                         <?php echo $row['ID']; ?>
@@ -264,7 +281,8 @@ $conn->close();
                                                     <td class="">
                                                         <?php echo $row['Sold']; ?>
                                                     </td>
-                                                    <td class="has-text-weight-semibold has-text-success">₱<?php echo number_format($row['Earning']); ?>
+                                                    <td class="has-text-weight-semibold has-text-success">
+                                                        ₱<?php echo number_format($row['Earning']); ?>
                                                     </td>
                                                 </tr>
                                             <?php endwhile; ?>
@@ -352,7 +370,7 @@ $conn->close();
                 scales: {
                     y: {
                         ticks: {
-                            callback: function(value, index, values) {
+                            callback: function (value, index, values) {
                                 if (value >= 1000) {
                                     return value / 1000 + "k";
                                 }
