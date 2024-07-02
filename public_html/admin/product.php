@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
-    $_SESSION["error"] = "Unauthorized access. Please login first.";
-    header("location: ../index.php");
-    exit;
-}
-?>
 <!doctype html>
 <html>
 
@@ -98,7 +89,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="product in filteredProducts" :key="product.product_id">
+                                                <tr v-for="product in products" :key="product.product_id">
                                                     <td class="has-text-weight-semibold">{{ product.product_id }}</td>
                                                     <td><img :src="product.img_path" alt="Product Image" width="50">
                                                     </td>
@@ -211,10 +202,17 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
                 this.fetchCategories();
                 this.fetchSuppliers();
             },
+            watch: {
+                searchQuery() {
+                    this.fetchProducts();
+                }
+            },
             methods: {
                 fetchProducts() {
                     axios
-                        .get("../includes/api/admin/searchProduct.php")
+                        .get("../includes/api/admin/searchProduct.php", {
+                            params: { searchTerm: this.searchQuery }
+                        })
                         .then((response) => {
                             this.products = response.data.map((product) => ({
                                 ...product,
@@ -251,50 +249,13 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "admin") {
                 },
                 closeModal() {
                     this.showModal = false;
-                    this.currentProduct = {
-                        product_id: '',
-                        name: '',
-                        category_id: '',
-                        supplier_id: '',
-                        quantity: 0,
-                        price: 0
-                    };
                 },
                 updateProduct() {
-                    axios
-                        .post("../includes/api/admin/updateProduct.php", this.currentProduct)
-                        .then((response) => {
-                            if (response.data.status === 'success') {
-                                this.fetchProducts();
-                                this.closeModal();
-                            } else {
-                                alert(response.data.message);
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
+                    // Logic for updating the product
+                    this.closeModal();
                 },
-                deleteProduct(product_id) {
-                    if (confirm('Are you sure you want to delete this product?')) {
-                        axios
-                            .post("../includes/api/admin/deleteProduct.php", { product_id })
-                            .then((response) => {
-                                if (response.data.status === 'success') {
-                                    this.products = this.products.filter(product => product.product_id !== product_id);
-                                } else {
-                                    alert(response.data.message);
-                                }
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
-                    }
-                }
-            },
-            computed: {
-                filteredProducts() {
-                    return this.products.filter(product => product.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+                deleteProduct(productId) {
+                    // Logic for deleting the product
                 }
             }
         }).mount('#app');

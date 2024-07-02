@@ -52,12 +52,12 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                 <div class="navbar-item">
                     <div class="field">
                         <p class="control">
-                            <a class="button is-link" id="account-modal-button">
+                            <button class="button is-danger" onclick="logout()">
                                 <span class="icon">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-sign-out-alt"></i>
                                 </span>
-                                <span> Account </span>
-                            </a>
+                                <span>Logout</span>
+                            </button>
                         </p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                     <div class="cell">
                         <div class="box">
                             <h1 class="title is-1">Cashier</h1>
-                            <h4 class="subtitle is-4">Brando Dela Torre</h4>
+                            <!-- <h4 class="subtitle is-4">Brando Dela Torre</h4> -->
                             <p>
                                 <strong>Transaction #: </strong><span>{{ formattedTransactionNum }}</span>
                             </p>
@@ -102,17 +102,20 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                             <td>{{ item.quantity }}</td>
                                             <td>₱ {{ (item.product.price * item.quantity).toFixed(2) }}</td>
                                             <td>
-                                                <button class="button is-primary is-light is-small" @click="decreaseQuantity(item)">
+                                                <button class="button is-primary is-light is-small"
+                                                    @click="decreaseQuantity(item)">
                                                     <span class="icon">
                                                         <i class="fas fa-minus"></i>
                                                     </span>
                                                 </button>
-                                                <button class="button is-primary is-light is-small" @click="increaseQuantity(item)">
+                                                <button class="button is-primary is-light is-small"
+                                                    @click="increaseQuantity(item)">
                                                     <span class="icon">
                                                         <i class="fas fa-plus"></i>
                                                     </span>
                                                 </button>
-                                                <button class="button is-danger is-light is-small" @click="removeItem(index)">
+                                                <button class="button is-danger is-light is-small"
+                                                    @click="removeItem(index)">
                                                     <span class="icon">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
@@ -129,7 +132,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                             <aside class="menu">
                                 <ul class="menu-list">
                                     <li class="subtitle is-5">
-                                        <a id="search-modal-button" class="aside-link" style="background: #262322; color:white;">
+                                        <a id="search-modal-button" class="aside-link"
+                                            style="background: #262322; color:white;">
                                             <span class="icon-text">
                                                 <span class="icon">
                                                     <i class="fas fa-search"></i>
@@ -139,7 +143,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         </a>
                                     </li>
                                     <li class="subtitle is-5">
-                                        <a id="payment-modal-button" class="aside-link" style="background: #262322; color:white;">
+                                        <a id="payment-modal-button" class="aside-link"
+                                            style="background: #262322; color:white;">
                                             <span class="icon-text">
                                                 <span class="icon">
                                                     <i class="fas fa-cash-register"></i>
@@ -149,7 +154,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         </a>
                                     </li>
                                     <li class="subtitle is-5">
-                                        <a @click="openClearCartModal" class="aside-link" style="background: #262322; color:white;">
+                                        <a @click="openClearCartModal" class="aside-link"
+                                            style="background: #262322; color:white;">
                                             <span class="icon-text has-text-danger">
                                                 <span class="icon">
                                                     <i class="fas fa-trash-alt"></i>
@@ -159,7 +165,8 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "cashier") {
                                         </a>
                                     </li>
                                     <li class="subtitle is-5">
-                                        <a href="invoices.php" class="aside-link" style="background: #262322; color:white;">
+                                        <a href="invoices.php" class="aside-link"
+                                            style="background: #262322; color:white;">
                                             <span class="icon-text">
                                                 <span class="icon">
                                                     <i class="fas fa-scroll"></i>

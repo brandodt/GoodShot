@@ -383,6 +383,14 @@ Vue.createApp({
             this.notification = "Payment successful!";
             this.notificationType = "success";
             this.clearCart();
+
+            // Option 1: Reload the page
+            setTimeout(() => {
+              location.reload();
+            }, 5000);
+
+            // Option 2: Renew the transaction number
+            this.transactionNum = this.formattedTransactionNum;
           })
           .catch((error) => {
             // Handle error

@@ -78,12 +78,12 @@ $result = $conn->query($sql);
                 <div class="navbar-item">
                     <div class="field">
                         <p class="control">
-                            <a class="button is-link" id="account-modal-button">
+                            <button class="button is-danger" onclick="logout()">
                                 <span class="icon">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-sign-out-alt"></i>
                                 </span>
-                                <span> Account </span>
-                            </a>
+                                <span>Logout</span>
+                            </button>
                         </p>
                     </div>
                 </div>
@@ -139,9 +139,11 @@ $result = $conn->query($sql);
                 <a class="pagination-previous" href="?page=<?php echo max(1, $page - 1); ?>">Previous</a>
                 <a class="pagination-next" href="?page=<?php echo min($total_pages, $page + 1); ?>">Next</a>
                 <ul class="pagination-list">
-                    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                         <li>
-                            <a class="pagination-link <?php if ($i == $page) echo 'is-current'; ?>" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                            <a class="pagination-link <?php if ($i == $page)
+                                echo 'is-current'; ?>"
+                                href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                         </li>
                     <?php endfor; ?>
                 </ul>
@@ -200,11 +202,11 @@ $result = $conn->query($sql);
     </div>
     <script src="assets/js/sortable.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const paginationLinks = document.querySelectorAll(".pagination-link");
 
             paginationLinks.forEach(link => {
-                link.addEventListener("click", function(event) {
+                link.addEventListener("click", function (event) {
                     event.preventDefault();
                     const targetPage = this.getAttribute("href").split("=")[1];
                     window.location.href = `?page=${targetPage}`;

@@ -53,7 +53,7 @@ $lowStockResult = $stmt->get_result();
 $newarrival = "SELECT name, product_id, supplier_name 
             FROM products
             JOIN suppliers ON products.supplier_id = suppliers.supplier_id
-            WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY);";
+            ORDER BY date DESC;";
 $newarrivalResult = $conn->query($newarrival);
 
 // Count new products
@@ -270,7 +270,7 @@ if ($topSupplierResult) {
                             <div class="box">
                                 <span class="has-text-weight-bold has-text-success">
                                     New Arrival
-                                </span><span><?php echo "as of " . date("F d, Y"); ?></span>
+                                </span><span></span>
                                 <div class="scrollable-table">
                                     <table class="table is-narrow">
                                         <thead>
