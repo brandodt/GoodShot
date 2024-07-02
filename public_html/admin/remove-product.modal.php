@@ -27,7 +27,7 @@
                     <div class="control">
                         <label class="checkbox">
                             <input type="checkbox" name="remove_all">
-                            All product?
+                            All quantity?
                         </label>
                     </div>
                 </div>

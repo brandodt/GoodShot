@@ -251,11 +251,41 @@
                     this.showModal = false;
                 },
                 updateProduct() {
-                    // Logic for updating the product
-                    this.closeModal();
+                    // Prevent negative values for quantity and price
+                    if (this.currentProduct.quantity < 0 || this.currentProduct.price < 0) {
+                        alert('Quantity and price cannot be negative.');
+                        return;
+                    }
+
+                    axios
+                        .post("../includes/api/admin/updateProduct.php", this.currentProduct)
+                        .then((response) => {
+                            if (response.data.status === 'success') {
+                                this.fetchProducts();
+                                this.closeModal();
+                            } else {
+                                alert(response.data.message);
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 },
-                deleteProduct(productId) {
-                    // Logic for deleting the product
+                deleteProduct(product_id) {
+                    if (confirm('Are you sure you want to delete this product?')) {
+                        axios
+                            .post("../includes/api/admin/deleteProduct.php", { product_id })
+                            .then((response) => {
+                                if (response.data.status === 'success') {
+                                    this.products = this.products.filter(product => product.product_id !== product_id);
+                                } else {
+                                    alert(response.data.message);
+                                }
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    }
                 }
             }
         }).mount('#app');

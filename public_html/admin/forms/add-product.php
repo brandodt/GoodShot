@@ -15,6 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $price = $_POST['price'];
     $cost = $price * 0.50; // Assuming cost is calculated based on price
 
+    // Prevent negative values for quantity and price
+    if ($quantity < 0 || $price < 0) {
+        $message = "Quantity and price cannot be negative.";
+        header("Location: ../inventory.php?message=" . urlencode($message) . "&status=is-danger");
+        exit();
+    }
+
     // Initialize variables for image processing
     $target_file = "";
     $upload_ok = true;
@@ -28,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             $upload_ok = false;
             $message = "Error uploading image.";
+            header("Location: ../inventory.php?message=" . urlencode($message) . "&status=is-danger");
+            exit();
         }
     }
 
@@ -42,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $message = "Invalid category ID.";
         $stmt->close();
         $conn->close();
-        header("Location: ../inventory.php?message=" . urlencode($message));
+        header("Location: ../inventory.php?message=" . urlencode($message) . "&status=is-danger");
         exit();
     }
 
@@ -56,19 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Product exists, update the quantity
-        // $existing_product = $result->fetch_assoc();
-        // $new_quantity = $existing_product['quantity'] + $quantity;
-
-        // $update_query = "UPDATE products SET quantity = ? WHERE name = ?";
-        // $stmt = $conn->prepare($update_query);
-        // $stmt->bind_param("is", $new_quantity, $product_name);
-
-        // if ($stmt->execute()) {
-        //     $message = "Quantity updated successfully!";
-        // } else {
-        //     $message = "Error updating quantity: " . $stmt->error;
-        // }
+        $message = "Product already exists.";
+        header("Location: ../inventory.php?message=" . urlencode($message) . "&status=is-danger");
+        exit();
     } else {
         // Product does not exist, insert new product
         $insert_query = "INSERT INTO products (supplier_id, category_id, name, price, cost, quantity, img_path, date)
@@ -78,8 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
         if ($stmt->execute()) {
             $message = "Product added successfully!";
+            $status = "is-success";
         } else {
             $message = "Error adding product: " . $stmt->error;
+            $status = "is-danger";
         }
     }
 
@@ -90,8 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $conn->close();
 } else {
     $message = "Form submission error: Form not submitted correctly.";
+    $status = "is-danger";
 }
 
 // Redirect or display notification back to the user
-header("Location: ../inventory.php?message=" . urlencode($message));
+header("Location: ../inventory.php?message=" . urlencode($message) . "&status=" . $status);
 exit();
+?>

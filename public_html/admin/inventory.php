@@ -50,15 +50,32 @@ $stmt->execute();
 $lowStockResult = $stmt->get_result();
 
 // New Arrival Data
-$newarrival = "SELECT name, product_id, supplier_name 
-            FROM products
-            JOIN suppliers ON products.supplier_id = suppliers.supplier_id
-            ORDER BY date DESC;";
+$newarrival = "SELECT name, p.product_id, s.supplier_name 
+            FROM products p
+            JOIN suppliers s ON p.supplier_id = s.supplier_id
+            WHERE p.date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY)
+            ORDER BY p.date DESC;";
 $newarrivalResult = $conn->query($newarrival);
 
 // Count new products
-$newproduct = "SELECT COUNT(*) AS new_products FROM products WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY);";
-$newproductResult = $conn->query($newproduct);
+// $newproduct = "SELECT COUNT(*) AS new_products FROM products WHERE date >= DATE_SUB(CURDATE(), INTERVAL 5 DAY);";
+// $newproductResult = $conn->query($newproduct);
+
+$query = "SELECT COUNT(*) AS new_products_count FROM products WHERE date >= CURDATE() - INTERVAL 5 DAY";
+$result = $conn->query($query);
+
+// Initialize new products count
+$new_products_count = 0;
+
+if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $new_products_count = $row['new_products_count'];
+}
+
+// Close the result set if it's not needed further
+if ($result) {
+    $result->close();
+}
 
 // Total Suppliers
 $supplierQuery = "SELECT COUNT(*) AS total_supplier FROM suppliers;";
@@ -71,7 +88,7 @@ if ($supplierResult) {
 }
 
 // Top Suppliers
-$topSupplierQuery = "SELECT supplier_name FROM suppliers ORDER BY supplier_id DESC LIMIT 5;";
+$topSupplierQuery = "SELECT supplier_name FROM suppliers ORDER BY supplier_id DESC LIMIT 3;";
 $topSupplierResult = $conn->query($topSupplierQuery);
 if ($topSupplierResult) {
     $total_topSupplier = $topSupplierResult->fetch_all(MYSQLI_ASSOC);
@@ -157,11 +174,13 @@ if ($topSupplierResult) {
             </div>
             <div class="column is-10">
                 <h1 class="title has-text-white">Inventory Overview</h1>
-                <?php if (isset($_GET['message'])): ?>
-                    <div class="notification is-success has-text-weight-bold">
-                        <?php echo htmlspecialchars($_GET['message']); ?>
-                    </div>
-                <?php endif; ?>
+                <?php
+                if (isset($_GET['message']) && isset($_GET['status'])) {
+                    $message = htmlspecialchars($_GET['message']);
+                    $statusClass = htmlspecialchars($_GET['status']) == 'is-success' ? 'is-success' : 'is-danger';
+
+                    echo "<div class=\"notification $statusClass\">$message</div>";
+                } ?>
                 <div class="fixed-grid has-7-cols">
                     <div class="grid">
                         <div class="cell" style="height: 20vh;">
@@ -194,7 +213,7 @@ if ($topSupplierResult) {
                                 </span>
                                 <br>
                                 <h5 class="subtitle is-6">New Products<br><br></h5>
-                                <span class="title is-4"><?php echo $total_categories; ?></span>
+                                <span class="title is-4"><?php echo $new_products_count; ?></span>
                             </div>
                         </div>
                         <div class=" cell" style="height: 20vh;">
@@ -301,8 +320,8 @@ if ($topSupplierResult) {
                             </div>
                         </div> -->
                         <div class="cell" style="height: 20vh;">
-                            <a id="removeProduct-modal-button" class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                            <a id="removeProduct-modal-button" class="icon-text-stack box has-background-danger-light">
+                                <span class="fa-stack fa-2x has-text-danger">
                                     <i class="far fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-trash fa-stack-1x"></i>
                                 </span>
@@ -311,8 +330,8 @@ if ($topSupplierResult) {
                             </a>
                         </div>
                         <div class="cell" style="height: 20vh;">
-                            <a id="addProduct-modal-button" class="icon-text-stack box">
-                                <span class="fa-stack fa-2x has-text-primary">
+                            <a id="addProduct-modal-button" class="icon-text-stack box has-background-success-light">
+                                <span class="fa-stack fa-2x has-text-success">
                                     <i class="far fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-plus-square fa-stack-1x"></i>
                                 </span>
@@ -401,33 +420,33 @@ if ($topSupplierResult) {
                     <div class="field">
                         <label class="label">Image</label>
                         <div class="control">
-                            <input class="input" type="file" name="image">
+                            <input class="input" type="file" accept="image/png, image/jpeg" name="image" onchange="validateFileType()>
                         </div>
                     </div>
 
-                    <div class="field-body">
-                        <div class="field">
-                            <label class="label">Quantity</label>
-                            <div class="control">
-                                <input class="input" type="number" name="quantity" placeholder="Enter quantity"
-                                    required>
+                    <div class=" field-body">
+                            <div class="field">
+                                <label class="label">Quantity</label>
+                                <div class="control">
+                                    <input class="input" type="number" name="quantity" placeholder="Enter quantity"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Price</label>
+                                <div class="control">
+                                    <input class="input" type="number" name="price" placeholder="Enter price" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="field">
-                            <label class="label">Price</label>
-                            <div class="control">
-                                <input class="input" type="number" name="price" placeholder="Enter price" required>
+                        <br>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary" type="submit" name="submit">Add Product</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <button class="button is-primary" type="submit" name="submit">Add Product</button>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </section>
             <footer class="modal-card-foot">
@@ -464,7 +483,7 @@ if ($topSupplierResult) {
                         <div class="control">
                             <label class="checkbox">
                                 <input type="checkbox" name="remove_all">
-                                All product?
+                                All Quantity?
                             </label>
                         </div>
                     </div>
@@ -479,6 +498,18 @@ if ($topSupplierResult) {
             </footer>
         </div>
     </div>
+    <script>
+        function validateFileType() {
+            var fileName = document.getElementById("fileName").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+                //TO DO
+            } else {
+                alert("Only jpg/jpeg and png files are allowed!");
+            }
+        }
+    </script>
 </body>
 
 </html>

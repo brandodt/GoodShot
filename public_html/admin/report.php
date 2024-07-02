@@ -20,11 +20,11 @@ $result_total = $conn->query($sql_total);
 
 
 // Fetch paginated results
-$sql = "SELECT s.transactNo, s.sale_date, CONCAT(u.firstName, ' ', u.lastName) AS cashierName, SUM(s.total_amount) AS total_amount 
+$sql = "SELECT DISTINCT s.transactNo, s.sale_date, CONCAT(u.firstName, ' ', u.lastName) AS cashierName, SUM(s.total_amount) AS total_amount 
         FROM sales s 
         JOIN users u ON s.cashier_id = u.id
         GROUP BY s.transactNo, s.sale_date, u.firstName, u.lastName
-        ORDER BY s.transactNo DESC";
+        ORDER BY s.transactNO DESC";
 $result = $conn->query($sql);
 ?>
 
